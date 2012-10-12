@@ -1,3 +1,8 @@
+/*******************************
+ * main.js
+ * Especily for initilising canvas and create eventlisteners
+ ******************************/
+ requirejs(['game']);
 var c,//canvas element
     ctx,//canvas 2d content to draw in
     windowWidth,//width of canvas
