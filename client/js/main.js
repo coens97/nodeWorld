@@ -2,16 +2,25 @@
  * main.js
  * Especily for initilising canvas and create eventlisteners
  ******************************/
- requirejs(['game']);
+ requirejs(['game'],function(){
+     init();
+     });
 var c,//canvas element
     ctx,//canvas 2d content to draw in
     windowWidth,//width of canvas
-    windowHeight;//height of canvas
+    windowHeight,//height of canvas
+    scale,//how much is the canvas zoomed in or out
+    gameInterval;//will contain timer fot loop
 
-init();
+function mainLoop(){
+    game.loop();//call game mainloop
+    game.draw();//draw game
+}
 
 function onMainClick(e){
-    
+    var tmpX = (e.pageX - c.offsetLeft)*scale;
+    var tmpY = (e.pageY - c.offsetTop)*scale;
+    game.mouseDown(tmpX,tmpY);
 }
 
 function init(){
@@ -24,6 +33,8 @@ function init(){
 	}else{
 		c.addEventListener("click", onMainClick, false);
 	}
+    gameInterval = self.setInterval(function(){mainLoop();},16);//call mainGameLoop() evry 16 ms
+    console.log("Canvas initialised");
 }
 window.onresize = function(event) {//when canvas resize resize canvas
    resizeCanvas();
@@ -31,9 +42,6 @@ window.onresize = function(event) {//when canvas resize resize canvas
 function resizeCanvas(){//resize canvas to aspect ratio
     windowWidth = document.body.offsetWidth;
     windowHeight = document.body.offsetHeight-25;
-    
-    //c.style.width = windowWidth + "px";//old code
-    //c.style.height = windowHeight + "px";//use this code to not use aspect ratio
     
     //start aspect ratio
     var tmpHeight = windowHeight;
@@ -47,3 +55,6 @@ function resizeCanvas(){//resize canvas to aspect ratio
     c.style.width = tmpWidth + "px";
     c.style.height = tmpHeight + "px";
 }
+document.ontouchmove = function(e) {//when on device with touchscreen want to scroll
+    e.preventDefault();
+};
