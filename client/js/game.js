@@ -1,7 +1,12 @@
 /**********************
  * Especialy for calling the gamsScene functions
  ********************/
+//requirejs(['scenes/intro']);
 var game = {
+    currentScene : 0,
+    gameScenes : [
+        //new intro()//0
+    ],
     loop : function(){//gameLoop function(game.loop)
 
     },
