@@ -1,8 +1,9 @@
-//var requirejs = require('requirejs');//so we could include files in project the same way the client does
+rootDir = __dirname;//so we now what is the root directory in other files
 
-//require(['server/httpServer']);
+var requirejs = require('requirejs');//so we could include files in project the same way the client does
 
-var connect = require('./connect');
-connect.createServer(
-    connect.static(__dirname)
-).listen(80);
+requirejs.config({
+    nodeRequire: require
+});
+
+requirejs(['server/httpServer']);
