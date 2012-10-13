@@ -3,6 +3,7 @@
  * Especily for initilising canvas and create eventlisteners
  ******************************/
  requirejs([
+     'socket',
      'scenes/intro',
      'game',
      ]
