@@ -1,5 +1,4 @@
-var app = require('http').createServer(handler),
-  main = require('./server/main'),
+var app = require('http').createServer(handler),//httpserrver
   fs = require('fs'),
   mime = require('mime'),
   url = require('url');
@@ -7,7 +6,7 @@ var app = require('http').createServer(handler),
 app.listen(config.port);
 //http server
 function handler (req, res) {
-    console.log("Page loading:"+url.parse(req.url).href);
+    config.logHHTP&&console.log("Page loading:"+url.parse(req.url).href);//log when file is loaded when it's in config is configures
     var theUrl;
 	if(url.parse(req.url).href=="/"){
 		theUrl = "index.html";
@@ -18,8 +17,9 @@ function handler (req, res) {
   fs.readFile(rootDir + '/client/'+theUrl,
   function (err, data) {
     if (err) {
-	  res.writeHead(500);
-      return res.end('Whazup dude\nJammer de pagina laadt niet');
+        config.logHHTP&&console.log("Page failed loading:"+url.parse(req.url).href);
+	    res.writeHead(500);
+        return res.end('Whazup dude\nJammer de pagina laadt niet');
     }
     res.writeHead(200, {'Content-Type':mime.lookup(theUrl)});
     res.end(data);
