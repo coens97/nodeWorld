@@ -4,7 +4,8 @@
 var game = {
     currentScene : 0,
     scenes : [
-        new intro()//0
+        new waitForConnection(),//0
+        new intro()//1
     ],
     loop : function(){//gameLoop function(game.loop)
         this.scenes[this.currentScene].loop();
