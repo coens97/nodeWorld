@@ -4,6 +4,7 @@
  ******************************/
  requirejs([
      'socket',
+     'sprites/basic',
      'scenes/intro',
      'game',
      ]
