@@ -4,7 +4,7 @@ var httpServer = require('http').createServer(httpHandler),//httpserrver
   url = require('url');
  
 httpServer.listen(config.port);
-var hello = "hey";
+
 //http server
 function httpHandler (req, res) {
     config.logHHTP&&console.log("Page loading:"+url.parse(req.url).href);//log when file is loaded when it's in config is configures
