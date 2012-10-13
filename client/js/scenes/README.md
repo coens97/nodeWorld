@@ -3,9 +3,11 @@ Every scene needs this functions
 * loop
 * draw
 * mouseDown
+
+# Examples
 If you don't need the function just leave the function empty
 Example:
-`function intro(){
+` function intro(){
     this.sprites = {
         bg : new rect("000000",0,0,1280,720)    
     };
@@ -23,4 +25,4 @@ Example:
     this.mouseDown = function(x,y){
         
     };
-}`
+} `
