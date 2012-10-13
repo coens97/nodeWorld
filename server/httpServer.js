@@ -1,11 +1,12 @@
-var app = require('http').createServer(handler),//httpserrver
+var httpServer = require('http').createServer(httpHandler),//httpserrver
   fs = require('fs'),
   mime = require('mime'),
   url = require('url');
  
-app.listen(config.port);
+httpServer.listen(config.port);
+var hello = "hey";
 //http server
-function handler (req, res) {
+function httpHandler (req, res) {
     config.logHHTP&&console.log("Page loading:"+url.parse(req.url).href);//log when file is loaded when it's in config is configures
     var theUrl;
 	if(url.parse(req.url).href=="/"){

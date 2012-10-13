@@ -4,6 +4,6 @@ config = require('./config.js');
 var requirejs = require('requirejs');//so we could include files in project the same way the client does
 
 requirejs(
-    ['server/httpServer',
-    'server/socket'
-    ]);
+    ['server/httpServer']
+    );
+requirejs(['server/socket']);
