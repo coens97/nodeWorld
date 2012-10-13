@@ -1,5 +1,5 @@
-var httpServer = require('http').createServer(httpHandler),//httpserrver
-  fs = require('fs'),
+httpServer = require('http').createServer(httpHandler);//httpserrver
+var fs = require('fs'),
   mime = require('mime'),
   url = require('url');
  
