@@ -2,8 +2,12 @@
  * main.js
  * Especily for initilising canvas and create eventlisteners
  ******************************/
- requirejs(['game'],function(){
-     init();
+ requirejs([
+     'scenes/intro',
+     'game',
+     ]
+    ,function(){
+         init();
      });
 var c,//canvas element
     ctx,//canvas 2d content to draw in
