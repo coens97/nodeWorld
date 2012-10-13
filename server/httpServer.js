@@ -1,10 +1,10 @@
-var httpServer = require('http').createServer(httpHandler),//httpserrver
-  fs = require('fs'),
+httpServer = require('http').createServer(httpHandler);//httpserrver
+var fs = require('fs'),
   mime = require('mime'),
   url = require('url');
  
 httpServer.listen(config.port);
-
+console.log("HTTP server started on port:"+config.port);
 //http server
 function httpHandler (req, res) {
     config.logHHTP&&console.log("Page loading:"+url.parse(req.url).href);//log when file is loaded when it's in config is configures
