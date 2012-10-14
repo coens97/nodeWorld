@@ -1,6 +1,7 @@
  // if user is running mozilla then use it's built-in WebSocket
 window.WebSocket = window.WebSocket || window.MozWebSocket;
-var connection = new WebSocket('ws://racing.coens97_1.c9.io:3000');
+var connection = new WebSocket("ws://"+window.location.host);//connect to server
+
 connection.onopen = function () {
     // connection is opened and ready to use
     alert("We have connection!");
