@@ -1,9 +1,10 @@
-httpServer = require('http').createServer(httpHandler);//httpserrver
-var fs = require('fs'),
-  mime = require('mime'),
-  url = require('url');
+exports.server = require('http').createServer(httpHandler);//httpserrver
+var    fs = require('fs'),
+    mime = require('mime'),
+    url = require('url');
  
-httpServer.listen(config.port);
+exports.server.listen(config.port);//listen to port
+console.log("HTTP server started at:"+config.port);
 
 //http server
 function httpHandler (req, res) {
