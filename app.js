@@ -1,7 +1,5 @@
-console.log("Starting server");
+console.log("Starting server");//say starting server
 rootDir = __dirname;//so we now what is the root directory in other files
-config = require('./config');
+config = require('./config');//load config file
 
-var httpServer = require("./server/httpServer");
-var ws = require("./server/socket");
-ws.startServer(httpServer.server);
+require("./server/main");//start server
