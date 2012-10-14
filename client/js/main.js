@@ -2,7 +2,7 @@
  * main.js
  * Especily for initilising canvas and create eventlisteners
  ******************************/
-require([
+define([
     'socket',
     'sprites/basic',
     'scenes/waitForConnection',
