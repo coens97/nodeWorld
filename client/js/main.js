@@ -2,12 +2,12 @@
  * main.js
  * Especily for initilising canvas and create eventlisteners
  ******************************/
- requirejs([
-     'socket',
-     'sprites/basic',
-     'scenes/waitForConnection',
-     'scenes/intro',
-     'game'
+require([
+    'socket',
+    'sprites/basic',
+    'scenes/waitForConnection',
+    'scenes/intro',
+    'game'
      ]
     ,function(){
          init();
