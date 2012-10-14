@@ -2,16 +2,20 @@
  * main.js
  * Especily for initilising canvas and create eventlisteners
  ******************************/
-define([
-    'socket',
-    'sprites/basic',
-    'scenes/waitForConnection',
-    'scenes/intro',
-    'game'
-     ]
-    ,function(){
-         init();
-     });
+
+//include other files
+requirejs(['socket',
+    /* put sprites here */
+    'sprites/basic'
+    ],function(){
+        requirejs([/* load scenes */
+            'scenes/waitForConnection',
+            'scenes/intro'],function(){
+                requirejs(['game'],function(){
+                    init();
+                });//end loading sprites + scenes + game
+        });//end loading sprites + scenes
+});//end loading sprites
 var c,//canvas element
     ctx,//canvas 2d content to draw in
     windowWidth,//width of canvas
