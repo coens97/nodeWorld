@@ -1,0 +1,12 @@
+{
+  "name": "nodeWheels",
+  "version": "0.0.1",
+  "dependencies": {
+    "mime": "1.2.x",
+    "websocket": "1.0.x"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}
