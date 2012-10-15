@@ -20,8 +20,11 @@ app.configure(function(){
   }));
   app.use(app.router);
 });
-
 server.listen(config.port);
+/*********************
+ * Websocket
+ ********************/
+io.set('log level', 1);//don't show all that boring debug data
 
 io.sockets.on('connection', function (socket) {
 	console.log("New connection");
