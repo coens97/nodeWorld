@@ -9,3 +9,7 @@ socket.on('disconnect', function () {
 	console.log("Connection lost");
 	document.getElementById("status").style.backgroundColor = "#FF0000";
 });
+
+socket.on('echo', function (data) {
+	console.log(data);
+});

@@ -1,7 +1,7 @@
 /*********************
  * main.js
  ********************/
-
+var game = require("./game.js");
 /********************
  * HTTPServer
  *******************/
@@ -27,10 +27,6 @@ server.listen(config.port);
 io.set('log level', 1);//don't show all that boring debug data
 
 io.sockets.on('connection', function (socket) {
-	console.log("New connection");
-	socket.on('echo', function (data) {
-		console.log("Somebody used echo:"+data);
-		socket.emit('echo','Echo:'+data);
-  });
+	game.newConnection(socket);
 });
 
