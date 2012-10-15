@@ -5,36 +5,23 @@
 /********************
  * HTTPServer
  *******************/
-var httpServer = require('http').createServer(httpHandler),//httpserrver
-	fs = require('fs'),//get into filesystem
-	mime = require('mime'),//send the right filetype to the client
-	url = require('url');//parse url
- 
-httpServer.listen(config.port);//listen to port
-console.log("HTTP server started at:"+config.port);
+var express = require('express'),
+	app = express(),//httpServer middleware
+	server = require('http').createServer(app),//httpServer
+	io = require('socket.io').listen(server);//websocket
 
-function httpHandler (req, res) {
-    config.logHHTP&&console.log("Page loading:"+url.parse(req.url).href);//log when file is loaded when it's in config is configures
-    var theUrl;
-	if(url.parse(req.url).href=="/"){
-		theUrl = "index.html";
-	}
-	else{
-		theUrl = url.parse(req.url).href;
-	}
-  fs.readFile(rootDir + '/client/'+theUrl,
-  function (err, data) {
-    if (err) {
-        config.logHHTP&&console.log("Page failed loading:"+url.parse(req.url).href);
-	    res.writeHead(500);
-        return res.end('Whazup dude\nJammer de pagina laadt niet');
-    }
-    res.writeHead(200, {'Content-Type':mime.lookup(theUrl)});
-    res.end(data);
-  });
-}
+app.configure(function(){
+  app.use(express.methodOverride());
+  app.use(express.bodyParser());
+  app.use(express.static(rootDir + '/client'));
+  app.use(express.errorHandler({
+    dumpExceptions: false, 
+    showStack: false
+  }));
+  app.use(app.router);
+});
 
-var io = require('socket.io').listen(httpServer);//start websocketserver
+server.listen(config.port);
 
 io.sockets.on('connection', function (socket) {
 	console.log("New connection");
