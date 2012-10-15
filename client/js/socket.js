@@ -18,3 +18,8 @@ socket.on('disconnect', function () {
 socket.on('echo', function (data) {
 	console.log(data);
 });
+
+socket.on('playerCount', function (data) {
+	console.log("Number of players changed:"+data);
+	document.getElementById("count").innerHTML = data;
+});

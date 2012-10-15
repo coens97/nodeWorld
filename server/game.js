@@ -3,7 +3,7 @@
  ****************/
 var stats = require("./stats");
  
-this.newConnection = function(socket){
+exports.newConnection = function(socket){
 	//here must al the user specific stuff	
 	socket.on('echo', function (data) {//for debugging
 		console.log("Echo:"+data);
@@ -15,8 +15,9 @@ this.newConnection = function(socket){
 		socket.emit("playerCount",stats.connections);
 	};
 	this.disconnected = function(){
+		stats.connections--;	
 		console.log("Somebody disconnected "+stats.connections);
-		stats.connections--;		
+		socket.broadcast.emit("playerCount",stats.connections);
 	};
 	socket.on('disconnect',this.disconnected);
 	//new user
