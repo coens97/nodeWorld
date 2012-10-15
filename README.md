@@ -3,7 +3,7 @@
 ## Getting started
 * First clone this project
 * Then in install nodeJS
-* Run this in commandline `npm install websocket mime`
+* Run this in commandline `npm install socket.io mime`
 * Run serer `node app.js`
 
 ## Optimize js files
