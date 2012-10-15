@@ -16,5 +16,9 @@ var game = {
     },
     mouseDown : function(x,y){//resolution 1280 720
         console.log("Mouse down x:"+x+"y:"+y);
-    }
+    },
+	newConnection : function(){
+		console.log("let's go to intro because we have connection");
+		this.currentScene = 1;
+	}
 }
