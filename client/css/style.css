@@ -10,3 +10,12 @@ html, body{
     margin:0;
     padding:0;
 }
+#status{
+	width:14px;
+	height:14px;
+	background-color:#FF0000;
+	display: inline-block;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
