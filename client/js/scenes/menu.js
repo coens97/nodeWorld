@@ -1,10 +1,13 @@
 function menu(){
     this.sprites = {
     	//bg
-    	bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
-        rooms : new text("#000000","Rooms",10,10),
-        rightSide : new vGrad({0:"#353535",0.1:"#000000",0.9:"#000000",1:"#353535"},980,0,300,720)
+    	bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,980,720),
+    	bg1: new vGrad({0:"#7d7e7d",1:"#2B2B2B"},0,0,1280,100),
+        rooms : new text("#FFFFFF","Rooms",80,0),
+        rightSide : new vGrad({0:"#353535",0.1:"#565656",0.9:"#565656",1:"#353535"},980,100,300,620)
     };
+    this.sprites.rooms.font = "72pt Arial";
+    
 	this.startScene = function(){
 		
 	};

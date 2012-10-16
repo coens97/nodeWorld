@@ -26,7 +26,7 @@ function text(color,string,x,y){//this is an object
     this.string = string;
     this.x = x;
     this.y = y;
-    this.font = "30pt Arial";
+    this.font = "32pt Arial";
     this.textAlign = "left";
     this.draw = function(){//you can call this with someRect.draw()
         ctx.fillStyle = this.color;
