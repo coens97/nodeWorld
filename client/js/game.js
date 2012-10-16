@@ -13,7 +13,7 @@ var game = {
         this.scenes[this.currentScene].loop();
     },
     draw : function(){
-        ctx.clearRect (0,0,800,600);//clear the canvas
+        ctx.clearRect (0,0,1280,720);//clear the canvas
         this.scenes[this.currentScene].draw();
     },
     mouseDown : function(x,y){//resolution 1280 720
@@ -22,6 +22,7 @@ var game = {
     },
     keyDown : function(key){
     	console.log("Key pressed:"+key);
+    	this.scenes[this.currentScene].keyDown(key);
     },
 	startScene : function(n){
 		this.scenes[n].startScene();

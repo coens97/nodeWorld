@@ -20,13 +20,19 @@ function nickname(){
     this.mouseDown = function(x,y){};
     
     this.keyDown = function(key){
-    
+    	if(key == 13){//if enter pressed
+    		this.sendNickname();
+    	}
     };
     
     this.sendNickname = function(){
     	var value = document.getElementById("inputName").value;
     	(value == "")&&(value = "nameless");
-    	alert(value);
+    	console.log("Send to server the nickname:"+value);
+    	socket.emit("nickname",value);
     };
-    
 }
+socket.on("go",function(){
+	document.getElementById("nickname").style.display = "none";
+	game.startScene(3);
+});

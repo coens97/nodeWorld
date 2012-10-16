@@ -28,12 +28,17 @@ function intro(){
         } 
     };
     this.mouseDown = function(x,y){
-        if(this.done){
-			game.startScene(2);
-		}
+        this.nextScene();//let's go to the other scene when it's ready
     };
     
     this.keyDown = function(key){
-    
+    	if(key == 32 || key == 13){//if enter or space is pressed
+    		this.nextScene();//go to the next scene when it's ready
+    	}
     };
+    this.nextScene = function(){//when mouse pressed or enter or space pressed
+    	if(this.done){//check if animation is over
+			game.startScene(2);//go to next scene
+		}
+    }
 }

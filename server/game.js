@@ -4,7 +4,12 @@
 var stats = require("./stats");
  
 exports.newConnection = function(socket){
-	//here must al the user specific stuff	
+	//here must al the user specific stuff		
+	socket.on('nickname', function (data) {//for debugging
+		console.log("Somebody gave nickname:"+data);
+		socket.emit("go","1");
+	});
+	
 	socket.on('echo', function (data) {//for debugging
 		console.log("Echo:"+data);
 		socket.emit('echo','Echo:'+data);
