@@ -7,7 +7,8 @@ var c = document.getElementById("myCanvas"),//canvas element
 //include other files
 requirejs(['socket',
     /* put sprites here */
-    'sprites/basic'
+    'sprites/basic',
+    'sprites/button'
     ],function(){
         requirejs([/* load scenes */
             'scenes/waitForConnection',
