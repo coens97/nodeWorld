@@ -1,6 +1,7 @@
 function menu(){
     this.sprites = {
         bg : new rect("#DDDDDD",0,0,1280,720),
+        rooms : new text("#000000","Rooms",10,10)
     };
 	this.startScene = function(){
 		

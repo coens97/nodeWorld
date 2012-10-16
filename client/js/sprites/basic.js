@@ -26,12 +26,13 @@ function text(color,string,x,y){//this is an object
     this.string = string;
     this.x = x;
     this.y = y;
-    this.font = "20pt duck_hunt";
+    this.font = "30pt Arial";
     this.textAlign = "left";
     this.draw = function(){//you can call this with someRect.draw()
         ctx.fillStyle = this.color;
         ctx.font = this.font;
         ctx.textAlign = this.textAlign;
+        ctx.textBaseline = 'top';
         ctx.fillText(this.string, this.x, this.y);
     };
 }
