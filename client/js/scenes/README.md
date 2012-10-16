@@ -4,13 +4,18 @@ Every scene needs this functions
 * loop
 * draw
 * mouseDown
+* keyDown
 
 # Examples
 If you don't need the function just leave the function empty
 Example:
-<pre>function intro(){
+<pre>
+function intro(){
     this.sprites = {
         bg : new rect("000000",0,0,1280,720)    
+    };
+    this.startScene = function(){
+    
     };
     this.loop = function(){
         
@@ -26,4 +31,8 @@ Example:
     this.mouseDown = function(x,y){
         
     };
-} </pre>
+    this.keyDown = function(key){
+    
+    };
+}
+</pre>

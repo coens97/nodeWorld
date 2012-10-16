@@ -4,9 +4,10 @@ function nickname(){
     };
 	this.startScene = function(){
 		document.getElementById("nickname").style.display = "block";
+		document.getElementById("button").addEventListener('click', this.sendNickname , false);
 	};
     this.loop = function(){
-	
+		
     };
     this.draw = function(){
         /***********
@@ -16,7 +17,16 @@ function nickname(){
             this.sprites[thisSprite].draw();       
         } 
     };
-    this.mouseDown = function(x,y){
-        
+    this.mouseDown = function(x,y){};
+    
+    this.keyDown = function(key){
+    
     };
+    
+    this.sendNickname = function(){
+    	var value = document.getElementById("inputName").value;
+    	(value == "")&&(value = "nameless");
+    	alert(value);
+    };
+    
 }

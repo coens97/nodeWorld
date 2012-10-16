@@ -50,6 +50,10 @@ function init(){
     gameInterval = self.setInterval(function(){mainLoop();},16);//call mainGameLoop() evry 16 ms
     console.log("Canvas initialised");
 }
+document.body.onkeydown = function(event){
+    var keycode = event.charCode || event.keyCode;
+    game.keyDown(keycode);
+}
 window.onresize = function(event) {//when canvas resize resize canvas
    resizeCanvas();
 };

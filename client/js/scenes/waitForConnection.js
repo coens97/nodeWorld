@@ -24,4 +24,7 @@ function waitForConnection(){
     this.mouseDown = function(x,y){
         
     };
+    this.keyDown = function(key){
+    
+    };
 }

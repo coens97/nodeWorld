@@ -19,4 +19,7 @@ function menu(){
     this.mouseDown = function(x,y){
         
     };
+    this.keyDown = function(key){
+    
+    };
 }

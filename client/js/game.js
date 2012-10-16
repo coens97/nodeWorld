@@ -20,6 +20,9 @@ var game = {
         console.log("Mouse down x:"+x+"y:"+y);
 		this.scenes[this.currentScene].mouseDown(x,y);
     },
+    keyDown : function(key){
+    	console.log("Key pressed:"+key);
+    },
 	startScene : function(n){
 		this.scenes[n].startScene();
 		this.currentScene = n;

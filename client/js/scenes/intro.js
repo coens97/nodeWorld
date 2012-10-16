@@ -32,4 +32,8 @@ function intro(){
 			game.startScene(2);
 		}
     };
+    
+    this.keyDown = function(key){
+    
+    };
 }
