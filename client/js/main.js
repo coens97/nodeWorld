@@ -10,7 +10,10 @@ requirejs(['socket',
     ],function(){
         requirejs([/* load scenes */
             'scenes/waitForConnection',
-            'scenes/intro'],function(){
+            'scenes/intro',
+			'scenes/nickname',
+			'scenes/menu'
+			],function(){
                 requirejs(['game'],function(){
                     init();
                 });//end loading sprites + scenes + game

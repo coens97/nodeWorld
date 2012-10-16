@@ -5,7 +5,7 @@ function intro(){
 		coen : new image("images/coen.png",1280,500,620,160)//dimension 620x160
     };
 	this.startScene = function(){
-		
+		this.done = false;
 	};
     this.loop = function(){
 		//Start the animation of the title
@@ -15,6 +15,8 @@ function intro(){
 			this.sprites.title.x = 640 - this.sprites.title.w / 2;//puth the image exact in the middle
 		}else if(this.sprites.coen.x > 500){//move the Coen sprite
 			this.sprites.coen.x -= 20;
+		}else if(!this.done){//animation is done now
+			this.done = true;
 		}
     };
     this.draw = function(){
@@ -26,6 +28,8 @@ function intro(){
         } 
     };
     this.mouseDown = function(x,y){
-        
+        if(this.done){
+			game.startScene(2);
+		}
     };
 }

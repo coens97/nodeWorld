@@ -5,7 +5,9 @@ var game = {
     currentScene : 0,
     scenes : [
         new waitForConnection(),//0
-        new intro()//1
+        new intro(),//1
+		new nickname(),//2
+		new menu(),//3
     ],
     loop : function(){//gameLoop function(game.loop)
         this.scenes[this.currentScene].loop();
@@ -16,6 +18,7 @@ var game = {
     },
     mouseDown : function(x,y){//resolution 1280 720
         console.log("Mouse down x:"+x+"y:"+y);
+		this.scenes[this.currentScene].mouseDown(x,y);
     },
 	startScene : function(n){
 		this.scenes[n].startScene();
