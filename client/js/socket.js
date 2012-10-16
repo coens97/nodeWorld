@@ -13,6 +13,7 @@ socket.on('disconnect', function () {
 	console.log("Connection lost");
 	document.getElementById("status").style.backgroundColor = "#FF0000";
 	gotConnection = false;
+	game.currentScene = 0;//game disconnected
 });
 
 socket.on('echo', function (data) {

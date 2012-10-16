@@ -1,6 +1,7 @@
 function intro(){
     this.sprites = {
-        bg : new rect("000000",0,0,1280,720)    
+        bg : new rect("DDDDDD",0,0,1280,720),
+		title : new image("images/title.png",145,25,990,220)
     };
     this.loop = function(){
         
