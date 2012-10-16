@@ -52,6 +52,10 @@ function image(url,x,y,w,h){//this is an object
     };
     this.theImage.src = this.url;
     this.draw = function(){
-		ctx.drawImage(this.theImage, this.x, this.y,this.w,this.h);
+		if(this.w!=undefined){
+			ctx.drawImage(this.theImage, this.x, this.y,this.w,this.h);
+		}else{
+			ctx.drawImage(this.theImage, this.x, this.y);
+		}
     };
 }

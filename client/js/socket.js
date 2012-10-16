@@ -1,4 +1,4 @@
-//start websocket
+//start websockets
 var socket = io.connect('http://'+window.location.host);
 var gotConnection = false;
 socket.on('connect', function () {
@@ -13,7 +13,7 @@ socket.on('disconnect', function () {
 	console.log("Connection lost");
 	document.getElementById("status").style.backgroundColor = "#FF0000";
 	gotConnection = false;
-	game.currentScene = 0;//game disconnected
+	game.startScene(0);//game disconnected
 });
 
 socket.on('echo', function (data) {
