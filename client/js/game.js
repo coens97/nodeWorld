@@ -17,8 +17,12 @@ var game = {
     mouseDown : function(x,y){//resolution 1280 720
         console.log("Mouse down x:"+x+"y:"+y);
     },
+	startScene : function(n){
+		this.scenes[n].startScene();
+		this.currentScene = n;
+	},
 	newConnection : function(){
 		console.log("let's go to intro because we have connection");
-		this.currentScene = 1;
+		this.startScene(1);
 	}
 }
