@@ -3,6 +3,9 @@ function waitForConnection(){
         bg : new rect("DDDDDD",0,0,1280,720),
         loading : new image("images/load.png",584,304)
     };
+	this.startScene = function(){
+		
+	};
     this.loop = function(){
         if(gotConnection){
 			if(typeof game != 'undefined'){//if there is connection wait until game is loaded

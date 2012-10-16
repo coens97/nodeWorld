@@ -1,5 +1,6 @@
 # Scenes
 Every scene needs this functions
+* startScene
 * loop
 * draw
 * mouseDown
