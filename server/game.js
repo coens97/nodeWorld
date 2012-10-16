@@ -15,10 +15,11 @@ exports.newConnection = function(socket){
 		if(typeof(players[data])!='undefined'){
 			console.log("Nickname already used");
 			socket.emit("go",0);
+		}else{
+			players[data] = new player.player();
+			this.nickname = data;
+			socket.emit("go",1);
 		}
-		players[data] = new player.player();
-		this.nickname = data;
-		socket.emit("go",1);
 	});
 	
 	socket.on('echo', function (data) {//for debugging

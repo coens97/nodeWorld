@@ -32,7 +32,11 @@ function nickname(){
     	socket.emit("nickname",value);
     };
 }
-socket.on("go",function(){
-	document.getElementById("nickname").style.display = "none";
-	game.startScene(3);
+socket.on("go",function(data){
+	if(data == 0){
+		alert("Hey, be more creative and think of another nickname. Someone already used it");
+	}else{
+		document.getElementById("nickname").style.display = "none";
+		game.startScene(3);
+	}
 });
