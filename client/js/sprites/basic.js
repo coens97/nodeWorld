@@ -60,3 +60,42 @@ function image(url,x,y,w,h){//this is an object
 		}
     };
 }
+function hGrad(input,x,y,w,h){
+	this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+	
+	this.lingrad = ctx.createLinearGradient(this.x,this.y,this.x+this.w,this.y);
+	for(var step in input){
+		this.lingrad.addColorStop(step, input[step]);
+	}
+	this.lingrad;
+	this.draw = function(){//you can call this with someRect.draw()
+        ctx.fillStyle = this.lingrad;
+        ctx.beginPath();
+        ctx.rect(this.x, this.y, this.w, this.h);
+        ctx.closePath();
+        ctx.fill();
+    };
+}
+
+function vGrad(input,x,y,w,h){
+	this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+	
+	this.lingrad = ctx.createLinearGradient(this.x,this.y,this.x,this.y+this.h);
+	for(var step in input){
+		this.lingrad.addColorStop(step, input[step]);
+	}
+	this.lingrad;
+	this.draw = function(){//you can call this with someRect.draw()
+        ctx.fillStyle = this.lingrad;
+        ctx.beginPath();
+        ctx.rect(this.x, this.y, this.w, this.h);
+        ctx.closePath();
+        ctx.fill();
+    };
+}

@@ -1,6 +1,6 @@
 function nickname(){
     this.sprites = {
-        bg : new rect("#DDDDDD",0,0,1280,720),
+        bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
     };
 	this.startScene = function(){
 		document.getElementById("nickname").style.display = "block";

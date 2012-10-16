@@ -2,7 +2,8 @@
  * main.js
  * Especily for initilising canvas and create eventlisteners
  ******************************/
-
+var c = document.getElementById("myCanvas"),//canvas element
+    ctx = c.getContext("2d");
 //include other files
 requirejs(['socket',
     /* put sprites here */
@@ -19,9 +20,7 @@ requirejs(['socket',
                 });//end loading sprites + scenes + game
         });//end loading sprites + scenes
 });//end loading sprites
-var c,//canvas element
-    ctx,//canvas 2d content to draw in
-    windowWidth,//width of canvas
+var windowWidth,//width of canvas
     windowHeight,//height of canvas
     scale,//how much is the canvas zoomed in or out
     gameInterval;//will contain timer fot loop
@@ -38,9 +37,8 @@ function onMainClick(e){
 }
 
 function init(){
-    c = document.getElementById("myCanvas");//get canvas
     resizeCanvas();
-    ctx = c.getContext("2d");
+    
     //add eventlisteners for click or touch
     if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
