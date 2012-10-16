@@ -1,7 +1,7 @@
 function waitForConnection(){
     this.sprites = {
         bg : new rect("000000",0,0,1280,720),
-        loading : new image("images/load.png",584,304,113,113)
+        loading : new image("images/load.png",584,304)
     };
     this.loop = function(){
         if(gotConnection){
