@@ -19,6 +19,6 @@ var game = {
     },
 	newConnection : function(){
 		console.log("let's go to intro because we have connection");
-		//this.currentScene = 1;
+		this.currentScene = 1;
 	}
 }
