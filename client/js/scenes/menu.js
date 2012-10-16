@@ -1,6 +1,6 @@
 function menu(){
     this.sprites = {
-        bg : new rect("DDDDDD",0,0,1280,720),
+        bg : new rect("#DDDDDD",0,0,1280,720),
     };
 	this.startScene = function(){
 		

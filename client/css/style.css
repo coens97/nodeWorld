@@ -1,10 +1,15 @@
-html, body{
+html,body,div,p{
     margin:0;
     padding:0;
+}
+html, body{
     text-align:center;
     height:100%;
     width:100%;
     overflow:hidden;
+}
+body{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 #myCanvas{
     margin:0;
@@ -22,4 +27,44 @@ html, body{
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 	border-radius: 7px;
+}
+#nickname{
+	display:none;
+	position:absolute;
+	top:25%;
+	width:40%;
+	left:30%;
+	/*background-color:#FFFFFF;*/
+}
+#nickname p{
+	font-size:40pt;	
+}
+#inputName{
+	width:100%;
+	font-size:40pt;
+	text-align: center;
+	
+	/* round corners */
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+#nickname #button{
+	margin-top:10px;
+	font-size:40pt;
+	padding:2px 20px 2px 20px;
+	/*round corner*/
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	/* gradient*/
+background: -moz-linear-gradient(top,  #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f6f8), color-stop(50%,#d8e1e7), color-stop(51%,#b5c6d0), color-stop(100%,#e0eff9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */
+
+	
 }

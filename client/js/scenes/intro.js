@@ -1,6 +1,6 @@
 function intro(){
     this.sprites = {
-        bg : new rect("DDDDDD",0,0,1280,720),
+        bg : new rect("#DDDDDD",0,0,1280,720),
 		title : new image("images/title.png",145,25,0,0),//dimension of title is 921X221
 		coen : new image("images/coen.png",1280,500)//dimension 620x160
     };
