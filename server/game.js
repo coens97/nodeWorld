@@ -35,6 +35,7 @@ exports.newConnection = function(socket){
 		stats.connections--;	
 		console.log("Somebody disconnected "+stats.connections);
 		socket.broadcast.emit("playerCount",stats.connections);
+		delete players[this.nickname];
 	};
 	socket.on('disconnect',this.disconnected);
 	//on new connection
