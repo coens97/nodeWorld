@@ -34,4 +34,12 @@ function menu(){
     this.keyDown = function(key){
     
     };
+    socket.on('rooms',function(data){//when the rooms update
+    	var list = document.getElementById("rooms");
+    	list.innerHTML = "";
+    	for(var i = 0; i < data.length;i++){
+    		list.innerHTML += "<tr><td>"+data[i].name+"</td><td>"+data[i].laps+"</td><td>"+data[i].players+"</td></tr>";
+    	}
+    	console.log(data);
+    });
 }
