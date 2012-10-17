@@ -22,7 +22,7 @@ this.room = function(name,laps){
 		this.sendInfo();
 	}
 	this.disconnect = function(nickname){
-		console.log(nickname+" disconnected in a room");
+		console.log(nickname+" left the room "+ this.name);
 		delete this.players[nickname];
 	};
 }

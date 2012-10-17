@@ -78,6 +78,16 @@ this.newConnection = function(socket){
 			console.log("Ehm"+this.nickname+"with state "+this.player.state+"tries to host a game");
 			socket.emit('hostGame',0);
 		}
+	};
+	this.leaveRoom = function(data){
+		this.player.room.disconnect(this.nickname);//leave room
+		this.player.state = 1;
+		if(Object.keys(this.player.room.players).length == 0){//if there are no players in scene
+			console.log(this.player.room.name + " room is empty, going to remove it now");
+			delete room.rooms[this.player.room.name];
+		}
+		socket.emit('leaveRoom',true);
+		emitRooms();//the count of number of room have changed
 	};	
 	this.toRoom = function(data){
 		console.log(this.nickname+" wants to join "+data);
@@ -85,7 +95,7 @@ this.newConnection = function(socket){
 		socket.emit('toRoom',1);
 		emitRooms();//because the number of players have changed
 	}
-	
+	socket.on('leaveRoom',this.leaveRoom);
 	socket.on('disconnect',this.disconnected);
 	socket.on('hostGame',this.hostGame);
 	socket.on('toRoom',this.toRoom);
