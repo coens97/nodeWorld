@@ -36,6 +36,8 @@ function hostGame(){
     	var hName = document.getElementById("hname").value;
     	var hLaps = document.getElementById("hlaps").value;
     	socket.emit("hostGame",{name:hName,laps:hLaps});//send to server
-    	game.startScene(5);
     };
+    socket.on('hostGame',function(){
+    	game.startScene(5);
+    });
 }

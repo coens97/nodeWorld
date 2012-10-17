@@ -2,9 +2,11 @@
  * game.js
  ****************/
 var player = require("./player"),
+	room = require("./room"),
 	stats = require("./stats");
  
-var players = {};
+var players = {};//this will contains all players and info about them
+var rooms = {};//contains all the rooms
  
 exports.newConnection = function(socket){
 	//here must al the user specific stuff		
@@ -46,7 +48,14 @@ exports.newConnection = function(socket){
 	};
 	this.hostGame = function(data){//when somebody host a game
 		if(this.player.state==1){
+			if(typeof(rooms[data.name])!='undefined'){//check if room already excist
+				console.log(this.nickname+" tries to create a game with a name("+data.name+") that's already used");
+				socket.emit('hostGame',0);
+				return;
+			}
 			console.log(this.nickname+" tries to host a game");
+			console.log("Room:"+data.name+" laps:"+data.laps);
+			rooms[data.name] = new room.room(data.laps);//create the room
 			socket.emit('hostGame',1);
 		}else{//ehm he did something wrong because the state should be one
 			console.log("Ehm"+this.nickname+"with state "+this.player.state+"tries to host a game");
