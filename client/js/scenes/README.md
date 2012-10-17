@@ -1,6 +1,7 @@
 # Scenes
 Every scene needs this functions
 * startScene
+* stopScene
 * loop
 * draw
 * mouseDown
@@ -17,6 +18,9 @@ function intro(){
     this.startScene = function(){
     
     };
+    this.stopScene = function(){
+		
+	};
     this.loop = function(){
         
     };

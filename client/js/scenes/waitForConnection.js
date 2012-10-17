@@ -6,6 +6,9 @@ function waitForConnection(){
 	this.startScene = function(){
 		
 	};
+	this.stopScene = function(){
+		
+	};
     this.loop = function(){
         if(gotConnection){
 			if(typeof game != 'undefined'){//if there is connection wait until game is loaded

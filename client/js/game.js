@@ -26,6 +26,7 @@ var game = {
     	this.scenes[this.currentScene].keyDown(key);
     },
 	startScene : function(n){
+		this.scenes[this.currentScene].stopScene();
 		this.scenes[n].startScene();
 		this.currentScene = n;
 	},

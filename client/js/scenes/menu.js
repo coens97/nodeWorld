@@ -12,6 +12,9 @@ function menu(){
 	this.startScene = function(){
 		
 	};
+	this.stopScene = function(){
+		
+	};
     this.loop = function(){
 	
     };

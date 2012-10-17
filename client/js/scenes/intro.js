@@ -7,6 +7,9 @@ function intro(){
 	this.startScene = function(){
 		this.done = false;
 	};
+	this.stopScene = function(){
+		
+	};
     this.loop = function(){
 		//Start the animation of the title
 		if(this.sprites.title.h <220){//Check if it is not zoomed in yet

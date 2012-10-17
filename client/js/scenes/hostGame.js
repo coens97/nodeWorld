@@ -9,6 +9,9 @@ function hostGame(){
 	this.startScene = function(){
 		document.getElementById("host").style.display = "block";
 	};
+	this.stopScene = function(){
+		document.getElementById("host").style.display = "none";
+	};
     this.loop = function(){
         
     };
@@ -22,7 +25,6 @@ function hostGame(){
     };
     this.mouseDown = function(x,y){
         if(this.sprites.back.checkMouse(x,y)){//when host game button is pressed
-        	document.getElementById("host").style.display = "none";
         	game.startScene(3);
         }
     };
