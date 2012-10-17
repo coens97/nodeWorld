@@ -59,7 +59,16 @@ exports.newConnection = function(socket){
 			console.log(this.nickname+" tries to host a game");
 			console.log("Room:"+data.name+" laps:"+data.laps);
 			room.rooms[data.name] = new room.room(data.laps);//create the room
-			socket.emit('hostGame',1);
+			this.player.state = 2;
+			socket.emit('hostGame',1);//say to the client it's ok
+			//send to the other client this room is available
+			for(var cPlayer in players){
+				console.log(cPlayer+" state:"+players[cPlayer].state);
+				if(players[cPlayer].state == 1){
+					room.sendRooms(players[cPlayer].socket);
+				}
+			}
+			
 		}else{//ehm he did something wrong because the state should be one
 			console.log("Ehm"+this.nickname+"with state "+this.player.state+"tries to host a game");
 			socket.emit('hostGame',0);
