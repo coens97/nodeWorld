@@ -38,8 +38,21 @@ function menu(){
     	var list = document.getElementById("rooms");
     	list.innerHTML = "";
     	for(var i = 0; i < data.length;i++){
-    		list.innerHTML += "<tr><td>"+data[i].name+"</td><td>"+data[i].laps+"</td><td>"+data[i].players+"</td></tr>";
+    		list.innerHTML += "<tr onclick=\"roomClick('"+data[i].name+"')\"><td>"+data[i].name+"</td><td>"+data[i].laps+"</td><td>"+data[i].players+"</td></tr>";
     	}
     	console.log(data);
     });
+    socket.on('toRoom',function(data){
+    	if(data==1){
+    		console.log("Go to the waitRoom");
+    		game.startScene(5);
+    	}else{
+    		console.log("Something went wrong with going to this room");
+    	}
+    });
+}
+
+function roomClick(name){
+	console.log("Want to join room "+name);
+	socket.emit('toRoom',name);
 }
