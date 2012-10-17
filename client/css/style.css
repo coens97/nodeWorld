@@ -28,6 +28,7 @@ body{
 	-moz-border-radius: 7px;
 	border-radius: 7px;
 }
+/*********nickname*************/
 #nickname{
 	display:none;
 	position:absolute;
@@ -64,7 +65,30 @@ background: -webkit-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0
 background: -o-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* IE10+ */
 background: linear-gradient(to bottom,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */
-
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */	
+}
+/***********host game**************/
+#host{
+	display:none;
+	position:absolute;
+	top:25%;
+	width:40%;
+	left:30%;
+	/*background-color:#FFFFFF;*/
+}
+#host table{
+	width:100%;
+}
+#host p{
+	font-size:30pt;
+}
+#host input{
+	width:100%;
+	font-size:40pt;
+	text-align: center;
 	
+	/* round corners */
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
 }
