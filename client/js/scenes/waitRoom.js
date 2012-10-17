@@ -1,20 +1,18 @@
-function hostGame(){
+function waitRoom(){
     this.sprites = {
         bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
         bg1: new vGrad({0:"#7d7e7d",1:"#2B2B2B"},0,0,1280,100),
-        title : new text("#FFFFFF","Host game",80,0),
-        back : new button("back",25,620,260,80)
+        title : new text("#FFFFFF","Waiting for other players",80,0)
     };
     this.sprites.title.font = "66pt Arial";
 	this.startScene = function(){
-		document.getElementById("host").style.display = "block";
-		document.getElementById("hostSubmit").addEventListener('click', this.sendGame , false);
+		
 	};
 	this.stopScene = function(){
-		document.getElementById("host").style.display = "none";
+		
 	};
     this.loop = function(){
-        
+
     };
     this.draw = function(){
         /***********
@@ -25,14 +23,9 @@ function hostGame(){
         } 
     };
     this.mouseDown = function(x,y){
-        if(this.sprites.back.checkMouse(x,y)){//when host game button is pressed
-        	game.startScene(3);
-        }
+        
     };
     this.keyDown = function(key){
     
-    };
-    this.sendGame = function(){
-    	game.startScene(5);
     };
 }
