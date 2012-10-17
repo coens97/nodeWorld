@@ -10,10 +10,10 @@ function menu(){
     this.sprites.rooms.font = "72pt Arial";
     
 	this.startScene = function(){
-		
+		document.getElementById("roomList").style.display = "block";
 	};
 	this.stopScene = function(){
-		
+		document.getElementById("roomList").style.display = "none";
 	};
     this.loop = function(){
 	

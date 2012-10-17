@@ -73,6 +73,13 @@ function resizeCanvas(){//resize canvas to aspect ratio
     }
     c.style.width = tmpWidth + "px";
     c.style.height = tmpHeight + "px";
+    /*resize the roomlist to*/
+   var list = document.getElementById("roomList");
+   list.style.top = tmpHeight/5+"px";
+   list.style.left = c.offsetLeft + tmpWidth/24 + "px";
+   list.style.width = tmpWidth*0.68 +"px";
+   list.style.height = tmpHeight*0.72 +"px";
+   
 }
 document.ontouchmove = function(e) {//when on device with touchscreen want to scroll
     e.preventDefault();
