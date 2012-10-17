@@ -4,10 +4,18 @@ this.room = function(laps){
 	this.state = 0;//waiting
 	this.laps = laps;
 	this.players = {};
-	this.addPlayer = function(nickname,player){//when player goes to room
+	this.addPlayer = function(nickname,player,parent){//when player goes to room
+		//asign variables
 		this.players[nickname] = player;
 		this.player = this.players[nickname];
+		this.socket = this.player.socket;
+		
 		this.player.state = 2;//scene state
+		this.player.room = parent;
+	}
+	this.disconnect = function(nickname){
+		console.log(nickname+" disconnected in a room");
+		delete this.players[nickname];
 	};
 }
 

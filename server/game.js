@@ -9,10 +9,10 @@ var players = {};//this will contains all players and info about them
  
 exports.newConnection = function(socket){
 	//here must al the user specific stuff		
-	this.nickname = "";
+	this.nickname;
 	this.player;
 	this.nickname = function(data){
-		if(this.nickname == ""){//check if he already has a nickname
+		if(typeof(this.nickname)!='undefined'){//check if he already has a nickname
 			console.log("Ehm something went wrong because he already has a nickname");
 			socket.emit("go",1);//just let him trough without changing nickname
 			room.sendRooms(socket);
@@ -47,6 +47,10 @@ exports.newConnection = function(socket){
 		console.log("Somebody disconnected "+stats.connections);
 		socket.broadcast.emit("playerCount",stats.connections);
 		delete players[this.nickname];
+		//check if in room
+		if(typeof(this.nickname)!='undefined'&&this.player.state == 2){
+			this.player.room.disconnect(this.nickname);
+		}
 	};
 	/***********rooms***************/
 	this.hostGame = function(data){//when somebody host a game
@@ -60,7 +64,7 @@ exports.newConnection = function(socket){
 			console.log("Room:"+data.name+" laps:"+data.laps);
 			
 			room.rooms[data.name] = new room.room(data.laps);//create the room
-			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname]);//add player to scene
+			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname],room.rooms[data.name]);//add player to scene
 
 			socket.emit('hostGame',1);//say to the client it's ok
 			//send to the other client this room is available
@@ -72,7 +76,7 @@ exports.newConnection = function(socket){
 	};	
 	this.toRoom = function(data){
 		console.log(this.nickname+" wants to join "+data);
-		room.rooms[data].addPlayer(this.nickname,players[this.nickname]);//add player to scene
+		room.rooms[data].addPlayer(this.nickname,players[this.nickname],room.rooms[data]);//add player to scene
 		socket.emit('toRoom',1);
 		emitRooms();//because the number of players have changed
 	}
