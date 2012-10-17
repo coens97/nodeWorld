@@ -58,9 +58,10 @@ exports.newConnection = function(socket){
 			}
 			console.log(this.nickname+" tries to host a game");
 			console.log("Room:"+data.name+" laps:"+data.laps);
+			
 			room.rooms[data.name] = new room.room(data.laps);//create the room
-			room.rooms[data.name].players[this.nickname] = players[this.nickname];//add player to room
-			this.player.state = 2;
+			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname]);//add player to scene
+
 			socket.emit('hostGame',1);//say to the client it's ok
 			//send to the other client this room is available
 			emitRooms();
@@ -71,8 +72,7 @@ exports.newConnection = function(socket){
 	};	
 	this.toRoom = function(data){
 		console.log(this.nickname+" wants to join "+data);
-		this.player.state = 2;
-		room.rooms[data].players[this.nickname] = players[this.nickname];//add player to scene
+		room.rooms[data].addPlayer(this.nickname,players[this.nickname]);//add player to scene
 		socket.emit('toRoom',1);
 		emitRooms();//because the number of players have changed
 	}
