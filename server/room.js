@@ -1,6 +1,7 @@
 this.rooms = {};
 
-this.room = function(laps){
+this.room = function(name,laps){
+	this.name = name;
 	this.state = 0;//waiting
 	this.laps = laps;
 	this.players = {};

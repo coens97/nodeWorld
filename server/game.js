@@ -7,7 +7,7 @@ var player = require("./player"),
  
 var players = {};//this will contains all players and info about them
  
-exports.newConnection = function(socket){
+this.newConnection = function(socket){
 	//here must al the user specific stuff		
 	this.nickname;
 	this.player;
@@ -46,12 +46,16 @@ exports.newConnection = function(socket){
 		stats.connections--;	
 		console.log("Somebody disconnected "+stats.connections);
 		socket.broadcast.emit("playerCount",stats.connections);
-		delete players[this.nickname];
 		//check if in room
 		if(typeof(this.nickname)!='undefined'&&this.player.state == 2){
-			this.player.room.disconnect(this.nickname);
-			emitRooms();
+			this.player.room.disconnect(this.nickname);//remove player from scene
+			if(Object.keys(this.player.room.players).length == 0){//if there are no players in scene
+				console.log(this.player.room.name + " room is empty, going to remove it now");
+				delete room.rooms[this.player.room.name];
+			}
+			emitRooms();//send room info to clients
 		}
+		delete players[this.nickname];//delete player
 	};
 	/***********rooms***************/
 	this.hostGame = function(data){//when somebody host a game
@@ -64,7 +68,7 @@ exports.newConnection = function(socket){
 			console.log(this.nickname+" tries to host a game");
 			console.log("Room:"+data.name+" laps:"+data.laps);
 			
-			room.rooms[data.name] = new room.room(data.laps);//create the room
+			room.rooms[data.name] = new room.room(data.name,data.laps);//create the room
 			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname],room.rooms[data.name]);//add player to scene
 
 			socket.emit('hostGame',1);//say to the client it's ok
