@@ -14,7 +14,8 @@ requirejs(['socket',
             'scenes/waitForConnection',
             'scenes/intro',
 			'scenes/nickname',
-			'scenes/menu'
+			'scenes/menu',
+			'scenes/hostGame'
 			],function(){
                 requirejs(['game'],function(){
                     init();

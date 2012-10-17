@@ -5,7 +5,7 @@ function menu(){
     	bg1: new vGrad({0:"#7d7e7d",1:"#2B2B2B"},0,0,1280,100),
         rooms : new text("#FFFFFF","Rooms",80,0),
         rightSide : new vGrad({0:"#353535",0.1:"#565656",0.9:"#565656",1:"#353535"},980,100,300,620),
-        hostButton : new button("host",1000,220,260,80)
+        hostButton : new button("Host",1000,220,260,80)
     };
     this.sprites.rooms.font = "72pt Arial";
     
@@ -24,7 +24,9 @@ function menu(){
         } 
     };
     this.mouseDown = function(x,y){
-        
+        if(this.sprites.hostButton.checkMouse(x,y)){//when host game button is pressed
+        	game.startScene(4);
+        }
     };
     this.keyDown = function(key){
     
