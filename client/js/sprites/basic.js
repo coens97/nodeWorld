@@ -99,3 +99,12 @@ function vGrad(input,x,y,w,h){
         ctx.fill();
     };
 }
+
+function objectAr(){
+	this.ar = []
+	this.draw = function(){
+		for(var i = 0;i < this.ar.length;i++){
+			this.ar[i].draw();
+		}
+	}
+}
