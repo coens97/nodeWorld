@@ -40,7 +40,6 @@ function menu(){
     	for(var i = 0; i < data.length;i++){
     		list.innerHTML += "<tr onclick=\"roomClick('"+data[i].name+"')\"><td>"+data[i].name+"</td><td>"+data[i].laps+"</td><td>"+data[i].players+"</td></tr>";
     	}
-    	console.log(data);
     });
     socket.on('toRoom',function(data){
     	if(data==1){

@@ -28,4 +28,7 @@ function waitRoom(){
     this.keyDown = function(key){
     
     };
+    socket.on('waitInfo',function(data){
+    	console.log(data);
+    });
 }

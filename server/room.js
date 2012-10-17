@@ -10,9 +10,16 @@ this.room = function(name,laps){
 		this.players[nickname] = player;
 		this.player = this.players[nickname];
 		this.socket = this.player.socket;
-		
 		this.player.state = 2;//scene state
 		this.player.room = parent;
+		this.sendInfo = function(){
+			var playerNames = [];
+			for(var pl in this.players){//loop trough object
+				playerNames.push(pl);
+			}
+			this.socket.emit("waitInfo",{name:this.name,laps:this.laps,nicknames:playerNames});
+		};
+		this.sendInfo();
 	}
 	this.disconnect = function(nickname){
 		console.log(nickname+" disconnected in a room");
