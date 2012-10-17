@@ -50,6 +50,7 @@ exports.newConnection = function(socket){
 		//check if in room
 		if(typeof(this.nickname)!='undefined'&&this.player.state == 2){
 			this.player.room.disconnect(this.nickname);
+			emitRooms();
 		}
 	};
 	/***********rooms***************/
