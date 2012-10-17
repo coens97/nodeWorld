@@ -18,13 +18,28 @@
         <div id="nickname"><!-- scene menu -->
         	<p>Nickname:</p>
         	<input type="text" id="inputName" /><br />
-        	<input id="button" type="submit" value="Ok" />
+        	<input id="button" class="butn" type="submit" value="Ok" />
         </div>
-        
+        <!-- when somebody host a game -->
         <div id="host">
         	<table>
         		<tr>
-        			<td><p>Naam</p></td><td><input type="text" /></td>
+        			<td><p>Naam:</p></td>
+        			<td><input type="text" /></td>
+        		</tr>
+        		<tr>
+        			<td><p>Laps:</p></td>
+        			<td>
+        				<select>
+ 							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>	
+        			</td>
+        		</tr>
+        		<tr>
+        			<td>&nbsp;</td>
+        			<td><input id="hostSubmit" class="butn" type="submit" value="Ok" /></td>
         		</tr>
         	</table>        	
         </div>
