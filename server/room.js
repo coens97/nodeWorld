@@ -1,3 +1,4 @@
+var waitingRoom = require('./waitingRoom');
 this.rooms = {};
 
 this.room = function(name,laps){
@@ -5,6 +6,7 @@ this.room = function(name,laps){
 	this.state = 0;//waiting
 	this.laps = laps;
 	this.players = {};
+	this.waitingRoom = new waitingRoom.waitingRoom(this);
 	this.addPlayer = function(nickname,player,parent){//when player goes to room
 		//asign variables
 		this.players[nickname] = player;
@@ -13,27 +15,16 @@ this.room = function(name,laps){
 		this.player.state = 2;//scene state
 		this.player.room = parent;
 		//functions here		
-		this.sendInfo = function(socket){
-			var playerNames = [];
-			for(var pl in this.players){//loop trough object
-				playerNames.push(pl);
-			}
-			socket.emit("waitInfo",{name:this.name,laps:this.laps,nicknames:playerNames});
-		};
-		parent.broadcastRooms();
-	};
-	this.broadcastRooms = function(){//send to all the users the room info
-		for(var cPlayer in this.player.room.players){//loop trough players
-			this.sendInfo(this.player.room.players[cPlayer].socket);
-		};
+		parent.waitingRoom.broadcastRooms();
 	};
 	this.disconnect = function(nickname){
 		console.log(nickname+" left the room "+ this.name);
 		delete this.players[nickname];
-		this.broadcastRooms();
+		this.waitingRoom.broadcastRooms();
 	};
 }
 
+/* send rooms to menu of client */
 this.sendRooms = function(socket){
 	var tmp = [];
 	for(var Name in this.rooms){
