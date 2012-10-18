@@ -48,7 +48,7 @@ function waitRoom(){
     this.keyDown = function(key){
     
     };
-    this.waitInfo = function(data){
+    this.waitInfo = function(data){//when info comes in about the room
     	console.log(data);
     	var parent = game.scenes[5];
     	parent.sprites.players.ar = [];
@@ -60,7 +60,11 @@ function waitRoom(){
     	parent.sprites.playerCount.string = data.nicknames.length+"/12";
     	parent.sprites.name.string = data.name;
     	parent.sprites.lapsCount.string = data.laps;
-    }
+    };
+    this.startGame = function(data){//whenRoom s ready to start game
+    	game.startScene(6);
+    };
+    socket.on('startGame',this.startGame);
     socket.on('waitInfo',this.waitInfo);
     socket.on('leaveRoom',function(){
     	game.startScene(3);

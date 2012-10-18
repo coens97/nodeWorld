@@ -9,7 +9,8 @@ var game = {
 		new nickname(),//2
 		new menu(),//3
 		new hostGame(),//4
-		new waitRoom()//5
+		new waitRoom(),//5
+		new gameRoom()//6
     ],
     loop : function(){//gameLoop function(game.loop)
         this.scenes[this.currentScene].loop();
