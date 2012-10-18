@@ -6,10 +6,12 @@ function waitRoom(){
         rightSide : new vGrad({0:"#353535",0.1:"#565656",0.9:"#565656",1:"#353535"},980,100,300,620),
         back : new button("back",25,620,260,80),
         playerTitle : new text("#FFFFFF","Players",1000,102),
+        playerCount : new text("#FFFFFF", 1,1178,102),
         players : new objectAr()
     };
     this.sprites.title.font = "66pt Arial";
-    this.sprites.playerTitle.font = "40pt Arial";
+    this.sprites.playerTitle.font = "36pt Arial";
+    this.sprites.playerCount.font = "36pt Arial";
 	this.startScene = function(){
 		
 	};
@@ -42,6 +44,7 @@ function waitRoom(){
     	for(var i = 0; i < data.nicknames.length;i++){//loop trough nicknames
     		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i],1000,160+i*45));
     	}
+    	parent.sprites.playerCount.string = data.nicknames.length+"/12";
     }
     socket.on('waitInfo',this.waitInfo);
     socket.on('leaveRoom',function(){
