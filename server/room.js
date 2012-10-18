@@ -12,15 +12,22 @@ this.room = function(name,laps){
 		this.socket = this.player.socket;
 		this.player.state = 2;//scene state
 		this.player.room = parent;
-		this.sendInfo = function(){
+		//functions here
+		this.broadcastRooms = function(){//send to all the users the room info
+			for(var cPlayer in this.player.room.players){//loop trough players
+				this.sendInfo(this.player.room.players[cPlayer].socket);
+			};
+		};
+		
+		this.sendInfo = function(socket){
 			var playerNames = [];
 			for(var pl in this.players){//loop trough object
 				playerNames.push(pl);
 			}
-			this.socket.emit("waitInfo",{name:this.name,laps:this.laps,nicknames:playerNames});
+			socket.emit("waitInfo",{name:this.name,laps:this.laps,nicknames:playerNames});
 		};
-		this.sendInfo();
-	}
+		this.broadcastRooms();
+	};
 	this.disconnect = function(nickname){
 		console.log(nickname+" left the room "+ this.name);
 		delete this.players[nickname];
