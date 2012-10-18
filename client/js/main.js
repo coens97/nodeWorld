@@ -8,7 +8,8 @@ var c = document.getElementById("myCanvas"),//canvas element
 requirejs(['socket',
     /* put sprites here */
     'sprites/basic',
-    'sprites/button'
+    'sprites/button',
+    'sprites/car'
     ],function(){
         requirejs([/* load scenes */
             'scenes/waitForConnection',

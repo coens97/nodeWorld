@@ -1,6 +1,7 @@
 function gameRoom(){
     this.sprites = {
         bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
+       	someCar : new car(0,0,200,200)
     };
 	this.startScene = function(){
 		
