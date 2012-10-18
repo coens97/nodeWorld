@@ -52,6 +52,7 @@ function waitRoom(){
     	console.log(data);
     	var parent = game.scenes[5];
     	parent.sprites.players.ar = [];
+    	parent.sprites.checkboxes.ar = [];
     	for(var i = 0; i < data.nicknames.length;i++){//loop trough nicknames
     		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i][0],1000,160+i*45));//place name
     		parent.sprites.checkboxes.ar.push(new partImage("images/check.png",950,158+i*45,52,45,(data.nicknames[i][1])?1:0,0,52,45));//add checkbox
