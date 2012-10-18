@@ -26,6 +26,7 @@ this.newConnection = function(socket){
 			players[data] = new player.player(socket);
 			this.player = players[data];
 			this.player.state = 1;
+			this.player.nickname = data;
 			this.nickname = data;
 			socket.emit("go",1);
 			room.sendRooms(socket);
@@ -69,7 +70,7 @@ this.newConnection = function(socket){
 			console.log("Room:"+data.name+" laps:"+data.laps);
 			
 			room.rooms[data.name] = new room.room(data.name,data.laps);//create the room
-			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname],room.rooms[data.name]);//add player to scene
+			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname]);//add player to scene
 
 			socket.emit('hostGame',1);//say to the client it's ok
 			//send to the other client this room is available
@@ -91,7 +92,7 @@ this.newConnection = function(socket){
 	};	
 	this.toRoom = function(data){
 		console.log(this.nickname+" wants to join "+data);
-		room.rooms[data].addPlayer(this.nickname,players[this.nickname],room.rooms[data]);//add player to scene
+		room.rooms[data].addPlayer(this.nickname,players[this.nickname]);//add player to scene
 		socket.emit('toRoom',1);
 		emitRooms();//because the number of players have changed
 	}

@@ -2,22 +2,23 @@ var waitingRoom = require('./waitingRoom');
 this.rooms = {};
 
 this.room = function(name,laps){
+	var room = this;
 	this.name = name;
 	this.state = 0;//waiting
 	this.laps = laps;
 	this.players = {};
 	this.waitingRoom = new waitingRoom.waitingRoom(this);
-	this.addPlayer = function(nickname,player,parent){//when player goes to room
+	this.addPlayer = function(nickname,player){//when player goes to room
 		//asign variables
 		this.players[nickname] = player;
 		this.player = this.players[nickname];
 		this.socket = this.player.socket;
 		this.player.state = 2;//scene state
-		this.player.room = parent;
+		this.player.room = room;
 		//functions here		
 		this.player.ready = false;
-		parent.waitingRoom.addPlayer(this.socket,this.player);
-		parent.waitingRoom.broadcastRooms();
+		room.waitingRoom.addPlayer(this.socket,this.player);
+		room.waitingRoom.broadcastRooms();
 	};
 	this.disconnect = function(nickname){
 		console.log(nickname+" left the room "+ this.name);
