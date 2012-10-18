@@ -37,8 +37,11 @@ function menu(){
     socket.on('rooms',function(data){//when the rooms update
     	var list = document.getElementById("rooms");
     	list.innerHTML = "";
-    	for(var i = 0; i < data.length;i++){
+    	for(var i = 0; i < data.length;i++){//loop trough rooms
     		list.innerHTML += "<tr onclick=\"roomClick('"+data[i].name+"')\"><td>"+data[i].name+"</td><td>"+data[i].laps+"</td><td>"+data[i].players+"</td></tr>";
+    	}
+    	if(data.length == 0){//if there are no rooms
+    		list.innerHTML += "<tr><td>No rooms available</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
     	}
     });
     socket.on('toRoom',function(data){
