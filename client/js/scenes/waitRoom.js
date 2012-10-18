@@ -11,7 +11,8 @@ function waitRoom(){
         ready : new button(" ready",660,620,260,80),
         name : new text("#000000","Name",40,120),
         lapsTitle : new text("#000000","laps",700,120),
-        lapsCount : new text("#000000","",808,120)
+        lapsCount : new text("#000000","",808,120),
+        checkboxes : new objectAr()
     };
     //change font sizes
     this.sprites.title.font = "66pt Arial";
@@ -52,7 +53,8 @@ function waitRoom(){
     	var parent = game.scenes[5];
     	parent.sprites.players.ar = [];
     	for(var i = 0; i < data.nicknames.length;i++){//loop trough nicknames
-    		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i][0],1000,160+i*45));
+    		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i][0],1000,160+i*45));//place name
+    		parent.sprites.checkboxes.ar.push(new partImage("images/check.png",950,158+i*45,52,45,(data.nicknames[i][1])?1:0,0,52,45));//add checkbox
     	}
     	parent.sprites.playerCount.string = data.nicknames.length+"/12";
     	parent.sprites.name.string = data.name;

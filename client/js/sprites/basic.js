@@ -60,6 +60,24 @@ function image(url,x,y,w,h){//this is an object
 		}
     };
 }
+function partImage(url,x,y,w,h,sx,sy,sw,sh){//this is an object
+    //usage is simular to rect but instead of color you put imageurl
+    this.url = url;
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.sw = sw;
+    this.sh = sh;
+    this.sx = sx;
+    this.sy = sy;
+    //load image
+    this.theImage = new Image();
+    this.theImage.src = this.url;
+    this.draw = function(){
+		ctx.drawImage(this.theImage,this.sx*this.sw,this.sy*this.sh,this.sw,this.sh, this.x, this.y,this.w,this.h);
+    };
+}
 function hGrad(input,x,y,w,h){
 	this.x = x;
     this.y = y;
