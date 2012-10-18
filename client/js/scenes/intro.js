@@ -1,11 +1,14 @@
 function intro(){
     this.sprites = {
-        bg : new rect("DDDDDD",0,0,1280,720),
+        bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
 		title : new image("images/title.png",145,25,0,0),//dimension of title is 921X221
-		coen : new image("images/coen.png",1280,500,620,160)//dimension 620x160
+		coen : new image("images/coen.png",1280,500)//dimension 620x160
     };
 	this.startScene = function(){
 		this.done = false;
+	};
+	this.stopScene = function(){
+		
 	};
     this.loop = function(){
 		//Start the animation of the title
@@ -28,8 +31,17 @@ function intro(){
         } 
     };
     this.mouseDown = function(x,y){
-        if(this.done){
-			game.startScene(2);
-		}
+        this.nextScene();//let's go to the other scene when it's ready
     };
+    
+    this.keyDown = function(key){
+    	if(key == 32 || key == 13){//if enter or space is pressed
+    		this.nextScene();//go to the next scene when it's ready
+    	}
+    };
+    this.nextScene = function(){//when mouse pressed or enter or space pressed
+    	if(this.done){//check if animation is over
+			game.startScene(2);//go to next scene
+		}
+    }
 }
