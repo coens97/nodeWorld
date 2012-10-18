@@ -25,6 +25,9 @@ this.room = function(name,laps){
 		delete this.players[nickname];
 		this.waitingRoom.broadcastRooms();
 	};
+	this.startGame = function(){
+		console.log("Evryone is ready in "+room.name+" let's start the game");
+	}
 }
 
 /* send rooms to menu of client */

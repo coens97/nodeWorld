@@ -6,8 +6,22 @@ this.waitingRoom = function(parent){
 			console.log(player.nickname+" is ready to play the game");
 			player.ready = true;
 			wait.broadcastRooms();
+			wait.checkReady();
 		}
 		socket.on('roomReady',this.roomReady);
+	};
+	this.checkReady = function(){
+		if(Object.keys(parent.players).length>1){//check if there are more then one player
+			var done = true;
+			for(var cPlayer in parent.players){//loop trough playerrs of room
+				if(!parent.players[cPlayer].ready){//check if there ready
+					done = false;
+				}
+			}
+			if(done){
+				parent.startGame();
+			}
+		}
 	};
 	this.sendInfo = function(socket){
 		var playerNames = [];
