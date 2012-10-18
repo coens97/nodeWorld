@@ -15,6 +15,8 @@ this.room = function(name,laps){
 		this.player.state = 2;//scene state
 		this.player.room = parent;
 		//functions here		
+		this.player.ready = false;
+		parent.waitingRoom.addPlayer(this.socket,this.player);
 		parent.waitingRoom.broadcastRooms();
 	};
 	this.disconnect = function(nickname){

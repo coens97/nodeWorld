@@ -41,7 +41,7 @@ function waitRoom(){
         if(this.sprites.back.checkMouse(x,y)){//when host game button is pressed
         	socket.emit('leaveRoom',true);
         }else if(this.sprites.ready.checkMouse(x,y)){
-        	alert("ready");
+        	socket.emit('roomReady',true);
         }
     };
     this.keyDown = function(key){
@@ -52,7 +52,7 @@ function waitRoom(){
     	var parent = game.scenes[5];
     	parent.sprites.players.ar = [];
     	for(var i = 0; i < data.nicknames.length;i++){//loop trough nicknames
-    		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i],1000,160+i*45));
+    		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i][0],1000,160+i*45));
     	}
     	parent.sprites.playerCount.string = data.nicknames.length+"/12";
     	parent.sprites.name.string = data.name;
