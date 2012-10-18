@@ -41,6 +41,14 @@ function onMainClick(e){
     game.mouseDown(tmpX,tmpY);
 }
 
+var keyDown = function(event){
+    var keycode = event.charCode || event.keyCode;
+    game.keyDown(keycode);
+}
+var keyUp = function(event){
+	var keycode = event.charCode || event.keyCode;
+	game.keyUp(keycode);
+};
 function init(){
     resizeCanvas();
     
@@ -51,11 +59,9 @@ function init(){
 		c.addEventListener("click", onMainClick, false);
 	}
     gameInterval = self.setInterval(function(){mainLoop();},16);//call mainGameLoop() evry 16 ms
+    document.body.addEventListener("keydown",keyDown);
+    document.body.addEventListener("keyup",keyUp);
     console.log("Canvas initialised");
-}
-document.body.onkeydown = function(event){
-    var keycode = event.charCode || event.keyCode;
-    game.keyDown(keycode);
 }
 window.onresize = function(event) {//when canvas resize resize canvas
    resizeCanvas();

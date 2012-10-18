@@ -27,6 +27,11 @@ var game = {
     	console.log("Key pressed:"+key);
     	this.scenes[this.currentScene].keyDown(key);
     },
+    keyUp : function(key){
+    	if(this.currentScene == 6){//if game is running
+    		this.scenes[6].keyUp(key);
+    	}
+    },
 	startScene : function(n){
 		this.scenes[this.currentScene].stopScene();
 		this.scenes[n].startScene();

@@ -118,11 +118,16 @@ function vGrad(input,x,y,w,h){
     };
 }
 
-function objectAr(){
-	this.ar = []
+function objectAr(arr){
+	this.ar = arr||[]
 	this.draw = function(){
 		for(var i = 0;i < this.ar.length;i++){
 			this.ar[i].draw();
 		}
-	}
+	};
+	this.loop = function(){
+		for(var i = 0;i < this.ar.length;i++){
+			this.ar[i].loop();
+		}
+	};
 }
