@@ -20,8 +20,9 @@ function map(world){
 				for(var tX = 0;tX<layer.width;tX++){
 					var dat = layer.data[c];
 					if(dat==1||dat==2){
-						//ctx.drawImage(m.tiles[0], tX*world.tilewidth, tY*world.tileheight);
-						ctx.drawImage(m.tiles[0], 0, (dat==1)?0:world.tileheight, world.tilewidth, world.tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilewidth, world.tileheight);
+						ctx.drawImage(m.tiles[0], 0, (dat==1)?0:world.tilesets[0].tileheight, world.tilesets[0].tilewidth, world.tilesets[0].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilesets[0].tilewidth, world.tilesets[0].tileheight);
+					}else if(dat==3||dat==4||dat==5||dat==6){
+						ctx.drawImage(m.tiles[1], (dat==3||dat==5)?0:world.tilesets[1].tilewidth, (dat==3||dat==4)?0:world.tilesets[1].tileheight, world.tilesets[1].tilewidth, world.tilesets[1].tileheight,this.x+tX*world.tilewidth,this.y+(tY-1)*world.tileheight, world.tilesets[1].tilewidth, world.tilesets[1].tileheight);		
 					}
 					c++;//C++ rules!
 				}
