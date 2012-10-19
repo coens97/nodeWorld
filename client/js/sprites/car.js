@@ -16,6 +16,7 @@ function car(id,dir,x,y){//this is an object
     this.x = x;
     this.y = y;
     this.v = 0;
+    this.r = 0;
     
     this.loop = function(){
  	
