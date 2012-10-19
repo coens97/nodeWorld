@@ -6,8 +6,10 @@ function gameRoom(){
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
+    this.map = this.sprites.map;
     this.vx = 0;
     this.vy = 0;
+    this.r = 0;
     
 	this.startScene = function(){
 		
@@ -16,8 +18,9 @@ function gameRoom(){
 		
 	};
     this.loop = function(){
-		gR.sprites.map.x -= gR.vx;
-    	gR.sprites.map.y -= gR.vy;
+		gR.sprites.map.x -= Math.sin(gR.map.r)*gR.vy;
+    	gR.sprites.map.y -= Math.cos(gR.map.r)*gR.vy;
+    	gR.map.r += gR.r;
     };
     this.draw = function(){
         /***********
@@ -39,19 +42,15 @@ function gameRoom(){
     this.keyPress = function(key){
     	if(key==38){//up
     		gR.vy = -10;
-    		gR.sprites.someCar.dir = 0;
     	}
     	if(key==40){//down
     		gR.vy = 10;
-    		gR.sprites.someCar.dir = 2;
     	}
     	if(key==39){//right
-    		gR.vx = 10;
-    		gR.sprites.someCar.dir = 1;
+			gR.r = -0.1;
     	}
     	if(key==37){//left
-    		gR.vx = -10;
-    		gR.sprites.someCar.dir = 3;
+    		gR.r = 0.1;
     	}
     };
     this.keyUp = function(key){
@@ -64,10 +63,10 @@ function gameRoom(){
     		gR.vy = 0;
     	}
     	if(key==39){//right
-    		gR.vx = 0;
+    		gR.r = 0;
     	}
     	if(key==37){//left
-    		gR.vx = 0;
+    		gR.r =0;
     	}
     };
 }

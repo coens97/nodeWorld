@@ -3,6 +3,7 @@ function map(world){
 	var m = this;
 	this.x = 0;
 	this.y = 0;
+	this.r = 0;
 	this.tiles = [];//will contain images
 	
 	this.loadTiles = function(){
@@ -13,6 +14,9 @@ function map(world){
 		}
 	};	
 	this.draw = function(){
+		ctx.save();
+		ctx.translate(640,360);
+		ctx.rotate(m.r);
 		for(var l = 0;l<world.layers.length;l++){//loop trough layers
 			var c = 0;
 			for(var tY = 0;tY<world.layers[l].height;tY++){//draw every row
@@ -28,6 +32,7 @@ function map(world){
 				}
 			}
 		}
+		ctx.restore();
 	};
 	this.loadTiles();
 }
