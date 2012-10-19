@@ -23,8 +23,8 @@ function gameRoom(){
 	this.stopScene = function(){
 
 	};
-    this.loop = function(){
-    	if(def(gR.keys[38])){//check if up is pressed
+	this.proccesInput = function(){
+		if(def(gR.keys[38])){//check if up is pressed
     		var maxS = 12;
     		if(gR.v<maxS){
     			gR.v += 1;
@@ -49,9 +49,19 @@ function gameRoom(){
     			}
     		}
     	}
+    	gR.r = 0;
+    	if(def(gR.keys[39])){//when right is pressed
+    		gR.r = gR.v *-0.005;
+    	}
+    	if(def(gR.keys[37])){//when left is pressed
+    		gR.r = gR.v *0.005;
+    	}
 		gR.sprites.map.x += Math.sin(gR.map.r)*gR.v;
     	gR.sprites.map.y += Math.cos(gR.map.r)*gR.v;
     	gR.map.r += gR.r;
+	};
+    this.loop = function(){
+    	gR.proccesInput();
     };
     this.draw = function(){
         /***********
@@ -65,27 +75,16 @@ function gameRoom(){
         
     };
     this.keyDown = function(key){
-    	if(typeof(this.keys[key])=='undefined'){
+    	if(!def(this.keys[key])){
     		this.keys[key] = true;
     		gR.keyPress(key);
     	}
     };
     this.keyPress = function(key){
-    	if(key==39){//right
-			gR.r = -0.05;
-    	}
-    	if(key==37){//left
-    		gR.r = 0.05;
-    	}
+
     };
     this.keyUp = function(key){
     	delete this.keys[key];//remove from object
     	console.log("Released key:"+key);
-    	if(key==39){//right
-    		gR.r = 0;
-    	}
-    	if(key==37){//left
-    		gR.r =0;
-    	}
     };
 }
