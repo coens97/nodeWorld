@@ -50,11 +50,11 @@ function gameRoom(){
     		}
     	}
     	gR.r = 0;
-    	if(def(gR.keys[39])){//when right is pressed
-    		gR.r = gR.v *-0.005;
+    	if(def(gR.keys[39])&&gR.v!=0){//when right is pressed
+    		gR.r = Math.PI*-0.02;
     	}
-    	if(def(gR.keys[37])){//when left is pressed
-    		gR.r = gR.v *0.005;
+    	if(def(gR.keys[37])&&gR.v!=0){//when left is pressed
+    		gR.r = Math.PI*0.02;
     	}
 		gR.sprites.map.x += Math.sin(gR.map.r)*gR.v;
     	gR.sprites.map.y += Math.cos(gR.map.r)*gR.v;
