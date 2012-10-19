@@ -9,7 +9,8 @@ requirejs(['socket',
     /* put sprites here */
     'sprites/basic',
     'sprites/button',
-    'sprites/car'
+    'sprites/car',
+    'map'
     ],function(){
         requirejs([/* load scenes */
             'scenes/waitForConnection',
