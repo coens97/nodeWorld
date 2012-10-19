@@ -25,7 +25,7 @@ function gameRoom(){
 	};
 	this.proccesInput = function(){
 		if(def(gR.keys[38])){//check if up is pressed
-    		var maxS = 18;
+    		var maxS = 20;
     		if(gR.v<maxS){
     			gR.v += 1;
     		}
@@ -51,10 +51,10 @@ function gameRoom(){
     	}
     	gR.r = 0;
     	if(def(gR.keys[39])&&gR.v!=0){//when right is pressed
-    		gR.r = Math.PI*-0.02;
+    		gR.r = Math.PI*(gR.v>0)?-0.06:0.06;
     	}
     	if(def(gR.keys[37])&&gR.v!=0){//when left is pressed
-    		gR.r = Math.PI*0.02;
+    		gR.r = Math.PI*(gR.v<0)?-0.06:0.06;
     	}
 		gR.sprites.map.x += Math.sin(gR.map.r)*gR.v;
     	gR.sprites.map.y += Math.cos(gR.map.r)*gR.v;
