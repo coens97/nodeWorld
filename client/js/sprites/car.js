@@ -15,12 +15,10 @@ function car(id,dir,x,y){//this is an object
     this.dir = dir;
     this.x = x;
     this.y = y;
-    this.vx = 0;
-    this.vy = 0;
+    this.v = 0;
     
     this.loop = function(){
-    	this.x += this.vx;
-    	this.y += this.vy;    	
+ 	
     };
     this.draw = function(){
     	if(this.dir==0||this.dir==2){//draw vertical
