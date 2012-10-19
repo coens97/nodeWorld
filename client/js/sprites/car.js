@@ -19,8 +19,10 @@ function car(id,dir,x,y){//this is an object
     this.vy = 0;
     
     this.loop = function(){
-    	this.x += this.vx;
-    	this.y += this.vy;
+    	//this.x += this.vx;
+    	//this.y += this.vy;
+    	game.scenes[6].sprites.map.x -= this.vx;
+    	game.scenes[6].sprites.map.y -= this.vy;
     };
     this.draw = function(){
     	if(this.dir==0||this.dir==2){//draw vertical

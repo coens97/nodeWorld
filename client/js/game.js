@@ -24,7 +24,6 @@ var game = {
 		this.scenes[this.currentScene].mouseDown(x,y);
     },
     keyDown : function(key){
-    	console.log("Key pressed:"+key);
     	this.scenes[this.currentScene].keyDown(key);
     },
     keyUp : function(key){

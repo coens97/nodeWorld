@@ -2,7 +2,7 @@ function gameRoom(){
     this.sprites = {
         bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
         map : new map(gameWorld),
-       	someCar : new car(0,0,200,200)
+       	someCar : new car(0,0,600,300)
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
@@ -34,19 +34,19 @@ function gameRoom(){
     };
     this.keyPress = function(key){
     	if(key==38){//up
-    		gR.sprites.someCar.vy = -4;
+    		gR.sprites.someCar.vy = -8;
     		gR.sprites.someCar.dir = 0;
     	}
     	if(key==40){//down
-    		gR.sprites.someCar.vy = 4;
+    		gR.sprites.someCar.vy = 8;
     		gR.sprites.someCar.dir = 2;
     	}
     	if(key==39){//right
-    		gR.sprites.someCar.vx = 4;
+    		gR.sprites.someCar.vx = 8;
     		gR.sprites.someCar.dir = 1;
     	}
     	if(key==37){//left
-    		gR.sprites.someCar.vx = -4;
+    		gR.sprites.someCar.vx = -8;
     		gR.sprites.someCar.dir = 3;
     	}
     };
