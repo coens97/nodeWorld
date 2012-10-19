@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var gameWorld = { "height":20,
  "layers":[
         {
@@ -53,5 +52,4 @@ var gameWorld = { "height":20,
  "version":1,
  "width":23
 };
-=======
->>>>>>> 6c5fd392ffe0d344ddec88b33aafdf2132f1b519
+
