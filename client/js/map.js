@@ -16,7 +16,7 @@ var gameWorld = { "height":20,
     {
 
     },
- "tileheight":148,
+ "tileheight":147,
  "tilesets":[
         {
          "firstgid":1,
@@ -48,7 +48,7 @@ var gameWorld = { "height":20,
          "tileheight":296,
          "tilewidth":296
         }],
- "tilewidth":148,
+ "tilewidth":147,
  "version":1,
  "width":23
 };

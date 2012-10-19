@@ -25,7 +25,7 @@ function gameRoom(){
 	};
 	this.proccesInput = function(){
 		if(def(gR.keys[38])){//check if up is pressed
-    		var maxS = 12;
+    		var maxS = 18;
     		if(gR.v<maxS){
     			gR.v += 1;
     		}
