@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 function map(world){
 	var m = this;
@@ -36,3 +37,5 @@ function map(world){
 	};
 	this.loadTiles();
 }
+=======
+>>>>>>> 6c5fd392ffe0d344ddec88b33aafdf2132f1b519

@@ -8,12 +8,10 @@ function def(inp){//check if input is defined
 function gameRoom(){
     this.sprites = {
         bg : new rect("#5BE366",0,0,1280,720),
-        map : new map(gameWorld),
        	someCar : new car(0,0,600,300)
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
-    this.map = this.sprites.map;
     this.v = 0;
     this.r = 0;
     
@@ -25,7 +23,11 @@ function gameRoom(){
 	};
 	this.proccesInput = function(){
 		if(def(gR.keys[38])){//check if up is pressed
+<<<<<<< HEAD
     		var maxS = 18;
+=======
+    		var maxS = 20;
+>>>>>>> 6c5fd392ffe0d344ddec88b33aafdf2132f1b519
     		if(gR.v<maxS){
     			gR.v += 1;
     		}
@@ -51,14 +53,13 @@ function gameRoom(){
     	}
     	gR.r = 0;
     	if(def(gR.keys[39])){//when right is pressed
-    		gR.r = gR.v *-0.005;
+    		gR.r += gR.v *-0.005;
     	}
     	if(def(gR.keys[37])){//when left is pressed
-    		gR.r = gR.v *0.005;
+    		gR.r += gR.v *0.005;
     	}
-		gR.sprites.map.x += Math.sin(gR.map.r)*gR.v;
-    	gR.sprites.map.y += Math.cos(gR.map.r)*gR.v;
-    	gR.map.r += gR.r;
+		gR.sprites.someCar.x -= Math.sin(gR.r)*gR.v;
+    	gR.sprites.someCar.y -= Math.cos(gR.r)*gR.v;
 	};
     this.loop = function(){
     	gR.proccesInput();
