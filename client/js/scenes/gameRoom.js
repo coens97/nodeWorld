@@ -1,3 +1,10 @@
+function def(inp){//check if input is defined
+	if(typeof(inp)!='undefined'){
+		return true;
+	}else{
+		false;
+	}
+}
 function gameRoom(){
     this.sprites = {
         bg : new rect("#5BE366",0,0,1280,720),
@@ -17,7 +24,7 @@ function gameRoom(){
 
 	};
     this.loop = function(){
-    	if(typeof(gR.keys[38])!='undefined'){//check if up is pressed
+    	if(def(gR.keys[38])){//check if up is pressed
     		var maxS = 12;
     		if(gR.v<maxS){
     			gR.v += 1;
@@ -26,7 +33,7 @@ function gameRoom(){
     			gR.v = maxS;
     		}
     	}else{
-    		if(typeof(gR.keys[40])!='undefined'){//if down is pressed
+    		if(def(gR.keys[40])){//if down is pressed
     			var minS = -10;
     			if(gR.v>minS){
     				gR.v -= 1;
