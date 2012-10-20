@@ -27,12 +27,13 @@ function currentPlayer(x,y,world,scene){
 	};
 	this.loop = function(){
 		var aX = Math.round(scene.pX/world.tilesets[0].tilewidth-0.5);
-		var aY = Math.round(scene.pY/world.tilesets[0].tileheight-0.5);
-		var cB = world.layers[0].data[(aY+1)*world.layers[0].width+aX];
+		var aBY = Math.round(scene.pY/world.tilesets[0].tileheight+0.5);
+		var cB = world.layers[0].data[(aBY)*world.layers[0].width+aX];
 		if(cB!=0&&def(cB)&&scene.vY>0){//if there is an object under and moving down
 			scene.vY = 0;
 		}
-		var cU = world.layers[0].data[(aY)*world.layers[0].width+aX];
+		var aUY = Math.round((scene.pY-8)/world.tilesets[0].tileheight-0.5);
+		var cU = world.layers[0].data[(aUY)*world.layers[0].width+aX];
 		if(cU!=0&&def(cU)&&scene.vY<0){//if there is an object above and moving up
 			scene.vY = 0;
 		}
