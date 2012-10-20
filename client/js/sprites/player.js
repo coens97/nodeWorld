@@ -5,6 +5,15 @@ function def(inp){//check if input is defined
 		false;
 	}
 }
+
+function checkCol(inp){//check if solid
+	if(inp!=0&&def(inp)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 function player(x,y,world,scene){
 	this.x = x;
 	this.y = y;
@@ -30,33 +39,33 @@ function player(x,y,world,scene){
 		var a2Y = Math.round(scene.pY/world.tilesets[0].tileheight);//ypos of it
 		var a3Y = Math.round(scene.pY/world.tilesets[0].tileheight+0.5);//ypos under it
 		//vertical collision
-		if(a1X+2==a3X){//if horizontaly align to grid
+		//if(a1X+2==a3X){//if horizontaly align to grid
 			if(this.vY<0){//if moving up
 				var cU = world.layers[0].data[(a1Y)*world.layers[0].width+a2X];
-				if(cU!=0&&def(cU)){//if there is an object above and moving up
+				if(checkCol(cU)){//if there is an object above and moving up
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving left
 				var cB = world.layers[0].data[(a3Y)*world.layers[0].width+a2X];
-				if(cB!=0&&def(cB)){
+				if(checkCol(cB)){
 					this.vY = 0;
 				}
 			}
-		}
+		//}
 		//horizontal collision
-		if(a1Y+2==a3Y){//if vericaly align to grid
+		//if(a1Y+2==a3Y){//if vericaly align to grid
 			if(this.vX<0){//if moving to left
 				var cL = world.layers[0].data[(a2Y)*world.layers[0].width+a1X];
-				if(cL!=0&&def(cL)){
+				if(checkCol(cL)){
 					this.vX = 0;
 				}
 			}else if(this.vX>0){//or when moving right
 				var cR = world.layers[0].data[(a2Y)*world.layers[0].width+a3X];
-				if(cR!=0&&def(cR)){
+				if(checkCol(cR)){
 					this.vX = 0;
 				}
 			}
-		}
+		//}
 		//console.log(a1Y+" "+a2Y+" "+a3Y);
 		console.log(scene.pX+" "+scene.pY)
 		scene.pX += this.vX;
