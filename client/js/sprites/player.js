@@ -67,7 +67,7 @@ function player(x,y,world,scene){
 			}
 		}
 		//horizontal collision
-		//if(a1Y+2==a3Y){//if vericaly align to grid
+		if(a1Y+2==a3Y){//if vericaly align to grid
 			if(this.vX<0){//if moving to left
 				var cL = world.layers[0].data[(a2Y)*world.layers[0].width+a1X];
 				if(checkCol(cL)){
@@ -79,7 +79,21 @@ function player(x,y,world,scene){
 					this.vX = 0;
 				}
 			}
-		//}
+		}else{
+			if(this.vX<0){//if moving to left
+				var c1L = world.layers[0].data[(a1Y)*world.layers[0].width+a1X];
+				var c2L = world.layers[0].data[(a3Y)*world.layers[0].width+a1X];
+				if(checkCol(c1L)||checkCol(c2L)){
+					this.vX = 0;
+				}
+			}else if(this.vX>0){//or when moving right
+				var c1R = world.layers[0].data[(a1Y)*world.layers[0].width+a3X];
+				var c2R = world.layers[0].data[(a3Y)*world.layers[0].width+a3X];
+				if(checkCol(c1R)||checkCol(c2R)){
+					this.vX = 0;
+				}
+			}
+		}
 		//console.log(a1Y+" "+a2Y+" "+a3Y);
 		console.log(scene.pX+" "+scene.pY)
 		scene.pX += this.vX;
