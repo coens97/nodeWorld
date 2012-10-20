@@ -1,4 +1,4 @@
-# Muliplayer racing HTML5 game - (in progress)
+# Muliplayer HTML5 game - (in progress)
 
 ## Getting started
 * First clone this project
