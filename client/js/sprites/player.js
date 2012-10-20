@@ -30,15 +30,17 @@ function player(x,y,world,scene){
 		var a2Y = Math.round(scene.pY/world.tilesets[0].tileheight);//ypos of it
 		var a3Y = Math.round(scene.pY/world.tilesets[0].tileheight+0.5);//ypos under it
 		//vertical collision
-		if(this.vY<0){//if moving up
-			var cU = world.layers[0].data[(a1Y)*world.layers[0].width+a2X];
-			if(cU!=0&&def(cU)){//if there is an object above and moving up
-				this.vY = 0;
-			}
-		}else if(this.vY>0){//if moving left
-			var cB = world.layers[0].data[(a3Y)*world.layers[0].width+a2X];
-			if(cB!=0&&def(cB)){
-				this.vY = 0;
+		if(a1X+2==a3X){//if horizontaly align to grid
+			if(this.vY<0){//if moving up
+				var cU = world.layers[0].data[(a1Y)*world.layers[0].width+a2X];
+				if(cU!=0&&def(cU)){//if there is an object above and moving up
+					this.vY = 0;
+				}
+			}else if(this.vY>0){//if moving left
+				var cB = world.layers[0].data[(a3Y)*world.layers[0].width+a2X];
+				if(cB!=0&&def(cB)){
+					this.vY = 0;
+				}
 			}
 		}
 		//horizontal collision
