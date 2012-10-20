@@ -22,7 +22,9 @@ function map(world){
 				var layer = world.layers[l];
 				for(var tX = 0;tX<layer.width;tX++){
 					var dat = layer.data[c];
-					ctx.drawImage(m.tiles[0], 0, (dat==1)?0:world.tilesets[0].tileheight, world.tilesets[0].tilewidth, world.tilesets[0].tileheight,this.x+tX*world.tilewidth*2,this.y+tY*world.tileheight*2, world.tilesets[0].tilewidth*2, world.tilesets[0].tileheight*2);
+					if(dat!=0){
+						ctx.drawImage(m.tiles[0], 0, (dat==1)?0:world.tilesets[0].tileheight, world.tilesets[0].tilewidth, world.tilesets[0].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilesets[0].tilewidth, world.tilesets[0].tileheight);
+					}
 					c++;//C++ rules!
 				}
 			}

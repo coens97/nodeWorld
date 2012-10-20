@@ -8,13 +8,11 @@ function def(inp){//check if input is defined
 function gameRoom(){
     this.sprites = {
          bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
-        //map : new map(gameWorld),
+         map : new map(gameWorld),
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
     this.map = this.sprites.map;
-    this.v = 0;
-    this.r = 0;
     
 	this.startScene = function(){
 
@@ -22,8 +20,22 @@ function gameRoom(){
 	this.stopScene = function(){
 
 	};
+	this.proccesInput = function(){
+		if(def(this.keys[87])){//when w is pressed
+			this.map.y += 8;
+		}
+		if(def(this.keys[83])){//when s is pressed
+			this.map.y -= 8;
+		}
+		if(def(this.keys[68])){//when d is pressed
+			this.map.x -= 8;
+		}
+		if(def(this.keys[65])){//when a is pressed
+			this.map.x += 8;
+		}
+	};
     this.loop = function(){
-
+		this.proccesInput();
     };
     this.draw = function(){
         /***********
