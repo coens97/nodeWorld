@@ -9,12 +9,12 @@ function gameRoom(){
     this.sprites = {
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
-         player : new player(640,360)
+         player : new currentPlayer(640,360,gameWorld,this)
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
     this.map = this.sprites.map;
-    this.player = this.sprites.player;
+    this.player = this.sprites.player.p;
     
     this.pX = 960;
     this.pY = 390;
@@ -62,6 +62,7 @@ function gameRoom(){
 	};
     this.loop = function(){
 		this.proccesInput();
+		this.sprites.player.loop();
     };
     this.draw = function(){
         /***********

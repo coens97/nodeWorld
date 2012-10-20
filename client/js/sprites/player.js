@@ -13,3 +13,12 @@ function player(x,y){
         ctx.stroke();
 	};
 }
+function currentPlayer(x,y,world,scene){
+	this.p = new player(x,y);
+	this.draw = function(){
+		this.p.draw();
+	};
+	this.loop = function(){
+
+	};
+}
