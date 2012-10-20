@@ -38,16 +38,21 @@ function currentPlayer(x,y,world,scene){
 			scene.vY = 0;
 		}
 		var cB = world.layers[0].data[(a3Y)*world.layers[0].width+a2X];
-		if(cB!=0&&def(cB)&&scene.vY>0){//if there is an object under and moving down
+		if(cB!=0&&def(cB)&&scene.vY>0){
 			scene.vY = 0;
 		}
-		var cL = world.layers[0].data[(a2Y)*world.layers[0].width+a1X];
-		if(cL!=0&&def(cL)&&scene.vX<0){//if there is an object above and moving up
-			scene.vX = 0;
-		}
-		var cR = world.layers[0].data[(a2Y)*world.layers[0].width+a3X];
-		if(cR!=0&&def(cR)&&scene.vX>0){//if there is an object above and moving up
-			scene.vX = 0;
+		if(a1Y+2==a3Y){//if vericaly align to grid
+			if(scene.vX<0){//if moving to left
+				var cL = world.layers[0].data[(a2Y)*world.layers[0].width+a1X];
+				if(cL!=0&&def(cL)){
+					scene.vX = 0;
+				}
+			}else if(scene.vX>0){//or when moving right
+				var cR = world.layers[0].data[(a2Y)*world.layers[0].width+a3X];
+				if(cR!=0&&def(cR)){
+					scene.vX = 0;
+				}
+			}
 		}
 		console.log(a1Y+" "+a2Y+" "+a3Y);
 		scene.pX += scene.vX;
