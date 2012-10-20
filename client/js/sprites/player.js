@@ -39,7 +39,7 @@ function player(x,y,world,scene){
 		var a2Y = Math.round(scene.pY/world.tilesets[0].tileheight);//ypos of it
 		var a3Y = Math.round(scene.pY/world.tilesets[0].tileheight+0.5);//ypos under it
 		//vertical collision
-		//if(a1X+2==a3X){//if horizontaly align to grid
+		if(a1X+2==a3X){//if horizontaly align to grid
 			if(this.vY<0){//if moving up
 				var cU = world.layers[0].data[(a1Y)*world.layers[0].width+a2X];
 				if(checkCol(cU)){//if there is an object above and moving up
@@ -51,7 +51,21 @@ function player(x,y,world,scene){
 					this.vY = 0;
 				}
 			}
-		//}
+		}else{
+			if(this.vY<0){//if moving up
+				var c1U = world.layers[0].data[(a1Y)*world.layers[0].width+a1X];
+				var c2U = world.layers[0].data[(a1Y)*world.layers[0].width+a3X];
+				if(checkCol(c1U)||checkCol(c2U)){//if there is an object above and moving up
+					this.vY = 0;
+				}
+			}else if(this.vY>0){//if moving left
+				var c1B = world.layers[0].data[(a3Y)*world.layers[0].width+a1X];
+				var c2B = world.layers[0].data[(a3Y)*world.layers[0].width+a3X];
+				if(checkCol(c1B)||checkCol(c2B)){
+					this.vY = 0;
+				}
+			}
+		}
 		//horizontal collision
 		//if(a1Y+2==a3Y){//if vericaly align to grid
 			if(this.vX<0){//if moving to left
