@@ -2,18 +2,15 @@ function gameRoom(){
     this.sprites = {
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
-         player : new currentPlayer(640,360,gameWorld,this)
+         player : new player(640,360,gameWorld,this)
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
     this.map = this.sprites.map;
-    this.player = this.sprites.player.p;
+    this.player = this.sprites.player;
     
     this.pX = 256;
-    this.pY = 0;
-    this.vX = 0;
-    this.vY = 0;
-    
+    this.pY = 0;    
 	this.startScene = function(){
 
 	};
@@ -41,25 +38,25 @@ function gameRoom(){
 		}
 	};
 	this.proccesInput = function(){
-		this.vX = 0;
-		this.vY = 0;
+		this.player.vX = 0;
+		this.player.vY = 0;
 		if(def(this.keys[87])&&!def(this.keys[83])){//when w is pressed
-			this.vY = -8;
+			this.player.vY = -8;
 		}
 		if(def(this.keys[83])&&!def(this.keys[87])){//when s is pressed
-			this.vY = 8;
+			this.player.vY = 8;
 		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
-			this.vX = 8;
+			this.player.vX = 8;
 		}
 		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
-			this.vX = -8;
+			this.player.vX = -8;
 		}
 		this.checkView();
 	};
     this.loop = function(){
 		this.proccesInput();//check keyboard input
-		this.sprites.player.loop();//move circle
+		this.player.loop();//move circle
     };
     this.draw = function(){
         /***********
