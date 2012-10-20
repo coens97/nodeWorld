@@ -16,8 +16,10 @@ function gameRoom(){
     this.map = this.sprites.map;
     this.player = this.sprites.player.p;
     
-    this.pX = 960;
-    this.pY = 390;
+    this.pX = 256;
+    this.pY = 0;
+    this.vX = 0;
+    this.vY = 0;
     
 	this.startScene = function(){
 
@@ -46,23 +48,25 @@ function gameRoom(){
 		}
 	};
 	this.proccesInput = function(){
-		if(def(this.keys[87])){//when w is pressed
-			this.pY -= 8;
+		this.vX = 0;
+		this.vY = 0;
+		if(def(this.keys[87])&&!def(this.keys[83])){//when w is pressed
+			this.vY = -8;
 		}
-		if(def(this.keys[83])){//when s is pressed
-			this.pY += 8;
+		if(def(this.keys[83])&&!def(this.keys[87])){//when s is pressed
+			this.vY = 8;
 		}
-		if(def(this.keys[68])){//when d is pressed
-			this.pX += 8;
+		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
+			this.vX = 8;
 		}
-		if(def(this.keys[65])){//when a is pressed
-			this.pX -= 8;
+		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
+			this.vX = -8;
 		}
 		this.checkView();
 	};
     this.loop = function(){
-		this.proccesInput();
-		this.sprites.player.loop();
+		this.proccesInput();//check keyboard input
+		this.sprites.player.loop();//move circle
     };
     this.draw = function(){
         /***********

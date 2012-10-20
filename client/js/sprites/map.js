@@ -15,7 +15,6 @@ function map(world){
 	};	
 	this.draw = function(){
 		ctx.save();
-		ctx.translate(640,360);
 		for(var l = 0;l<world.layers.length;l++){//loop trough layers
 			var c = 0;
 			for(var tY = 0;tY<world.layers[l].height;tY++){//draw every row
