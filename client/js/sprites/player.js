@@ -1,3 +1,10 @@
+function def(inp){//check if input is defined
+	if(typeof(inp)!='undefined'){
+		return true;
+	}else{
+		false;
+	}
+}
 function player(x,y){
 	this.x = x;
 	this.y = y;
@@ -19,8 +26,13 @@ function currentPlayer(x,y,world,scene){
 		this.p.draw();
 	};
 	this.loop = function(){
-		if(scene.pX+scene.vX<0){scene.pX=0;scene.vX=0;}
-		if(scene.pY+scene.vY<0){scene.pY=0;scene.vY=0;}
+		var aX = Math.round(scene.pX/world.tilesets[0].tilewidth);
+		var aY = Math.round(scene.pY/world.tilesets[0].tileheight-0.5);
+		var cB = world.layers[0].data[(aY+1)*world.layers[0].width+aX];
+		if(cB!=0&&def(cB)&&scene.vY>0){//if there is an object under and
+			scene.vY = 0;
+		}
+		console.log(aX+" "+aY+" "+cB);
 		scene.pX += scene.vX;
 		scene.pY += scene.vY;
 	};

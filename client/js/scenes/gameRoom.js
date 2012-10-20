@@ -1,10 +1,3 @@
-function def(inp){//check if input is defined
-	if(typeof(inp)!='undefined'){
-		return true;
-	}else{
-		false;
-	}
-}
 function gameRoom(){
     this.sprites = {
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
