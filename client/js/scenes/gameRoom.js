@@ -14,6 +14,10 @@ function gameRoom(){
     this.keys = {};//will save wich keys are down
     var gR = this;
     this.map = this.sprites.map;
+    this.player = this.sprites.player;
+    
+    this.pX = 0;
+    this.pY = 0;
     
 	this.startScene = function(){
 
@@ -21,19 +25,40 @@ function gameRoom(){
 	this.stopScene = function(){
 
 	};
+	this.checkView = function(){//check player view boundries
+		this.player.x = this.map.x + this.pX;
+		if(this.player.x > 780){//check right bound
+			this.player.x = 780;
+			this.map.x = this.player.x - this.pX;
+		}
+		if(this.player.x <500){//check left bound
+			this.player.x = 500;
+			this.map.x = this.player.x - this.pX;
+		}
+		this.player.y = this.map.y + this.pY;
+		if(this.player.y > 460){//check botto, bound
+			this.player.y = 460;
+			this.map.y = this.player.y - this.pY;
+		}
+		if(this.player.y <260){//check top bound
+			this.player.y = 260;
+			this.map.y = this.player.y - this.pY;
+		}
+	};
 	this.proccesInput = function(){
 		if(def(this.keys[87])){//when w is pressed
-			this.map.y += 8;
+			this.pY -= 8;
 		}
 		if(def(this.keys[83])){//when s is pressed
-			this.map.y -= 8;
+			this.pY += 8;
 		}
 		if(def(this.keys[68])){//when d is pressed
-			this.map.x -= 8;
+			this.pX += 8;
 		}
 		if(def(this.keys[65])){//when a is pressed
-			this.map.x += 8;
+			this.pX -= 8;
 		}
+		this.checkView();
 	};
     this.loop = function(){
 		this.proccesInput();
