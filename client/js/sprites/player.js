@@ -27,17 +27,22 @@ function currentPlayer(x,y,world,scene){
 	};
 	this.loop = function(){
 		var aX = Math.round(scene.pX/world.tilesets[0].tilewidth-0.5);
-		var aBY = Math.round(scene.pY/world.tilesets[0].tileheight+0.5);
-		var cB = world.layers[0].data[(aBY)*world.layers[0].width+aX];
-		if(cB!=0&&def(cB)&&scene.vY>0){//if there is an object under and moving down
-			scene.vY = 0;
-		}
-		var aUY = Math.round((scene.pY-8)/world.tilesets[0].tileheight-0.5);
-		var cU = world.layers[0].data[(aUY)*world.layers[0].width+aX];
+		var a1X = Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5);
+		var a1Y = Math.round((scene.pY-8)/world.tilesets[0].tileheight-0.5);
+		var a3Y = Math.round(scene.pY/world.tilesets[0].tileheight+0.5);
+		
+		var cU = world.layers[0].data[(a1Y)*world.layers[0].width+aX];
 		if(cU!=0&&def(cU)&&scene.vY<0){//if there is an object above and moving up
 			scene.vY = 0;
 		}
-		//console.log(aX+" "+aY+" "+cB);
+		var cB = world.layers[0].data[(a3Y)*world.layers[0].width+aX];
+		if(cB!=0&&def(cB)&&scene.vY>0){//if there is an object under and moving down
+			scene.vY = 0;
+		}
+		var cL = world.layers[0].data[(a1Y)*world.layers[0].width+a1X];
+		if(cL!=0&&def(cL)&&scene.vX<0){//if there is an object above and moving up
+			scene.vX = 0;
+		}
 		scene.pX += scene.vX;
 		scene.pY += scene.vY;
 	};
