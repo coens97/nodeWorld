@@ -7,7 +7,7 @@ function def(inp){//check if input is defined
 }
 function gameRoom(){
     this.sprites = {
-         bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
+         bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
          player : new player(640,360)
     };
