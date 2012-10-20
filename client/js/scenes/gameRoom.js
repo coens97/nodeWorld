@@ -16,8 +16,8 @@ function gameRoom(){
     this.map = this.sprites.map;
     this.player = this.sprites.player;
     
-    this.pX = 0;
-    this.pY = 0;
+    this.pX = 960;
+    this.pY = 390;
     
 	this.startScene = function(){
 
