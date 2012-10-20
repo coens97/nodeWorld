@@ -34,8 +34,7 @@ function hostGame(){
     };
     this.sendGame = function(){
     	var hName = document.getElementById("hname").value;
-    	var hLaps = document.getElementById("hlaps").value;
-    	socket.emit("hostGame",{name:hName,laps:hLaps});//send to server
+    	socket.emit("hostGame",{name:hName});//send to server
     };
     socket.on('hostGame',function(data){
     	if(data==0){

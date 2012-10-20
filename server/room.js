@@ -2,11 +2,10 @@ var waitingRoom = require('./waitingRoom'),
 	gameRoom = require('./gameRoom');
 this.rooms = {};
 
-this.room = function(name,laps){
+this.room = function(name){
 	var room = this;
 	this.name = name;
 	this.state = 0;//waiting
-	this.laps = laps;
 	this.players = {};
 	this.waitingRoom = new waitingRoom.waitingRoom(this);
 	this.gameRoom = new gameRoom.gameRoom(this);
@@ -40,7 +39,7 @@ this.room = function(name,laps){
 this.sendRooms = function(socket){
 	var tmp = [];
 	for(var Name in this.rooms){
-		tmp.push({name:Name,laps:this.rooms[Name].laps,players:Object.keys(this.rooms[Name].players).length});
+		tmp.push({name:Name,players:Object.keys(this.rooms[Name].players).length});
 	}
 	socket.emit("rooms",tmp);
 }

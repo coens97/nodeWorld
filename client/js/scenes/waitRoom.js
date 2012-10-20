@@ -10,8 +10,6 @@ function waitRoom(){
         players : new objectAr(),
         ready : new button(" ready",660,620,260,80),
         name : new text("#000000","Name",40,120),
-        lapsTitle : new text("#000000","laps",700,120),
-        lapsCount : new text("#000000","",808,120),
         checkboxes : new objectAr()
     };
     //change font sizes
@@ -19,8 +17,6 @@ function waitRoom(){
     this.sprites.playerTitle.font = "40pt Arial";
     this.sprites.playerCount.font = "40pt Arial";
     this.sprites.name.font = "40pt Arial";
-    this.sprites.lapsTitle.font = "40pt Arial";
-    this.sprites.lapsCount.font = "40pt Arial";
 	this.startScene = function(){
 		
 	};
@@ -59,7 +55,6 @@ function waitRoom(){
     	}
     	parent.sprites.playerCount.string = data.nicknames.length+"/12";
     	parent.sprites.name.string = data.name;
-    	parent.sprites.lapsCount.string = data.laps;
     };
     this.startGame = function(data){//whenRoom s ready to start game
     	game.startScene(6);

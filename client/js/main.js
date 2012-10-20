@@ -9,7 +9,6 @@ requirejs(['socket',
     /* put sprites here */
     'sprites/basic',
     'sprites/button',
-    'sprites/car',
     'map',
     'sprites/map'
     ],function(){
