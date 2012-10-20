@@ -17,8 +17,8 @@ function checkCol(inp){//check if solid
 function player(x,y,world,scene){
 	this.x = x;
 	this.y = y;
-	this.vx = 0;
-	this.vy = 0;
+	this.vX = 0;
+	this.vY = 0;
 	
 	this.color = "#59E01B";
 	this.draw = function(){
@@ -32,6 +32,8 @@ function player(x,y,world,scene){
         ctx.stroke();
 	};
 	this.loop = function(){
+		this.vY +=1;
+		//collision
 		var a1X = Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5);//xpos left from it
 		var a2X = Math.round(scene.pX/world.tilesets[0].tilewidth);//xpos of it
 		var a3X = Math.round(scene.pX/world.tilesets[0].tilewidth+0.5);//xpos right of it
