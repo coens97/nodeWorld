@@ -41,12 +41,13 @@ function player(x,y,world,scene){
 		var a1Y;
 		if((scene.pY)%world.tilesets[0].tileheight==0){//if vertical align
 			console.log('valign');
-			a1Y =  Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight)-1;
+			a1Y =  Math.round((scene.pY)/world.tilesets[0].tileheight)-1;
 		}else{
-			a1Y =  Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight-0.5);
+			console.log(scene.pY);
+			a1Y =  Math.round((scene.pY)/world.tilesets[0].tileheight-0.5);
 		}
-		var a2Y = Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight);//ypos of it
-		var a3Y = Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight+0.5);//ypos under it
+		var a2Y = Math.round((scene.pY)/world.tilesets[0].tileheight);//ypos of it
+		var a3Y = Math.round((scene.pY)/world.tilesets[0].tileheight+0.5);//ypos under it
 		var aY = Math.round((scene.pY)/world.tilesets[0].tileheight);//ypos of it
 		//vertical collision
 		if(a1X+2==a3X){//if horizontaly align to grid
