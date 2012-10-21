@@ -24,7 +24,7 @@ function player(x,y,world,scene){
 	this.draw = function(){
 		ctx.fillStyle = this.color;
 		ctx.beginPath();
-		ctx.arc(this.x+32, this.y+32, 31, 0, Math.PI*2, true); 
+		ctx.arc(this.x+16, this.y+16, 15, 0, Math.PI*2, true); 
 		ctx.closePath();
 		ctx.fill();
 		ctx.lineWidth = 2;

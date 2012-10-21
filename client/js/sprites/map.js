@@ -29,7 +29,7 @@ function map(world){
 							imgX = (m.tileW - 1)*world.tilesets[t].tilewidth;
 							imgY -= world.tilesets[t].tileheight;
 						}
-						ctx.drawImage(m.tiles[t], imgX ,imgY ,world.tilesets[t].tilewidth, world.tilesets[t].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilesets[t].tilewidth, world.tilesets[t].tileheight);
+						ctx.drawImage(m.tiles[t], imgX ,imgY ,world.tilesets[t].tilewidth, world.tilesets[t].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilewidth, world.tileheight);
 					}
 					c++;//C++ rules!
 				}
