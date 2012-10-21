@@ -48,6 +48,8 @@ function player(x,y,world,scene){
 		}
 	};
 	this.loop = function(){
+		//add gravity
+		this.vY +=1;
 		//collision
 		var bD = this.getBound();
 		//vertical collision
@@ -59,19 +61,19 @@ function player(x,y,world,scene){
 				}
 			}else if(this.vY>0){//if moving down
 				if(this.isSolid(bD.a2X,bD.a3Y)){
-					scene.pY = bD.aY*world.tileheight;
+					scene.pY = (bD.a3Y-1)*world.tileheight;
 					this.vY = 0;
 				}
 			}
 		}else{
 			if(this.vY<0){//if moving up
 				if(this.isSolid(bD.a1X,bD.a1Y)||this.isSolid(bD.a3X,bD.a1Y)){//if there is an object above and moving up
-					scene.pY = bD.aY*world.tileheight;
+					scene.pY = bD.a2Y*world.tileheight;
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving down
 				if(this.isSolid(bD.a1X,bD.a3Y)||this.isSolid(bD.a3X,bD.a3Y)){
-					scene.pY = bD.a2Y*world.tileheight;
+					scene.pY = (bD.a3Y-1)*world.tileheight;
 					this.vY = 0;
 				}
 			}
@@ -101,6 +103,5 @@ function player(x,y,world,scene){
 		}
 		scene.pX += this.vX;
 		scene.pY += this.vY;
-		this.vY +=1;
 	};
 }
