@@ -35,7 +35,7 @@ function player(x,y,world,scene){
 		return{a1X : Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5),//xpos left from it
 				a2X : Math.round(scene.pX/world.tilesets[0].tilewidth),//xpos of it
 				a3X : Math.round(scene.pX/world.tilesets[0].tilewidth+0.5),//xpos right of it
-				a1Y :  Math.round((scene.pY)/world.tilesets[0].tileheight-0.5),//ypos of above it
+				a1Y :  Math.round((scene.pY-8)/world.tilesets[0].tileheight-0.5),//ypos of above it
 				a2Y : Math.round((scene.pY)/world.tilesets[0].tileheight),//ypos of it
 				a3Y : Math.round((scene.pY)/world.tilesets[0].tileheight+0.5)}//ypos under it
 	};
