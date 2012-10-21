@@ -40,7 +40,11 @@ function player(x,y,world,scene){
 				a3Y : Math.round((scene.pY)/world.tilesets[0].tileheight+0.5)}//ypos under it
 	};
 	this.isSolid = function(x,y){
-		return checkCol(world.layers[0].data[y*world.layers[0].width+x]);
+		if(x>0&&y>0&&x<world.layers[0].width&&y<world.layers[0].width){//if in world
+			return checkCol(world.layers[0].data[y*world.layers[0].width+x]);
+		}else{
+			return false;
+		}
 	};
 	this.loop = function(){
 		//collision
