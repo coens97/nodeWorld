@@ -19,7 +19,7 @@ function player(x,y,world,scene){
 	this.y = y;
 	this.vX = 0;
 	this.vY = 0;
-	
+
 	this.color = "#59E01B";
 	this.draw = function(){
 		ctx.fillStyle = this.color;
@@ -39,15 +39,8 @@ function player(x,y,world,scene){
 		var a1X = Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5);//xpos left from it
 		var a2X = Math.round(scene.pX/world.tilesets[0].tilewidth);//xpos of it
 		var a3X = Math.round(scene.pX/world.tilesets[0].tilewidth+0.5);//xpos right of it
-		
-		var a1Y;
-		if((scene.pY)%world.tilesets[0].tileheight==0){//if vertical align
-			console.log('valign');
-			a1Y =  Math.round((scene.pY)/world.tilesets[0].tileheight)-1;
-		}else{
-			console.log(scene.pY);
-			a1Y =  Math.round((scene.pY)/world.tilesets[0].tileheight-0.5);
-		}
+
+		var a1Y =  Math.round((scene.pY)/world.tilesets[0].tileheight-0.5);
 		var a2Y = Math.round((scene.pY)/world.tilesets[0].tileheight);//ypos of it
 		var a3Y = Math.round((scene.pY)/world.tilesets[0].tileheight+0.5);//ypos under it
 		var aY = Math.round((scene.pY)/world.tilesets[0].tileheight);//ypos of it
@@ -111,8 +104,5 @@ function player(x,y,world,scene){
 				}
 			}
 		}
-		//console.log(scene.pY+" "+a1Y+" "+a2Y+" "+a3Y);
-		//console.log(scene.pX+" "+scene.pY)
-		
 	};
 }
