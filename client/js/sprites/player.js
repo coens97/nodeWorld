@@ -33,6 +33,8 @@ function player(x,y,world,scene){
 	};
 	this.loop = function(){
 		this.vY +=1;
+		scene.pX += this.vX;
+		scene.pY += this.vY;
 		//collision
 		var a1X = Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5);//xpos left from it
 		var a2X = Math.round(scene.pX/world.tilesets[0].tilewidth);//xpos of it
@@ -111,7 +113,6 @@ function player(x,y,world,scene){
 		}
 		//console.log(scene.pY+" "+a1Y+" "+a2Y+" "+a3Y);
 		//console.log(scene.pX+" "+scene.pY)
-		scene.pX += this.vX;
-		scene.pY += this.vY;
+		
 	};
 }
