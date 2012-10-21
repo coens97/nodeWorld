@@ -35,9 +35,10 @@ function player(x,y,world,scene){
 		return{a1X : Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5),//xpos left from it
 				a2X : Math.round(scene.pX/world.tilesets[0].tilewidth),//xpos of it
 				a3X : Math.round(scene.pX/world.tilesets[0].tilewidth+0.5),//xpos right of it
-				a1Y :  Math.round((scene.pY-8)/world.tilesets[0].tileheight-0.5),//ypos of above it
-				a2Y : Math.round((scene.pY)/world.tilesets[0].tileheight),//ypos of it
-				a3Y : Math.round((scene.pY)/world.tilesets[0].tileheight+0.5)}//ypos under it
+				aY : Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight),//ypos of it
+				a1Y :  Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight-0.5),//ypos of above it
+				a2Y : Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight),//ypos of it
+				a3Y : Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight+0.5)}//ypos under it
 	};
 	this.isSolid = function(x,y){
 		if(x>0&&y>0&&x<world.layers[0].width&&y<world.layers[0].width){//if in world
@@ -50,7 +51,7 @@ function player(x,y,world,scene){
 		//collision
 		var bD = this.getBound();
 		//vertical collision
-		if(bD.a1X+2==bD.a3X){//if horizontaly align to grid
+		if(scene.pX%world.tilewidth==0){//if horizontaly align to grid
 			if(this.vY<0){//if moving up
 				if(this.isSolid(bD.a2X,bD.a1Y)){//if there is an object above and moving up
 					scene.pY = bD.a2Y*world.tileheight;
@@ -58,14 +59,14 @@ function player(x,y,world,scene){
 				}
 			}else if(this.vY>0){//if moving down
 				if(this.isSolid(bD.a2X,bD.a3Y)){
-					scene.pY = bD.a2Y*world.tileheight;
+					scene.pY = bD.aY*world.tileheight;
 					this.vY = 0;
 				}
 			}
 		}else{
 			if(this.vY<0){//if moving up
 				if(this.isSolid(bD.a1X,bD.a1Y)||this.isSolid(bD.a3X,bD.a1Y)){//if there is an object above and moving up
-					scene.pY = bD.a2Y*world.tileheight;
+					scene.pY = bD.aY*world.tileheight;
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving down
@@ -77,7 +78,7 @@ function player(x,y,world,scene){
 		}
 		bD = this.getBound();
 		//horizontal collision
-		if(bD.a1Y+2==bD.a3Y){//if vericaly align to grid
+		if(scene.pY%world.tileheight==0){//if vericaly align to grid
 			if(this.vX<0){//if moving to left
 				if(this.isSolid(bD.a1X,bD.a2Y)){
 					this.vX = 0;
