@@ -38,7 +38,13 @@ function player(x,y,world,scene){
 		var a2X = Math.round(scene.pX/world.tilesets[0].tilewidth);//xpos of it
 		var a3X = Math.round(scene.pX/world.tilesets[0].tilewidth+0.5);//xpos right of it
 		
-		var a1Y =  Math.round((scene.pY+this.vY-8)/world.tilesets[0].tileheight-0.5);
+		var a1Y;
+		if((scene.pY)%world.tilesets[0].tileheight==0){//if vertical align
+			console.log('valign');
+			a1Y =  Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight)-1;
+		}else{
+			a1Y =  Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight-0.5);
+		}
 		var a2Y = Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight);//ypos of it
 		var a3Y = Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight+0.5);//ypos under it
 		var aY = Math.round((scene.pY)/world.tilesets[0].tileheight);//ypos of it
@@ -47,6 +53,7 @@ function player(x,y,world,scene){
 			if(this.vY<0){//if moving up
 				var cU = world.layers[0].data[(a1Y)*world.layers[0].width+a2X];
 				if(checkCol(cU)){//if there is an object above and moving up
+					scene.pY = aY*world.tileheight;
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving down
@@ -61,6 +68,7 @@ function player(x,y,world,scene){
 				var c1U = world.layers[0].data[(a1Y)*world.layers[0].width+a1X];
 				var c2U = world.layers[0].data[(a1Y)*world.layers[0].width+a3X];
 				if(checkCol(c1U)||checkCol(c2U)){//if there is an object above and moving up
+					scene.pY = aY*world.tileheight;
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving down
@@ -100,7 +108,7 @@ function player(x,y,world,scene){
 				}
 			}
 		}
-		console.log(scene.pY+" "+a1Y+" "+a2Y+" "+a3Y);
+		//console.log(scene.pY+" "+a1Y+" "+a2Y+" "+a3Y);
 		//console.log(scene.pX+" "+scene.pY)
 		scene.pX += this.vX;
 		scene.pY += this.vY;
