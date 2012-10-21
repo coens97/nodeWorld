@@ -41,7 +41,9 @@ function gameRoom(){
 		this.player.vX = 0;
 		//this.player.vY = 0;
 		if(def(this.keys[87])){//when w is pressed
+			//if(this.player.onGround){
 			this.player.vY = -16;
+			//}
 		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
 			this.player.vX = 8;
