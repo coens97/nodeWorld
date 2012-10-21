@@ -39,37 +39,33 @@ function player(x,y,world,scene){
 				a2Y : Math.round((scene.pY)/world.tilesets[0].tileheight),//ypos of it
 				a3Y : Math.round((scene.pY)/world.tilesets[0].tileheight+0.5)}//ypos under it
 	};
+	this.isSolid = function(x,y){
+		return checkCol(world.layers[0].data[y*world.layers[0].width+x]);
+	};
 	this.loop = function(){
-		this.vY +=1;
 		//collision
 		var bD = this.getBound();
 		//vertical collision
 		if(bD.a1X+2==bD.a3X){//if horizontaly align to grid
 			if(this.vY<0){//if moving up
-				var cU = world.layers[0].data[(bD.a1Y)*world.layers[0].width+bD.a2X];
-				if(checkCol(cU)){//if there is an object above and moving up
+				if(this.isSolid(bD.a2X,bD.a1Y)){//if there is an object above and moving up
 					scene.pY = bD.a2Y*world.tileheight;
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving down
-				var cB = world.layers[0].data[(bD.a3Y)*world.layers[0].width+bD.a2X];
-				if(checkCol(cB)){
+				if(this.isSolid(bD.a2X,bD.a3Y)){
 					scene.pY = bD.a2Y*world.tileheight;
 					this.vY = 0;
 				}
 			}
 		}else{
 			if(this.vY<0){//if moving up
-				var c1U = world.layers[0].data[(bD.a1Y)*world.layers[0].width+bD.a1X];
-				var c2U = world.layers[0].data[(bD.a1Y)*world.layers[0].width+bD.a3X];
-				if(checkCol(c1U)||checkCol(c2U)){//if there is an object above and moving up
+				if(this.isSolid(bD.a1X,bD.a1Y)||this.isSolid(bD.a3X,bD.a1Y)){//if there is an object above and moving up
 					scene.pY = bD.a2Y*world.tileheight;
 					this.vY = 0;
 				}
 			}else if(this.vY>0){//if moving down
-				var c1B = world.layers[0].data[(bD.a3Y)*world.layers[0].width+bD.a1X];
-				var c2B = world.layers[0].data[(bD.a3Y)*world.layers[0].width+bD.a3X];
-				if(checkCol(c1B)||checkCol(c2B)){
+				if(this.isSolid(bD.a1X,bD.a3Y)||this.isSolid(bD.a3X,bD.a3Y)){
 					scene.pY = bD.a2Y*world.tileheight;
 					this.vY = 0;
 				}
@@ -106,5 +102,6 @@ function player(x,y,world,scene){
 		}
 		scene.pX += this.vX;
 		scene.pY += this.vY;
+		this.vY +=1;
 	};
 }
