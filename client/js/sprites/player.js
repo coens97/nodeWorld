@@ -75,27 +75,21 @@ function player(x,y,world,scene){
 		//horizontal collision
 		if(bD.a1Y+2==bD.a3Y){//if vericaly align to grid
 			if(this.vX<0){//if moving to left
-				var cL = world.layers[0].data[(bD.a2Y)*world.layers[0].width+bD.a1X];
-				if(checkCol(cL)){
+				if(this.isSolid(bD.a1X,bD.a2Y)){
 					this.vX = 0;
 				}
 			}else if(this.vX>0){//or when moving right
-				var cR = world.layers[0].data[(bD.a2Y)*world.layers[0].width+bD.a3X];
-				if(checkCol(cR)){
+				if(this.isSolid(bD.a3X,bD.a2Y)){
 					this.vX = 0;
 				}
 			}
 		}else{
 			if(this.vX<0){//if moving to left
-				var c1L = world.layers[0].data[(bD.a1Y)*world.layers[0].width+bD.a1X];
-				var c2L = world.layers[0].data[(bD.a3Y)*world.layers[0].width+bD.a1X];
-				if(checkCol(c1L)||checkCol(c2L)){
+				if(this.isSolid(bD.a1X,bD.a1Y)||this.isSolid(bD.a1X,bD.a3Y)){
 					this.vX = 0;
 				}
 			}else if(this.vX>0){//or when moving right
-				var c1R = world.layers[0].data[(bD.a1Y)*world.layers[0].width+bD.a3X];
-				var c2R = world.layers[0].data[(bD.a3Y)*world.layers[0].width+bD.a3X];
-				if(checkCol(c1R)||checkCol(c2R)){
+				if(this.isSolid(bD.a3X,bD.a1Y)||this.isSolid(bD.a3X,bD.a3Y)){
 					this.vX = 0;
 				}
 			}
