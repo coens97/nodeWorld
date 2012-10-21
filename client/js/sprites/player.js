@@ -33,13 +33,13 @@ function player(x,y,world,scene){
 	};
 	//collision stuff
 	this.getBound = function(){//get the positions of the player with map coordianates
-		return{a1X : Math.round((scene.pX-8)/world.tilesets[0].tilewidth-0.5),//xpos left from it
-				a2X : Math.round(scene.pX/world.tilesets[0].tilewidth),//xpos of it
-				a3X : Math.round(scene.pX/world.tilesets[0].tilewidth+0.5),//xpos right of it
-				aY : Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight),//ypos of it
-				a1Y :  Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight-0.5),//ypos of above it
-				a2Y : Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight),//ypos of it
-				a3Y : Math.round((scene.pY+this.vY)/world.tilesets[0].tileheight+0.5)}//ypos under it
+		return{a1X : Math.round((scene.pX-4)/world.tilewidth-0.5),//xpos left from it
+				a2X : Math.round(scene.pX/world.tilewidth),//xpos of it
+				a3X : Math.round(scene.pX/world.tilewidth+0.5),//xpos right of it
+				aY : Math.round((scene.pY+this.vY)/world.tileheight),//ypos of it
+				a1Y :  Math.round((scene.pY+this.vY)/world.tileheight-0.5),//ypos of above it
+				a2Y : Math.round((scene.pY+this.vY)/world.tileheight),//ypos of it
+				a3Y : Math.round((scene.pY+this.vY)/world.tileheight+0.5)}//ypos under it
 	};
 	this.isSolid = function(x,y){//check if object is solid
 		if(x>0&&y>0&&x<world.layers[0].width&&y<world.layers[0].width){//if in world
