@@ -38,9 +38,6 @@ function gameRoom(){
 			this.player.vY = -16;
 			//}
 		}
-		if(def(this.keys[83])){
-			this.player.vY = 8;
-		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
 			this.player.vX = 8;
 		}
