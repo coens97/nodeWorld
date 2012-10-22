@@ -22,9 +22,11 @@ function player(x,y,world,scene){
 
 	this.color = "#59E01B";
 	this.draw = function(){
+		var x =  this.x + scene.map.x;
+		var y = this.y + scene.map.y;
 		ctx.fillStyle = this.color;
 		ctx.beginPath();
-		ctx.arc(this.x+32, this.y+32, 31, 0, Math.PI*2, true); 
+		ctx.arc(x, y, 31, 0, Math.PI*2, true); 
 		ctx.closePath();
 		ctx.fill();
 		ctx.lineWidth = 2;
@@ -39,7 +41,7 @@ function player(x,y,world,scene){
 		//collision
 		this.checkCollision();
 		//move player
-		scene.pX += this.vX;
-		scene.pY += this.vY;
+		this.x += this.vX;
+		this.y += this.vY;
 	};
 }

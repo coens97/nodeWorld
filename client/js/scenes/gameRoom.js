@@ -18,23 +18,16 @@ function gameRoom(){
 
 	};
 	this.checkView = function(){//check player view boundries
-		this.player.x = this.map.x + this.pX;
-		if(this.player.x > 780){//check right bound
-			this.player.x = 780;
-			this.map.x = this.player.x - this.pX;
+		//let the view follow the player
+		if(this.player.x + this.map.x> 780){//check right bound
+			this.map.x = 780-this.player.x;
+		}else if(this.player.x + this.map.x< 500){//check right bound
+			this.map.x = 500-this.player.x;
 		}
-		if(this.player.x <500){//check left bound
-			this.player.x = 500;
-			this.map.x = this.player.x - this.pX;
-		}
-		this.player.y = this.map.y + this.pY;
-		if(this.player.y > 460){//check botto, bound
-			this.player.y = 460;
-			this.map.y = this.player.y - this.pY;
-		}
-		if(this.player.y <260){//check top bound
-			this.player.y = 260;
-			this.map.y = this.player.y - this.pY;
+		if(this.player.y + this.map.y > 460){//check right bound
+			this.map.y = 460 - this.player.y;
+		}else if(this.player.y + this.map.y < 260){//check right bound
+			this.map.y = 260 - this.player.y;
 		}
 	};
 	this.proccesInput = function(){
