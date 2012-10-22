@@ -77,8 +77,7 @@ function player(x,y,world,scene){
 		//check for moving down
 		if(this.vY>0&&this.areSolidY(b.x,b.y[2])){//if moving down and something solid under it
 			this.vY = 0;
-			var ty = b.y[1];
-			//for(var ty = b.y[1];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
+			for(var ty = b.y[1];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
 			this.y = world.tileheight*ty;
 		}
 		//check for moving up
