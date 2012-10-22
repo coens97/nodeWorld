@@ -6,7 +6,7 @@ html, body{
     text-align:center;
     height:100%;
     width:100%;
-    /*overflow:hidden;*/
+    overflow:hidden;
 }
 body{
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -14,6 +14,11 @@ body{
 #myCanvas{
     margin:0;
     padding:0;
+}
+#footer{
+	position: fixed;
+	bottom:0;
+	width: 100%;
 }
 #count{
 	display: inline-block;

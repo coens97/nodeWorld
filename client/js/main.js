@@ -77,7 +77,7 @@ window.onresize = function(event) {//when canvas resize resize canvas
 };
 function resizeCanvas(){//resize canvas to aspect ratio
     windowWidth = document.body.offsetWidth;
-    windowHeight = document.body.offsetHeight-25;
+    windowHeight = document.body.offsetHeight;
     
     //start aspect ratio
     var tmpHeight = windowHeight;
