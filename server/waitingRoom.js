@@ -28,7 +28,7 @@ this.waitingRoom = function(parent){
 		for(var pl in parent.players){//loop trough object
 			playerNames.push([pl,parent.players[pl].ready]);
 		}
-		socket.emit("waitInfo",{name:parent.name,laps:parent.laps,nicknames:playerNames});//updates player
+		socket.emit("waitInfo",{name:parent.name,speed:parent.pSpeed,nicknames:playerNames});//updates player
 	};
 	this.broadcastRooms = function(){//send to all the users the room info
 		for(var cPlayer in parent.players){//loop trough players

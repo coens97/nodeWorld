@@ -69,7 +69,7 @@ this.newConnection = function(socket){
 			console.log(this.nickname+" tries to host a game");
 			console.log("Room:"+data.name);
 			
-			room.rooms[data.name] = new room.room(data.name);//create the room
+			room.rooms[data.name] = new room.room(data.name,data.speed);//create the room
 			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname]);//add player to scene
 
 			socket.emit('hostGame',1);//say to the client it's ok

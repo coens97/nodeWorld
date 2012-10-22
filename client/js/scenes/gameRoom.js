@@ -8,7 +8,7 @@ function gameRoom(){
     var gR = this;
     this.map = this.sprites.map;
     this.player = this.sprites.player;
-    
+    this.speed = 0;
     this.pX = 256;
     this.pY = 0;    
 	this.startScene = function(){
@@ -39,10 +39,10 @@ function gameRoom(){
 			//}
 		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
-			this.player.vX = 12;
+			this.player.vX = this.speed;
 		}
 		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
-			this.player.vX = -12;
+			this.player.vX = -this.speed;
 		}
 		this.checkView();
 	};

@@ -2,10 +2,11 @@ var waitingRoom = require('./waitingRoom'),
 	gameRoom = require('./gameRoom');
 this.rooms = {};
 
-this.room = function(name){
+this.room = function(name,speed){
 	var room = this;
 	this.name = name;
 	this.state = 0;//waiting
+	this.pSpeed = speed;//player speed
 	this.players = {};
 	this.waitingRoom = new waitingRoom.waitingRoom(this);
 	this.gameRoom = new gameRoom.gameRoom(this);

@@ -18,7 +18,7 @@ function waitRoom(){
     this.sprites.playerCount.font = "40pt Arial";
     this.sprites.name.font = "40pt Arial";
 	this.startScene = function(){
-		
+	this.speed = 0;
 	};
 	this.stopScene = function(){
 		
@@ -47,6 +47,7 @@ function waitRoom(){
     this.waitInfo = function(data){//when info comes in about the room
     	console.log(data);
     	var parent = game.scenes[5];
+        parent.speed = data.speed;
     	parent.sprites.players.ar = [];
     	parent.sprites.checkboxes.ar = [];
     	for(var i = 0; i < data.nicknames.length;i++){//loop trough nicknames
@@ -57,6 +58,7 @@ function waitRoom(){
     	parent.sprites.name.string = data.name;
     };
     this.startGame = function(data){//whenRoom s ready to start game
+        game.scenes[6].speed = parseInt(game.scenes[5].speed);
     	game.startScene(6);
     };
     socket.on('startGame',this.startGame);
