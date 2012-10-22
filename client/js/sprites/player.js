@@ -59,7 +59,7 @@ function player(x,y,world,scene){
 		var fx = dim=="x"?Math.round((this.x-16+this.vX)/ world.tilewidth):Math.round((this.x-16)/ world.tilewidth);
 		var fy = dim=="y"?Math.round((this.y-16+this.vY)/ world.tileheight):Math.round((this.y-16)/ world.tileheight);
 		var ox,oy;
-		if(this.x%world.tilewidth==0){//if horizontaly on grid
+		if((dim=="y"&&this.x%world.tilewidth==0)||(dim=="x"&&this.x+this.vX%world.tilewidth==0)){//if horizontaly on grid
 			ox = [fx-1,fx];
 		}else{
 			ox = [fx-1,fx,fx+1];
