@@ -39,10 +39,10 @@ function gameRoom(){
 			//}
 		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
-			this.player.vX = 8;
+			this.player.vX = 12;
 		}
 		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
-			this.player.vX = -8;
+			this.player.vX = -12;
 		}
 		this.checkView();
 	};
