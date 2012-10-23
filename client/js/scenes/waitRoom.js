@@ -9,14 +9,20 @@ function waitRoom(){
         playerCount : new text("#FFFFFF", 1,1148,102),
         players : new objectAr(),
         ready : new button(" ready",660,620,260,80),
-        name : new text("#000000","Name",40,120),
-        checkboxes : new objectAr()
+        nameT : new text("#000000","Name:",40,120),
+        name : new text("#000000","Name",200,120),
+        checkboxes : new objectAr(),
+        pSpeedT : new text("#000000","Player speed:",40,170),
+        pSpeed : new text("#000000","0",370,170)
     };
     //change font sizes
     this.sprites.title.font = "66pt Arial";
     this.sprites.playerTitle.font = "40pt Arial";
     this.sprites.playerCount.font = "40pt Arial";
     this.sprites.name.font = "40pt Arial";
+    this.sprites.nameT.font = "40pt Arial";
+    this.sprites.pSpeedT.font = "40pt Arial";
+    this.sprites.pSpeed.font = "40pt Arial";
 	this.startScene = function(){
 	this.speed = 0;
 	};
@@ -48,6 +54,7 @@ function waitRoom(){
     	console.log(data);
     	var parent = game.scenes[5];
         parent.speed = data.speed;
+        parent.sprites.pSpeed.string = parent.speed;
     	parent.sprites.players.ar = [];
     	parent.sprites.checkboxes.ar = [];
     	for(var i = 0; i < data.nicknames.length;i++){//loop trough nicknames
