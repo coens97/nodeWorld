@@ -35,7 +35,11 @@ function player(x,y,world,scene){
 	};
 	//collision stuff
 	this.isSolid = function(x,y){
-		return checkCol(world.layers[0].data[y*world.layers[0].width+x]);
+		if(x>0&&y>0&&x<world.width&&y<world.height){//if player is in room
+			return checkCol(world.layers[0].data[y*world.layers[0].width+x]);
+		}else{
+			return false;
+		}
 	};
 	this.areSolidY = function(x,y){
 		var solid = false;
