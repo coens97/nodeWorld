@@ -6,7 +6,11 @@ this.waitingRoom = function(parent){
 			console.log(player.nickname+" is ready to play the game");
 			player.ready = true;
 			wait.broadcastRooms();
-			wait.checkReady();
+			if(parent.state==0){//if game hasnt start yeu
+				wait.checkReady();
+			}else{//add to room
+				parent.startGame(player);
+			}
 		}
 		socket.on('roomReady',this.roomReady);
 	};
@@ -19,7 +23,7 @@ this.waitingRoom = function(parent){
 				}
 			}
 			if(done){
-				parent.startGame();
+				parent.startGames();
 			}
 		}
 	};
@@ -32,7 +36,9 @@ this.waitingRoom = function(parent){
 	};
 	this.broadcastRooms = function(){//send to all the users the room info
 		for(var cPlayer in parent.players){//loop trough players
-			this.sendInfo(parent.players[cPlayer].socket);
+			if(parent.players[cPlayer].state == 2){
+				this.sendInfo(parent.players[cPlayer].socket);
+			}
 		};
 	};
 }

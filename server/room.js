@@ -18,22 +18,26 @@ this.room = function(name,speed){
 		this.player.state = 2;//scene state
 		this.player.room = room;
 		//functions here		
-		this.player.ready = false;
 		room.waitingRoom.addPlayer(this.socket,this.player);
 		room.gameRoom.addPlayer(this.socket,this.player);
 		room.waitingRoom.broadcastRooms();
 	};
 	this.disconnect = function(nickname){
 		console.log(nickname+" left the room "+ this.name);
+		delete this.players[nickname].room;
 		delete this.players[nickname];
 		this.waitingRoom.broadcastRooms();
 	};
-	this.startGame = function(){
+	this.startGames = function(){//when the game hasnt started yet and want to send evryone its ready
 		console.log("Everyone is ready in "+room.name+" let's start the game");
 		for(var cPlayer in room.players){
-			room.players[cPlayer].socket.emit('startGame',true);
+			this.startGame(room.players[cPlayer]);
 		}
-	}
+	};
+	this.startGame = function(player){
+		player.state = 3;
+		player.socket.emit('startGame',true);
+	};
 }
 
 /* send rooms to menu of client */

@@ -48,11 +48,12 @@ this.newConnection = function(socket){
 		console.log("Somebody disconnected "+stats.connections);
 		socket.broadcast.emit("playerCount",stats.connections);
 		//check if in room
-		if(typeof(this.nickname)!='undefined'&&this.player.state == 2){
+		if(typeof(this.nickname)!='undefined'&&typeof(this.player.room)!='undefined'){
+			var theRoom = this.player.room;
 			this.player.room.disconnect(this.nickname);//remove player from scene
-			if(Object.keys(this.player.room.players).length == 0){//if there are no players in scene
-				console.log(this.player.room.name + " room is empty, going to remove it now");
-				delete room.rooms[this.player.room.name];
+			if(Object.keys(theRoom.players).length == 0){//if there are no players in scene
+				console.log(theRoom.name + " room is empty, going to remove it now");
+				delete room.rooms[theRoom.name];
 			}
 			emitRooms();//send room info to clients
 		}
@@ -81,11 +82,12 @@ this.newConnection = function(socket){
 		}
 	};
 	this.leaveRoom = function(data){
+		var theRoom = this.player.room;
 		this.player.room.disconnect(this.nickname);//leave room
 		this.player.state = 1;
-		if(Object.keys(this.player.room.players).length == 0){//if there are no players in scene
-			console.log(this.player.room.name + " room is empty, going to remove it now");
-			delete room.rooms[this.player.room.name];
+		if(Object.keys(theRoom.players).length == 0){//if there are no players in scene
+			console.log(theRoom.name + " room is empty, going to remove it now");
+			delete room.rooms[theRoom.name];
 		}
 		socket.emit('leaveRoom',true);
 		emitRooms();//the count of number of room have changed
