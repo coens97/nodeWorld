@@ -32,16 +32,9 @@ var windowWidth,//width of canvas
     scale,//how much is the canvas zoomed in or out
     gameInterval;//will contain timer fot loop
 
-var requestAnimationFrame = window.requestAnimationFrame || 
-                            window.mozRequestAnimationFrame || 
-                            window.webkitRequestAnimationFrame || 
-                            window.msRequestAnimationFrame;
 function mainLoop(){
-	setTimeout(function() {
-        requestAnimationFrame(mainLoop);
         game.loop();//call game mainloop
-    	game.draw();//draw game
-    }, 1000 / 60);
+    	game.draw();
 }
 
 function onMainClick(e){
@@ -67,7 +60,7 @@ function init(){
 	}else{
 		c.addEventListener("click", onMainClick, false);
 	}
-    mainLoop();
+    gameInterval = self.setInterval(function(){mainLoop();},1000/60);//call mainGameLoop() every 16 ms
     document.body.addEventListener("keydown",keyDown);
     document.body.addEventListener("keyup",keyUp);
     console.log("Canvas initialised");
