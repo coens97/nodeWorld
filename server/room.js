@@ -26,6 +26,7 @@ this.room = function(name,speed){
 		console.log(nickname+" left the room "+ this.name);
 		delete this.players[nickname].room;
 		delete this.players[nickname];
+		delete this.gameRoom.players[nickname];
 		this.waitingRoom.broadcastRooms();
 	};
 	this.startGames = function(){//when the game hasnt started yet and want to send evryone its ready
@@ -43,6 +44,7 @@ this.room = function(name,speed){
 	};
 	this.startGame = function(player){
 		player.state = 3;
+		this.gameRoom.addPlayer(player);
 		player.socket.emit('startGame',true);
 	};
 }

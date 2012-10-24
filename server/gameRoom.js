@@ -1,7 +1,7 @@
 
 this.gameRoom = function(parent){
 	var gameRoom = this;
-	this.players = [];
+	this.players = {};
 	this.intervalG;//gameLoop
 	this.intervalG;//sendUpdates
 	this.startGame = function(){
@@ -9,7 +9,7 @@ this.gameRoom = function(parent){
 		this.intervalU = setInterval(this.sendUpdates,45);//45ms
 	};
 	this.addPlayer = function(player){
-		
+		this.players[player.name] = player;//add player to list
 	};
 	this.stopGame = function(){
 		clearInterval(this.intervalG);
