@@ -29,9 +29,16 @@ this.room = function(name,speed){
 		this.waitingRoom.broadcastRooms();
 	};
 	this.startGames = function(){//when the game hasnt started yet and want to send evryone its ready
+		this.state = 1;
+		this.gameRoom.startGame();
 		console.log("Everyone is ready in "+room.name+" let's start the game");
 		for(var cPlayer in room.players){
 			this.startGame(room.players[cPlayer]);
+		}
+	};
+	this.stopGame = function(){
+		if(this.state==1){
+			this.gameRoom.stopGame();
 		}
 	};
 	this.startGame = function(player){

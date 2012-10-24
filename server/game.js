@@ -53,6 +53,7 @@ this.newConnection = function(socket){
 			this.player.room.disconnect(this.nickname);//remove player from scene
 			if(Object.keys(theRoom.players).length == 0){//if there are no players in scene
 				console.log(theRoom.name + " room is empty, going to remove it now");
+				room.rooms[theRoom.name].stopGame();
 				delete room.rooms[theRoom.name];
 			}
 			emitRooms();//send room info to clients
@@ -87,6 +88,7 @@ this.newConnection = function(socket){
 		this.player.state = 1;
 		if(Object.keys(theRoom.players).length == 0){//if there are no players in scene
 			console.log(theRoom.name + " room is empty, going to remove it now");
+			room.rooms[theRoom.name].stopGame();
 			delete room.rooms[theRoom.name];
 		}
 		socket.emit('leaveRoom',true);
