@@ -14,13 +14,13 @@ function checkCol(inp){//check if solid
 	}
 }
 
-function player(x,y,world,scene){
+function player(color,x,y,world,scene){
 	this.x = x;
 	this.y = y;
 	this.vX = 0;
 	this.vY = 0;
 
-	this.color = "#59E01B";
+	this.color = color;
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
 		var y = this.y + scene.map.y;

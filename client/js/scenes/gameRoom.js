@@ -2,17 +2,18 @@ function gameRoom(){
     this.sprites = {
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
-         player : new player(640,360,gameWorld,this)
+         players : new objectAr()
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
     this.map = this.sprites.map;
-    this.player = this.sprites.player;
+    this.players = this.sprites.players;
     this.speed = 0;
     this.pX = 256;
     this.pY = 0;    
 	this.startScene = function(){
-
+        this.players.ar[theNickname] = new player("#59E01B",640,360,gameWorld,this);
+        this.player = this.players.ar[theNickname];
 	};
 	this.stopScene = function(){
 
@@ -48,7 +49,7 @@ function gameRoom(){
 	};
     this.loop = function(){
 		this.proccesInput();//check keyboard input
-		this.player.loop();//move circle
+		this.players.loop();//move circle
     };
     this.draw = function(){
         /***********

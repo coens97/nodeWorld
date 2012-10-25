@@ -33,6 +33,7 @@ function nickname(){
     	(value == "")&&(value = "nameless");
     	console.log("Send to server the nickname:"+value);
     	socket.emit("nickname",value);
+        theNickname = value;
     };
 }
 socket.on("go",function(data){

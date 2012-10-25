@@ -131,3 +131,16 @@ function objectAr(arr){
 		}
 	};
 }
+function objectAr(arr){
+    this.ar = arr||{};
+    this.draw = function(){
+        for(var ob in this.ar){
+            this.ar[ob].draw();
+        }
+    };
+    this.loop = function(){
+        for(var ob in this.ar){
+            this.ar[ob].loop();
+        }
+    };
+}
