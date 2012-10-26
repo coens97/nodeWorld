@@ -19,7 +19,6 @@ this.room = function(name,speed){
 		this.player.room = room;
 		//functions here		
 		room.waitingRoom.addPlayer(this.socket,this.player);
-		room.gameRoom.addPlayer(this.socket,this.player);
 		room.waitingRoom.broadcastRooms();
 	};
 	this.disconnect = function(nickname){

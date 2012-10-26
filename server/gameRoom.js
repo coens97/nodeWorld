@@ -13,8 +13,26 @@ this.gameRoom = function(parent){
 		this.intervalU = setInterval(this.sendUpdates,45);//45ms
 	};
 	this.addPlayer = function(player){
-		this.players[player.name] = player;//add player to list
-		this.pl[player.name] = new sPlayer.player("#59E01B",640,360,gameWorld,this);
+		gameRoom.players[player.nickname] = player;//add player to list
+		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,this);//add player
+		this.sendAll = function(){
+			var tmpPlayers = {};
+			for(var playerName in gameRoom.pl){//get all variables of player that matter
+				var pl = gameRoom.pl[playerName];
+				tmpPlayers[playerName] = {color:pl.color,
+											x:pl.x , 
+											y:pl.y ,
+											w:pl.w ,
+											h:pl.h ,
+											vX:pl.vX,
+											vY:pl.vY
+											};
+			}
+			player.socket.emit("getAllPlayers",{
+				"players":tmpPlayers
+			});
+		};
+		this.sendAll();
 	};
 	this.disconnect = function(nickname){
 		delete this.players[nickname];

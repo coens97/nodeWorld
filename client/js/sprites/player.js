@@ -14,11 +14,12 @@ function checkCol(inp){//check if solid
 	}
 }
 
-function player(color,x,y,world,scene){
+function player(nickname,color,x,y,world,scene){
 	this.x = x;
 	this.y = y;
 	this.vX = 0;
 	this.vY = 0;
+	this.nickname = nickname;
 
 	this.color = color;
 	this.draw = function(){

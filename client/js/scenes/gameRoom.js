@@ -10,7 +10,6 @@ function gameRoom(){
     this.players = this.sprites.players;
     this.speed = 0;   
 	this.startScene = function(){
-        this.players.ar[theNickname] = new player("#59E01B",640,360,gameWorld,this);
         this.player = this.players.ar[theNickname];
 	};
 	this.stopScene = function(){
@@ -73,4 +72,14 @@ function gameRoom(){
     	delete this.keys[key];//remove from object
     	console.log("Released key:"+key);
     };
+    this.onGetAllPlayers = function(data){
+        console.log("get all players");
+        console.log(data);
+        gR.players.ar = {};
+        for(var name in data.players){//loop trough players
+            var cp = data.players[name];//current player
+            gR.players.ar[name] = new player(name,cp.color,cp.x,cp.y,gameWorld,gR);
+        }
+    };
+    socket.on("getAllPlayers",this.onGetAllPlayers);
 }
