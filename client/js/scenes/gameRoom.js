@@ -8,9 +8,7 @@ function gameRoom(){
     var gR = this;
     this.map = this.sprites.map;
     this.players = this.sprites.players;
-    this.speed = 0;
-    this.pX = 256;
-    this.pY = 0;    
+    this.speed = 0;   
 	this.startScene = function(){
         this.players.ar[theNickname] = new player("#59E01B",640,360,gameWorld,this);
         this.player = this.players.ar[theNickname];
