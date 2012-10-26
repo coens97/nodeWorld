@@ -12,27 +12,28 @@ this.gameRoom = function(parent){
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
 		this.intervalU = setInterval(this.sendUpdates,45);//45ms
 	};
-	this.addPlayer = function(player){
-		gameRoom.players[player.nickname] = player;//add player to list
-		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,this);//add player
-		this.sendAll = function(){
-			var tmpPlayers = {};
-			for(var playerName in gameRoom.pl){//get all variables of player that matter
-				var pl = gameRoom.pl[playerName];
-				tmpPlayers[playerName] = {color:pl.color,
-											x:pl.x , 
-											y:pl.y ,
-											w:pl.w ,
-											h:pl.h ,
-											vX:pl.vX,
-											vY:pl.vY
-											};
+	this.sendAll = function(player){
+		var tmpPlayers = {};
+		for(var playerName in gameRoom.pl){//get all variables of player that matter
+			var pl = gameRoom.pl[playerName];
+			tmpPlayers[playerName] = {color:pl.color,
+										x:pl.x , 
+										y:pl.y ,
+										w:pl.w ,
+										h:pl.h ,
+										vX:pl.vX,
+										vY:pl.vY
+										};
 			}
 			player.socket.emit("getAllPlayers",{
 				"players":tmpPlayers
 			});
 		};
-		this.sendAll();
+	this.addPlayer = function(player){
+		gameRoom.players[player.nickname] = player;//add player to list
+		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,this);//add player
+		this.sendAll(player);
+		player.socket.emit('startGame',true);
 	};
 	this.disconnect = function(nickname){
 		delete this.players[nickname];

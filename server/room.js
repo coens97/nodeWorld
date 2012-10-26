@@ -44,7 +44,6 @@ this.room = function(name,speed){
 	this.startGame = function(player){
 		player.state = 3;
 		this.gameRoom.addPlayer(player);
-		player.socket.emit('startGame',true);
 	};
 }
 
