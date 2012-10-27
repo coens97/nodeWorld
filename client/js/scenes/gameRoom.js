@@ -37,10 +37,10 @@ function gameRoom(){
 			//}
 		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
-			this.player.vgX = this.speed;
+			this.player.vgX = 1;
 		}
 		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
-			this.player.vgX = -this.speed;
+			this.player.vgX = -1;
 		}
 	};
     this.loop = function(){
