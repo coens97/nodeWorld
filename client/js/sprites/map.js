@@ -16,10 +16,16 @@ function map(world){
 	this.draw = function(){
 		ctx.save();
 		for(var l = 0;l<world.layers.length;l++){//loop trough layers
+			var layer = world.layers[l];
 			var c = 0;
-			for(var tY = 0;tY<world.layers[l].height;tY++){//draw every row
-				var layer = world.layers[l];
-				for(var tX = 0;tX<layer.width;tX++){
+			var yMax = Math.round((this.y*-1)/world.tileheight)+23;
+			var xMin = Math.round((this.x*-1)/world.tilewidth)-1;
+			var xMax = xMin+42;
+			if(xMax>layer.width){xMax=layer.width;}
+			if(xMin<0){xMin=0;}
+			for(var tY = Math.round((this.y*-1)/world.tileheight)-1;tY<world.layers[l].height&&tY<yMax;tY++){//draw every row
+				c = world.width*tY + xMin;
+				for(var tX = xMin;tX<xMax;tX++){
 					var dat = layer.data[c];
 					if(dat!=0){
 						var t = 0;//current tile we only have 1 tile
