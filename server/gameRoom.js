@@ -9,11 +9,11 @@ this.gameRoom = function(parent){
 	this.intervalG;//gameLoop
 	this.intervalG;//sendUpdates
 
-	this.speed = parent.pSpeed;
+	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
 		this.intervalU = setInterval(this.sendUpdates,45);//45ms
-		this.sendStartAll();//will send to all players in room the playerrs coordinates
+		this.sendStartAll();//will send to all players in room the players coordinates
 	};
 	this.sendStartAll = function(){
 		console.log("send to all players");
@@ -47,14 +47,13 @@ this.gameRoom = function(parent){
 
 		gameRoom.players[player.nickname] = player;//add player to list
 		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,gameRoom);//add player
-		this.pla = gameRoom.pl[player.nickname];
 
 		if(parent.state==1){//if game is started
 			this.sendStart(player);
 		}
 		this.getInput = function(data){
-			p.pla.vY = data.vY;
-			p.pla.vgX = data.vgX;
+			gameRoom.pl[player.nickname].vY = data.vY;
+			gameRoom.pl[player.nickname].vgX = data.vgX;
 		};
 		player.socket.on("changedInput",this.getInput);
 		
@@ -76,5 +75,18 @@ this.gameRoom = function(parent){
 	};
 	this.sendUpdates = function(){
 		//console.log("Sending updates");
+		var message = {};
+		for(var ob in gameRoom.pl){
+			var tpl = gameRoom.pl[ob];
+			message[ob] = {
+				"x":tpl.x,
+				"y":tpl.y,
+				"vgX":tpl.vgX,
+				"vY":tpl.vY
+			};
+		}
+		for(var ob in gameRoom.players){//loop trough all players to send it
+			gameRoom.players[ob].socket.emit("updatePos",message);
+		}
 	};
 };

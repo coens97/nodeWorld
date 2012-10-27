@@ -79,9 +79,9 @@ function gameRoom(){
     	console.log("Released key:"+key);
         this.proccesInput();//check keyboard input
     };
-    this.onGetAllPlayers = function(data){
+    /***updates from sever ***/
+    this.onGetAllPlayers = function(data){//when you just got in room
         console.log("get all players");
-        console.log(data);
         gR.players.ar = {};
         for(var name in data.players){//loop trough players
             var cp = data.players[name];//current player
@@ -90,5 +90,17 @@ function gameRoom(){
             gR.players.ar[name].vgY = cp.vY;
         }
     };
+    this.updatePos = function(data){
+        console.log(data);
+        for(var name in data){//loop trough players
+            var cp = data[name];//current player
+            var tpl = gR.players.ar[name];
+            tpl.x = cp.x;
+            tpl.y = cp.y;
+            tpl.vgX = cp.vgX;
+            tpl.vY = cp.vY;
+        }
+    };
     socket.on("getAllPlayers",this.onGetAllPlayers);
+    socket.on("updatePos",this.updatePos);
 }
