@@ -29,24 +29,23 @@ function gameRoom(){
 		}
 	};
 	this.proccesInput = function(){
-		this.player.vX = 0;
+		this.player.vgX = 0;
 		//this.player.vY = 0;
 		if(def(this.keys[87])){//when w is pressed
 			//if(this.player.onGround){
-			this.player.vY = -16;
+			this.player.vY = -20;
 			//}
 		}
 		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
-			this.player.vX = this.speed;
+			this.player.vgX = this.speed;
 		}
 		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
-			this.player.vX = -this.speed;
+			this.player.vgX = -this.speed;
 		}
-		this.checkView();
 	};
     this.loop = function(){
-		this.proccesInput();//check keyboard input
 		this.players.loop();//move circle
+        this.checkView();
     };
     this.draw = function(){
         /***********
@@ -66,11 +65,12 @@ function gameRoom(){
     	}
     };
     this.keyPress = function(key){
-
+        this.proccesInput();//check keyboard input
     };
     this.keyUp = function(key){
     	delete this.keys[key];//remove from object
     	console.log("Released key:"+key);
+        this.proccesInput();//check keyboard input
     };
     this.onGetAllPlayers = function(data){
         console.log("get all players");
