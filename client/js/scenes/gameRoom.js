@@ -79,6 +79,8 @@ function gameRoom(){
         for(var name in data.players){//loop trough players
             var cp = data.players[name];//current player
             gR.players.ar[name] = new player(name,cp.color,cp.x,cp.y,gameWorld,gR);
+            gR.players.ar[name].vgX = cp.vgX;
+            gR.players.ar[name].vgY = cp.vY;
         }
     };
     socket.on("getAllPlayers",this.onGetAllPlayers);

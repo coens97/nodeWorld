@@ -16,7 +16,6 @@ this.gameRoom = function(parent){
 	this.sendStartAll = function(){
 		console.log("send to all players");
 		for(var playerName in gameRoom.players){//loop trough all players in game
-			console.log(playerName);
 			this.sendStart(gameRoom.players[playerName]);
 		}
 	};
@@ -33,7 +32,7 @@ this.gameRoom = function(parent){
 										y:pl.y ,
 										w:pl.w ,
 										h:pl.h ,
-										vX:pl.vX,
+										vgX:pl.vgX,
 										vY:pl.vY
 										};
 			}
