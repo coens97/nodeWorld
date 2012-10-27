@@ -16,8 +16,10 @@ function checkCol(inp){//check if solid
 this.player = function(color,x,y,world,scene){
 	this.x = x;
 	this.y = y;
+	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
 	this.vY = 0;
+
 	this.color = color;
 	//collision stuff
 	this.isSolid = function(x,y){
@@ -90,6 +92,7 @@ this.player = function(color,x,y,world,scene){
 	};
 	this.loop = function(){
 		this.vY +=1;//gravity
+		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
 		//this.onGround = false;//you can only jump when you're on the ground
 		//collision
 		this.checkCollision();
