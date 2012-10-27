@@ -29,6 +29,7 @@ function gameRoom(){
 		}
 	};
 	this.proccesInput = function(){
+        var oldVgx = this.player.vgX;
 		this.player.vgX = 0;
 		//this.player.vY = 0;
 		if(def(this.keys[87])){//when w is pressed
@@ -42,6 +43,12 @@ function gameRoom(){
 		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
 			this.player.vgX = -1;
 		}
+        //send changes of input
+        if(oldVgx!=this.player.vgX||def(this.keys[87])){//if there are changes in movement
+            //send changes
+            socket.emit("changedInput",{"vgX":this.player.vgX,
+                                        "vY":this.player.vY});
+        }
 	};
     this.loop = function(){
 		this.players.loop();//move circle

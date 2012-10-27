@@ -8,6 +8,8 @@ this.gameRoom = function(parent){
 	this.pl = {};//this will have game player with x cordinate
 	this.intervalG;//gameLoop
 	this.intervalG;//sendUpdates
+
+	this.speed = parent.pSpeed;
 	this.startGame = function(){//after evryone is ready to play the game
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
 		this.intervalU = setInterval(this.sendUpdates,45);//45ms
@@ -41,11 +43,20 @@ this.gameRoom = function(parent){
 			});
 	};
 	this.addPlayer = function(player){
+		var p = this;
+
 		gameRoom.players[player.nickname] = player;//add player to list
-		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,this);//add player
+		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,gameRoom);//add player
+		this.pla = gameRoom.pl[player.nickname];
+
 		if(parent.state==1){//if game is started
 			this.sendStart(player);
 		}
+		this.getInput = function(data){
+			p.pla.vY = data.vY;
+			p.pla.vgX = data.vgX;
+		};
+		player.socket.on("changedInput",this.getInput);
 		
 	};
 	this.disconnect = function(nickname){
@@ -58,8 +69,8 @@ this.gameRoom = function(parent){
 	};
 	this.gameLoop = function(){
 		//console.log("Hello from gameLoop!");
-		for(var ob in this.pl){
-			this.pl[ob].loop();
+		for(var ob in gameRoom.pl){
+			gameRoom.pl[ob].loop();
 		}
 
 	};
