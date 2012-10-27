@@ -26,6 +26,12 @@ function player(nickname,color,x,y,world,scene){
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
 		var y = this.y + scene.map.y;
+		//draw players name
+		ctx.fillStyle = "#000000";
+		ctx.textAlign = "center"; 
+		ctx.font = "bold 16px sans-serif";
+    	ctx.fillText(this.nickname, x, y-56);
+		//draw circle
 		ctx.fillStyle = this.color;
 		ctx.beginPath();
 		ctx.arc(x, y, 31, 0, Math.PI*2, true); 
