@@ -145,8 +145,12 @@ function gameRoom(){
         console.log(data);
         gR.players.ar[data.nickname] = new player(data.nickname,data.info.color,data.info.x,data.info.y,gameWorld,gR);
     };
+    this.getDeletePlayer = function(data){
+        delete gR.players.ar[data];
+    };
     socket.on("getAllPlayers",this.onGetAllPlayers);
     socket.on("getNewPlayer",this.getNewPlayer);
+    socket.on("getDeletePlayer",this.getDeletePlayer);
     socket.on("updatePos",this.updatePos);
 
 }
