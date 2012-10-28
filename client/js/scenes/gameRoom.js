@@ -85,20 +85,40 @@ function gameRoom(){
     if(touch){
         document.getElementById("bleft").addEventListener('touchstart', function(event) {//when left is pressed
             if(game.currentScene==6){
-
+                gR.player.vgX = -1;
+                socket.emit("changedInput",{"vgX":gR.player.vgX,
+                                        "vY":gR.player.vY});
             }
         },false);
         document.getElementById("bright").addEventListener('touchstart', function(event) {//when right is pressed
             if(game.currentScene==6){
-
+                gR.player.vgX = 1;
+                socket.emit("changedInput",{"vgX":gR.player.vgX,
+                                        "vY":gR.player.vY});
             }
         },false);
         document.getElementById("bup").addEventListener('touchstart', function(event) {//when up is pressed
             if(game.currentScene==6){
-
+                gR.player.vY = -20;
+                socket.emit("changedInput",{"vgX":gR.player.vgX,
+                                        "vY":gR.player.vY});
             }
         },false);
-    }
+        document.getElementById("bleft").addEventListener('touchend', function(event) {//when left is pressed
+            if(game.currentScene==6){
+                gR.player.vgX = 0;
+                socket.emit("changedInput",{"vgX":gR.player.vgX,
+                                        "vY":gR.player.vY});
+            }
+        },false);
+        document.getElementById("bright").addEventListener('touchend', function(event) {//when right is pressed
+            if(game.currentScene==6){
+                gR.player.vgX = 0;
+                socket.emit("changedInput",{"vgX":gR.player.vgX,
+                                        "vY":gR.player.vY});
+            }
+        },false);
+    }//end touch
     /***updates from sever ***/
     this.onGetAllPlayers = function(data){//when you just got in room
         console.log("get all players");
