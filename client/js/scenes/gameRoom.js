@@ -52,9 +52,10 @@ function gameRoom(){
         this.player.vgX = 0;
         //this.player.vY = 0;
         if(def(this.keys[87])){//when w is pressed
-            //if(this.player.onGround){
-            this.player.vY = -20;
-            //}
+            if(this.player.onGround!=2){
+                this.player.vY = -20;
+                this.player.onGround++;
+            }
         }
         if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
             this.player.vgX = 1;
@@ -101,9 +102,12 @@ function gameRoom(){
         },false);
         document.getElementById("bup").addEventListener('touchstart', function(event) {//when up is pressed
             if(game.currentScene==6){
-                gR.player.vY = -20;
-                socket.emit("changedInput",{"vgX":gR.player.vgX,
+                if(gR.player.onGround!=2){
+                    gR.player.vY = -20;
+                    socket.emit("changedInput",{"vgX":gR.player.vgX,
                                         "vY":gR.player.vY});
+                    gR.player.onGround++;
+                }
             }
         },false);
         document.getElementById("bleft").addEventListener('touchend', function(event) {//when left is pressed

@@ -91,6 +91,7 @@ function player(nickname,color,x,y,world,scene){
 			this.vY = 0;
 			for(var ty = b.y[1];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
 			this.y = world.tileheight*ty;
+			this.onGround = 0;
 		}
 		//check for moving up
 		if(this.vY<0&&this.areSolidY(b.x,b.y[0])){
@@ -113,7 +114,6 @@ function player(nickname,color,x,y,world,scene){
 	this.loop = function(){
 		this.vY +=1;//gravity
 		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
-		//this.onGround = false;//you can only jump when you're on the ground
 		//collision
 		this.checkCollision();
 		//move player
