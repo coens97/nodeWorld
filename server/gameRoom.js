@@ -57,7 +57,7 @@ this.gameRoom = function(parent){
 		var p = this;
 
 		gameRoom.players[player.nickname] = player;//add player to list
-		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",640,360,gameWorld,gameRoom);//add player
+		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",704,360,gameWorld,gameRoom);//add player
 
 		if(parent.state==1){//if game is started
 			this.sendStart(player);
