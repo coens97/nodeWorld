@@ -27,7 +27,8 @@ requirejs(['socket',
     'sprites/button',
     'sprites/player',
     'map',
-    'sprites/map'
+    'sprites/map',
+    'sprites/log'
     ],function(){
         requirejs([/* load scenes */
             'scenes/waitForConnection',

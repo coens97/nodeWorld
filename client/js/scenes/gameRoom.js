@@ -2,12 +2,14 @@ function gameRoom(){
     this.sprites = {
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
-         players : new objectAr()
+         players : new objectAr(),
+         log : new log()
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
     this.map = this.sprites.map;
     this.players = this.sprites.players;
+    this.log = this.sprites.log;
     this.speed = 0;   
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
@@ -144,9 +146,11 @@ function gameRoom(){
         console.log("new player in the room");
         console.log(data);
         gR.players.ar[data.nickname] = new player(data.nickname,data.info.color,data.info.x,data.info.y,gameWorld,gR);
+        gR.log.push(data.nickname+" joined the room");
     };
     this.getDeletePlayer = function(data){
         delete gR.players.ar[data];
+        gR.log.push(data+" disconnected");
     };
     socket.on("getAllPlayers",this.onGetAllPlayers);
     socket.on("getNewPlayer",this.getNewPlayer);
