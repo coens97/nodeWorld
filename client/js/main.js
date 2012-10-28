@@ -93,11 +93,11 @@ function resizeCanvas(){//resize canvas to aspect ratio
     
     //start aspect ratio
     var tmpHeight = windowHeight;
-    var tmpWidth = windowHeight * 16 /9;
+    var tmpWidth = Math.round(windowHeight * 16 /9+0.5);
     scale = 720 / windowHeight;
     if(tmpWidth > windowWidth){//when width of canvas is bigger then window
         tmpWidth = windowWidth;
-        tmpHeight = windowWidth * 9 / 16;
+        tmpHeight = Math.round(windowWidth * 9 / 16+0.5);
         scale = 1280 / windowWidth;
     }
     c.style.width = tmpWidth + "px";

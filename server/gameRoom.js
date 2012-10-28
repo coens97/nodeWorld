@@ -12,7 +12,7 @@ this.gameRoom = function(parent){
 	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
-		this.intervalU = setInterval(this.sendUpdates,45);//45ms
+		this.intervalU = setInterval(this.sendUpdates,1000/60);
 		this.sendStartAll();//will send to all players in room the players coordinates
 	};
 	this.sendStartAll = function(){
