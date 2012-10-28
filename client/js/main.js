@@ -3,7 +3,8 @@
  * Especily for initilising canvas and create eventlisteners
  ******************************/
 var c = document.getElementById("myCanvas"),//canvas element
-    ctx = c.getContext("2d");
+    ctx = c.getContext("2d"),
+    touch = false;
 //include other files
 requirejs(['socket',
     /* put sprites here */
@@ -57,6 +58,8 @@ function init(){
     //add eventlisteners for click or touch
     if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
+        document.getElementById("touchbuttons").style.display = 'block';
+        touch = true;
 	}else{
 		c.addEventListener("click", onMainClick, false);
 	}
