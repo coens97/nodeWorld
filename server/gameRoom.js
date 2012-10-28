@@ -12,7 +12,7 @@ this.gameRoom = function(parent){
 	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
-		this.intervalU = setInterval(this.sendUpdates,1000/60);
+		this.intervalU = setInterval(this.sendUpdates,1000/20);
 		this.sendStartAll();//will send to all players in room the players coordinates
 	};
 	this.sendStartAll = function(){
@@ -25,22 +25,33 @@ this.gameRoom = function(parent){
 			this.sendAllPlayers(player);//send the info
 			player.socket.emit('startGame',true);//let it play
 	};
+	this.playerInfo = function(playerName){
+		var pl = gameRoom.pl[playerName];
+		return {color:pl.color,
+			x:pl.x , 
+			y:pl.y ,
+			w:pl.w ,
+			h:pl.h ,
+			gX:pl.vgX,
+			vY:pl.vY
+			};
+	};
 	this.sendAllPlayers = function(player){//for players who just started the game, get the coordinates of all the players
 		var tmpPlayers = {};
 		for(var playerName in gameRoom.pl){//get all variables of player that matter
-			var pl = gameRoom.pl[playerName];
-			tmpPlayers[playerName] = {color:pl.color,
-										x:pl.x , 
-										y:pl.y ,
-										w:pl.w ,
-										h:pl.h ,
-										vgX:pl.vgX,
-										vY:pl.vY
-										};
-			}
-			player.socket.emit("getAllPlayers",{
+			tmpPlayers[playerName] = this.playerInfo(playerName);
+		}
+		player.socket.emit("getAllPlayers",{
 				"players":tmpPlayers
-			});
+		});
+	};
+	this.sendNewPlayers = function(nickname){//send the new player info to each client in the room
+		for(var playerName in gameRoom.players){//loop trough all players in game
+			if(nickname!=playerName){//the new player doesn't need to have the new player
+				gameRoom.players[playerName].socket.emit("getNewPlayer",{"nickname":nickname,
+													"info":this.playerInfo(nickname)});
+			}
+		}
 	};
 	this.addPlayer = function(player){
 		var p = this;
@@ -50,6 +61,7 @@ this.gameRoom = function(parent){
 
 		if(parent.state==1){//if game is started
 			this.sendStart(player);
+			gameRoom.sendNewPlayers(player.nickname);
 		}
 		this.getInput = function(data){
 			gameRoom.pl[player.nickname].vY = data.vY;

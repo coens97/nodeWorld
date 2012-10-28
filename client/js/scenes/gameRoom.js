@@ -140,7 +140,13 @@ function gameRoom(){
             tpl.vY = cp.vY;
         }
     };
+    this.getNewPlayer = function(data){//when new player comes in room
+        console.log("new player in the room");
+        console.log(data);
+        gR.players.ar[data.nickname] = new player(data.nickname,data.info.color,data.info.x,data.info.y,gameWorld,gR);
+    };
     socket.on("getAllPlayers",this.onGetAllPlayers);
+    socket.on("getNewPlayer",this.getNewPlayer);
     socket.on("updatePos",this.updatePos);
 
 }
