@@ -28,28 +28,6 @@ function gameRoom(){
 			this.map.y = 260 - this.player.y;
 		}
 	};
-	this.proccesInput = function(){
-        var oldVgx = this.player.vgX;
-		this.player.vgX = 0;
-		//this.player.vY = 0;
-		if(def(this.keys[87])){//when w is pressed
-			//if(this.player.onGround){
-			this.player.vY = -20;
-			//}
-		}
-		if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
-			this.player.vgX = 1;
-		}
-		if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
-			this.player.vgX = -1;
-		}
-        //send changes of input
-        if(oldVgx!=this.player.vgX||def(this.keys[87])){//if there are changes in movement
-            //send changes
-            socket.emit("changedInput",{"vgX":this.player.vgX,
-                                        "vY":this.player.vY});
-        }
-	};
     this.loop = function(){
 		this.players.loop();//move circle
         this.checkView();
@@ -62,8 +40,32 @@ function gameRoom(){
             this.sprites[thisSprite].draw();       
         } 
     };
+    /////////////////////Handle input
     this.mouseDown = function(x,y){
         
+    };
+    //keyboard input
+    this.proccesInput = function(){
+        var oldVgx = this.player.vgX;
+        this.player.vgX = 0;
+        //this.player.vY = 0;
+        if(def(this.keys[87])){//when w is pressed
+            //if(this.player.onGround){
+            this.player.vY = -20;
+            //}
+        }
+        if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
+            this.player.vgX = 1;
+        }
+        if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
+            this.player.vgX = -1;
+        }
+        //send changes of input
+        if(oldVgx!=this.player.vgX||def(this.keys[87])){//if there are changes in movement
+            //send changes
+            socket.emit("changedInput",{"vgX":this.player.vgX,
+                                        "vY":this.player.vY});
+        }
     };
     this.keyDown = function(key){
     	if(!def(this.keys[key])){
@@ -79,6 +81,24 @@ function gameRoom(){
     	console.log("Released key:"+key);
         this.proccesInput();//check keyboard input
     };
+    //for touch screen
+    if(touch){
+        document.getElementById("bleft").addEventListener('touchstart', function(event) {//when left is pressed
+            if(game.currentScene==6){
+
+            }
+        },false);
+        document.getElementById("bright").addEventListener('touchstart', function(event) {//when right is pressed
+            if(game.currentScene==6){
+
+            }
+        },false);
+        document.getElementById("bup").addEventListener('touchstart', function(event) {//when up is pressed
+            if(game.currentScene==6){
+
+            }
+        },false);
+    }
     /***updates from sever ***/
     this.onGetAllPlayers = function(data){//when you just got in room
         console.log("get all players");
@@ -91,7 +111,6 @@ function gameRoom(){
         }
     };
     this.updatePos = function(data){
-        console.log(data);
         for(var name in data){//loop trough players
             var cp = data[name];//current player
             var tpl = gR.players.ar[name];
@@ -103,4 +122,5 @@ function gameRoom(){
     };
     socket.on("getAllPlayers",this.onGetAllPlayers);
     socket.on("updatePos",this.updatePos);
+
 }

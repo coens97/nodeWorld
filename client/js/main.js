@@ -5,6 +5,21 @@
 var c = document.getElementById("myCanvas"),//canvas element
     ctx = c.getContext("2d"),
     touch = false;
+//if touchscreen
+if ('ontouchstart' in document.documentElement) {
+    touch = true;
+}
+//requeestanimationframe
+window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       || 
+              window.webkitRequestAnimationFrame || 
+              window.mozRequestAnimationFrame    || 
+              window.oRequestAnimationFrame      || 
+              window.msRequestAnimationFrame     || 
+              function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
 //include other files
 requirejs(['socket',
     /* put sprites here */
@@ -34,8 +49,9 @@ var windowWidth,//width of canvas
     gameInterval;//will contain timer fot loop
 
 function mainLoop(){
-        game.loop();//call game mainloop
-    	game.draw();
+    requestAnimFrame(mainLoop);
+    game.loop();//call game mainloop
+    game.draw();
 }
 
 function onMainClick(e){
@@ -59,11 +75,11 @@ function init(){
     if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
         document.getElementById("touchbuttons").style.display = 'block';
-        touch = true;
 	}else{
 		c.addEventListener("click", onMainClick, false);
 	}
-    gameInterval = self.setInterval(function(){mainLoop();},1000/60);//call mainGameLoop() every 16 ms
+    //gameInterval = self.setInterval(function(){mainLoop();},1000/60);//call mainGameLoop() every 16 ms
+    mainLoop();
     document.body.addEventListener("keydown",keyDown);
     document.body.addEventListener("keyup",keyUp);
     console.log("Canvas initialised");
