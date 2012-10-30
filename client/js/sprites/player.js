@@ -28,6 +28,7 @@ function player(nickname,color,x,y,world,scene){
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
 	this.vY = 0;
+	this.onGround = 0;
 	this.nickname = nickname;
 	this.frame = 1;
 	this.sy = 0;//the row to draw of tux.png
@@ -49,6 +50,7 @@ function player(nickname,color,x,y,world,scene){
 				this.frame = 0;
 			}
 		}
+		//horizontal moving
 		if(this.vgX<0){//if moving left
 			this.sy = 0;//first row of tux.png
 		}else if(this.vgX>0){
@@ -56,7 +58,12 @@ function player(nickname,color,x,y,world,scene){
 		}else{
 			this.frame = 1;//when not moving keep animation still
 		}
-		ctx.drawImage(tuxImg, this.frame*48, this.sy * 64, 48, 64, x-24, y-32, 48, 64);
+		//vertical moving
+		if(this.onGround!=0){//if jumping
+			ctx.drawImage(tuxImg, this.sy*48, 128, 48, 64, x-24, y-32, 48, 64);
+		}else{//when not jumping
+			ctx.drawImage(tuxImg, this.frame*48, this.sy * 64, 48, 64, x-24, y-32, 48, 64);
+		}
 	};
 	//collision stuff
 	this.isSolid = function(x,y){
