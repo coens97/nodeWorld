@@ -14,6 +14,7 @@ var game = {
     ],
     loop : function(){//gameLoop function(game.loop)
         this.scenes[this.currentScene].loop();
+        frameCounter.count();
     },
     draw : function(){
         ctx.clearRect (0,0,1280,720);//clear the canvas
@@ -40,4 +41,14 @@ var game = {
 		console.log("let's go to intro because we have connection");
 		this.startScene(1);
 	}
+}
+//frameCounter - handy for animatiob of sprites
+var frameCounter = {
+    frame : 0,
+    count : function(){
+        this.frame++;
+        if(this.frame >=60){
+            this.frame = 0;            
+        }
+    }    
 }

@@ -14,6 +14,14 @@ function checkCol(inp){//check if solid
 	}
 }
 
+/*load tux image*/
+var tuxImg = new Image();
+
+tuxImg.onload = function() {
+	console.log("Tux loaded");
+};
+tuxImg.src = 'images/tux.png';
+
 function player(nickname,color,x,y,world,scene){
 	this.x = x;
 	this.y = y;
@@ -21,25 +29,34 @@ function player(nickname,color,x,y,world,scene){
 	this.vX = 0;
 	this.vY = 0;
 	this.nickname = nickname;
+	this.frame = 1;
+	this.sy = 0;//the row to draw of tux.png
 
 	this.color = color;
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
 		var y = this.y + scene.map.y;
+		
 		//draw players name
 		ctx.fillStyle = "#000000";
 		ctx.textAlign = "center"; 
 		ctx.font = "bold 16px sans-serif";
     	ctx.fillText(this.nickname, x, y-56);
-		//draw circle
-		ctx.fillStyle = this.color;
-		ctx.beginPath();
-		ctx.arc(x, y, 31, 0, Math.PI*2, true); 
-		ctx.closePath();
-		ctx.fill();
-		ctx.lineWidth = 2;
-        ctx.strokeStyle = "#000000";
-        ctx.stroke();
+		//draw tux
+		if(frameCounter.frame%3==0){//go to the next frame of image
+			this.frame++;
+			if(this.frame>5){
+				this.frame = 0;
+			}
+		}
+		if(this.vgX<0){//if moving left
+			this.sy = 0;//first row of tux.png
+		}else if(this.vgX>0){
+			this.sy = 1;//second row of tux.png
+		}else{
+			this.frame = 1;//when not moving keep animation still
+		}
+		ctx.drawImage(tuxImg, this.frame*48, this.sy * 64, 48, 64, x-24, y-32, 48, 64);
 	};
 	//collision stuff
 	this.isSolid = function(x,y){
