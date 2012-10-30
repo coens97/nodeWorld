@@ -61,7 +61,7 @@ function waitRoom(){
     		parent.sprites.players.ar.push(new text("#FFFFFF",data.nicknames[i][0],1000,160+i*45));//place name
     		parent.sprites.checkboxes.ar.push(new partImage("images/check.png",950,158+i*45,52,45,(data.nicknames[i][1])?1:0,0,52,45));//add checkbox
     	}
-    	parent.sprites.playerCount.string = data.nicknames.length+"/12";
+    	parent.sprites.playerCount.string = data.nicknames.length;
     	parent.sprites.name.string = data.name;
     };
     this.startGame = function(data){//whenRoom s ready to start game
