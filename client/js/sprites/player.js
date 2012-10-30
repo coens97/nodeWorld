@@ -116,6 +116,8 @@ function player(nickname,color,x,y,world,scene){
 			for(var ty = b.y[1];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
 			this.y = world.tileheight*ty;
 			this.onGround = 0;
+		}else if(this.onGround==0){//if there is nothing under it and not in jump state
+			this.onGround = 1;
 		}
 		//check for moving up
 		if(this.vY<0&&this.areSolidY(b.x,b.y[0])){
