@@ -62,3 +62,22 @@ var dif = {
         this.lastTime = new Date().getTime();
     }
 };
+//debug
+//use in console of webbrowser:debug.ping
+var debug = new function(){
+    var parent = this;
+    //ping - get latency
+    this.lastTime = 0;
+    this.pong = function(data){
+        var now = new Date().getTime();
+        console.log("Latency:"+(now-parent.lastTime)+"ms");
+        console.log("Client-server:"+(data-parent.lastTime)+"ms");
+        console.log("Server-client:"+(now-data)+"ms");
+    };
+    socket.on('pong',this.pong);
+    this.ping = function(){
+        this.lastTime = new Date().getTime();
+        socket.emit('ping',1);
+    };
+
+};

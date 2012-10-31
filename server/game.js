@@ -34,11 +34,15 @@ this.newConnection = function(socket){
 	};
 	socket.on('nickname',this.nickname);
 	
-	socket.on('echo', function (data) {//for debugging
+	/**debuging**/
+	socket.on('echo', function (data) {
 		console.log("Echo:"+data);
 		socket.emit('echo','Echo:'+data);
 	});
-	
+	socket.on('ping', function(data){
+		socket.emit('pong',new Date().getTime());//send server time
+	});
+	/**game**/
 	this.playerCount = function(){//send how much people are online
 		socket.broadcast.emit("playerCount",stats.connections);
 		socket.emit("playerCount",stats.connections);
