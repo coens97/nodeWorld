@@ -21,8 +21,8 @@ var gameWorld = { "height":96,
         {
          "firstgid":1,
          "image":"grass.png",
-         "imageheight":384,
-         "imagewidth":448,
+         "imageheight":192,
+         "imagewidth":224,
          "margin":0,
          "name":"grass",
          "properties":
@@ -30,8 +30,8 @@ var gameWorld = { "height":96,
 
             },
          "spacing":0,
-         "tileheight":64,
-         "tilewidth":64
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "version":1,
