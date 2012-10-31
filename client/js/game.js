@@ -13,6 +13,7 @@ var game = {
 		new gameRoom()//6
     ],
     loop : function(){//gameLoop function(game.loop)
+        dif.loop();//calculate elasped time for smoother animation
         this.scenes[this.currentScene].loop();
         frameCounter.count();
     },
@@ -52,3 +53,12 @@ var frameCounter = {
         }
     }    
 }
+//calculates delta time, for smoother animations
+var dif = {
+    lastTime: new Date().getTime(),
+    d : 1,
+    loop : function(){
+        this.d = (new Date().getTime() - this.lastTime)/(1000/60);
+        this.lastTime = new Date().getTime();
+    }
+};
