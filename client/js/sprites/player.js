@@ -143,8 +143,8 @@ function player(nickname,color,x,y,world,scene){
 		//collision
 		this.checkCollision();
 		//move player
-		this.x += this.vX;
-		this.y += this.vY;
+		this.x += Math.round(this.vX*dif.d);//movespeed * deltatime/(1000/60)//so it wil move smoothly on all machines
+		this.y += Math.round(this.vY*dif.d);//Math.round - canvas hates floating points
         if(world.tileheight*world.height+720<this.y){
             this.y = 0;
             this.vy = 0;

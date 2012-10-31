@@ -13,8 +13,8 @@ function intro(){
     this.loop = function(){
 		//Start the animation of the title
 		if(this.sprites.title.h <336){//Check if it is not zoomed in yet
-			this.sprites.title.w +=21.9*dif.d;//make the image bigger
-			this.sprites.title.h +=6.72*dif.d;//make the image higher
+			this.sprites.title.w += Math.round(21.9*dif.d);//make the image bigger
+			this.sprites.title.h += Math.round(6.72*dif.d);//make the image higher
 			this.sprites.title.x = 640 - this.sprites.title.w / 2;//puth the image exact in the middle
 		}else if(this.sprites.coen.x > 334){//move the Coen sprite
 			this.sprites.coen.x -= 20*dif.d;
