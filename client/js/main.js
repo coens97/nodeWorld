@@ -75,7 +75,9 @@ function init(){
     //add eventlisteners for click or touch
     if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
-        document.getElementById("touchbuttons").style.display = 'block';
+        document.getElementById("bleft").style.display = 'block';
+        document.getElementById("bright").style.display = 'block';
+        document.getElementById("bup").style.display = 'block';
 	}else{
 		c.addEventListener("click", onMainClick, false);
 	}
