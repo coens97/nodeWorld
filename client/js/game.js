@@ -71,8 +71,6 @@ var debug = new function(){
     this.pong = function(data){
         var now = new Date().getTime();
         console.log("Latency:"+(now-parent.lastTime)+"ms");
-        console.log("Client-server:"+(data-parent.lastTime)+"ms");
-        console.log("Server-client:"+(now-data)+"ms");
     };
     socket.on('pong',this.pong);
     this.ping = function(){
