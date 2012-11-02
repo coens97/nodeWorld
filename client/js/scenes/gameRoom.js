@@ -51,7 +51,7 @@ function gameRoom(){
         var oldVgx = this.player.vgX;
         this.player.vgX = 0;
         //this.player.vY = 0;
-        if(def(this.keys[87])){//when w is pressed
+        if(def(this.keys[32])){//when space is pressed
             if(this.player.onGround!=2){
                 this.player.vY = -20;
                 this.player.onGround++;
@@ -64,7 +64,7 @@ function gameRoom(){
             this.player.vgX = -1;
         }
         //send changes of input
-        if(oldVgx!=this.player.vgX||def(this.keys[87])){//if there are changes in movement
+        if(oldVgx!=this.player.vgX||def(this.keys[32])){//if there are changes in movement
             //send changes
             socket.emit("changedInput",{"vgX":this.player.vgX,
                                         "vY":this.player.vY});
