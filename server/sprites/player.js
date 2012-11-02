@@ -91,14 +91,33 @@ this.player = function(color,x,y,world,scene){
 		}
 	};
 	this.loop = function(){
+		//change player speed
 		this.vY +=1;//gravity
-		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
-		//this.onGround = false;//you can only jump when you're on the ground
+		var rx = 1;//the reduction speed
+		if(this.vgX==0){//if player not moving horizontal
+			if(this.vX!=0){//if player is moving
+				if(this.vX>rx&&this.vX<rx){//if player is between the reduction speed set it to zero so it wouldn't shake
+					this.vX = 0;
+				}else{
+					this.vX += (this.vX>0)?-rx:rx;//make the player move slower
+				}
+			}
+		}else{//if player moving horizontal
+			if(this.vX != this.vgX*scene.speed){//if player speed isn't exactly right
+				if((this.vX > this.vgX*scene.speed&&this.vgX==1)||(this.vX < this.vgX*scene.speed&&this.vgX==-1)){//when moving to fast
+					this.vX = this.vgX*scene.speed;//set the player to the exact speed
+				}else{//when moving slower then speed
+					this.vX += (this.vgX>0)?rx:-rx;//make the player move faster
+				}
+			}
+		}
+
 		//collision
 		this.checkCollision();
+
 		//move player
-		this.x += this.vX;
-		this.y += this.vY;
+		this.x += this.vX;//movespeed * deltatime/(1000/60)//so it wil move smoothly on all machines
+		this.y += this.vY;//Math.round - canvas hates floating points
         if(world.tileheight*world.height+720<this.y){
             this.y = 0;
             this.vy = 0;
