@@ -140,7 +140,6 @@ function gameRoom(){
         for(var name in data){//loop trough players
             var cp = data[name];//current player
             var tpl = gR.players.ar[name];
-
             tpl.x = cp.x;
             tpl.y = cp.y;
             tpl.vgX = cp.vgX;
