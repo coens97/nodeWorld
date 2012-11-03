@@ -5,6 +5,15 @@
 var c = document.getElementById("myCanvas"),//canvas element
     ctx = c.getContext("2d"),
     touch = false;
+
+/*initialise stats*/
+var stats = new Stats();
+stats.setMode(0);
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+/*end stats*/
 //if touchscreen
 if ('ontouchstart' in document.documentElement) {
     touch = true;
@@ -51,8 +60,11 @@ var windowWidth,//width of canvas
 
 function mainLoop(){
     requestAnimFrame(mainLoop);
+    stats.begin();//for showing fps
     game.loop();//call game mainloop
     game.draw();
+    stats.end();//end for showing fps
+
 }
 
 function onMainClick(e){
@@ -71,7 +83,9 @@ var keyUp = function(event){
 };
 function init(){
     resizeCanvas();
-    
+    /*start stats*/
+
+    /*end stats*/
     //add eventlisteners for click or touch
     if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
