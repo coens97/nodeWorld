@@ -24,8 +24,9 @@ window.requestAnimFrame = (function(){
     })();
 //include other files
 requirejs([
-    /*libarys*/
+    /*libaries*/
     '../lib/stats.min',
+    '../lib/dat.gui.min.js',
 
     'socket',
     /* put sprites here */
@@ -36,7 +37,9 @@ requirejs([
     'sprites/map',
     'sprites/log'
     ],function(){
-        requirejs([/* load scenes */
+        requirejs([
+            'debug',
+            /* load scenes */
             'scenes/waitForConnection',
             'scenes/intro',
 			'scenes/nickname',
@@ -57,10 +60,10 @@ var windowWidth,//width of canvas
 
 function mainLoop(){
     requestAnimFrame(mainLoop);
-    stats.begin();//for showing fps
+    (debug.stats)&&stats.begin();//for showing fps
     game.loop();//call game mainloop
     game.draw();
-    stats.end();//end for showing fps
+    (debug.stats)&&stats.end();//end for showing fps
 
 }
 
@@ -80,14 +83,6 @@ var keyUp = function(event){
 };
 function init(){
     resizeCanvas();
-    /*initialise stats*/
-    stats = new Stats();
-    stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild( stats.domElement );
-    /*end stats*/
     //add eventlisteners for click or touch
     if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
