@@ -1,0 +1,4 @@
+#Stupid windows files
+Thumbs.db
+#don't upload the node modules to
+node_modules/
