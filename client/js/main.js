@@ -45,7 +45,7 @@ requirejs([
 			'scenes/menu',
 			'scenes/hostGame',
 			'scenes/waitRoom',
-			'scenes/gameRoom'
+			'scenes/game/gameRoom'
 			],function(){
                 requirejs(['game'],function(){
                     requirejs(['debug'],function(){
@@ -65,7 +65,6 @@ function mainLoop(){
     game.loop();//call game mainloop
     game.draw();
     (debug.stats)&&stats.end();//end for showing fps
-
 }
 
 function onMainClick(e){
