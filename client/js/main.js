@@ -38,7 +38,6 @@ requirejs([
     'sprites/log'
     ],function(){
         requirejs([
-            'debug',
             /* load scenes */
             'scenes/waitForConnection',
             'scenes/intro',
@@ -49,7 +48,9 @@ requirejs([
 			'scenes/gameRoom'
 			],function(){
                 requirejs(['game'],function(){
-                    init();
+                    requirejs(['debug'],function(){
+                        init();
+                    });//add debug
                 });//end loading sprites + scenes + game
         });//end loading sprites + scenes
 });//end loading sprites

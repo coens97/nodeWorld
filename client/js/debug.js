@@ -31,10 +31,11 @@ var debug = new function(){
 };
 /*dat.gui*/
 var gui = new dat.GUI();
+gui.close();
 var gPing = gui.addFolder('Ping');
 gPing.add(debug, 'ping');
 gPing.add(debug, 'latency').listen();
 gui.add(debug, 'stats').onChange(function(value){
 	stats.domElement.style.display = (value)?"block":"none";
 });
-gui.close();
+gui.add(game.scenes[6], 'time').listen();//game time

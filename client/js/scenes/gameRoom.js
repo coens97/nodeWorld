@@ -7,10 +7,13 @@ function gameRoom(){
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
+    //sprites
     this.map = this.sprites.map;
     this.players = this.sprites.players;
     this.log = this.sprites.log;
-    this.speed = 0;   
+
+    this.speed = 0;//player speed from server   
+    this.time = 0;
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
 	};
@@ -137,8 +140,9 @@ function gameRoom(){
         }
     };
     this.updatePos = function(data){
-        for(var name in data){//loop trough players
-            var cp = data[name];//current player
+        gR.time = data.t;
+        for(var name in data.pl){//loop trough players
+            var cp = data.pl[name];//current player
             var tpl = gR.players.ar[name];
             tpl.x = cp.x;
             tpl.y = cp.y;

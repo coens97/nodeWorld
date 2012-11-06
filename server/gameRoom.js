@@ -9,6 +9,12 @@ this.gameRoom = function(parent){
 	this.intervalG;//gameLoop
 	this.intervalG;//sendUpdates
 
+	/* time stuff */
+	this.dt = 0;//delta time 
+	this.lastTime = new Date().getTime();//last frame
+	this.time = 0;//server time
+
+
 	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
@@ -82,6 +88,10 @@ this.gameRoom = function(parent){
 		clearInterval(this.intervalU);
 	};
 	this.gameLoop = function(){
+		//update time
+		gameRoom.dt = new Date().getTime() - gameRoom.lastTime;
+		gameRoom.lastTime = new Date().getTime();
+		gameRoom.time += gameRoom.dt;
 		//console.log("Hello from gameLoop!");
 		for(var ob in gameRoom.pl){
 			gameRoom.pl[ob].loop();
@@ -90,10 +100,14 @@ this.gameRoom = function(parent){
 	};
 	this.sendUpdates = function(){
 		//console.log("Sending updates");
-		var message = {};
-		for(var ob in gameRoom.pl){
+		var message = {
+			t : gameRoom.time,//send server time
+			pl :{}//the players info will be filled in below
+		};
+
+		for(var ob in gameRoom.pl){//put all the players in message
 			var tpl = gameRoom.pl[ob];
-			message[ob] = {
+			message.pl[ob] = {
 				"x":tpl.x,
 				"y":tpl.y,
 				"vgX":tpl.vgX,
