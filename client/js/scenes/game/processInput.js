@@ -42,3 +42,28 @@ gameRoom.prototype.keyUp = function(key){
     this.proccesInput();//check keyboard input
 };
 
+if(touch){//for touchscreens
+    gameRoom.prototype.onTouch = function(key){//when button is touched
+        if(game.currentScene==6){
+            switch(key){
+                case 0: this.player.vgX = -1; break;//left
+                case 1: this.player.vgX = 1; break;//right
+                case 2: if(this.player.onGround!=2){this.player.vY = -20;}
+                break;//up
+            }
+            socket.emit("changedInput",{"vgX":this.player.vgX,
+                                    "vY":this.player.vY});
+        }
+    };
+    gameRoom.prototype.stopTouch = function(key){//when button is release
+        if(game.currentScene==6){
+            switch(key){
+                case 0://left
+                case 1: this.player.vgX = 0; 
+                break;//right
+            }
+            socket.emit("changedInput",{"vgX":this.player.vgX,
+                                    "vY":this.player.vY});
+        }
+    };
+}//end touch

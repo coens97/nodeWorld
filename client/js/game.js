@@ -62,3 +62,23 @@ var dif = {
         this.lastTime = new Date().getTime();
     }
 };
+
+//this should stay at a better place
+if(touch){
+    //create eventlisteners for touch
+    document.getElementById("bleft").addEventListener('click', function(event) {//when left is pressed
+        game.scenes[6].onTouch(0);
+    },false);
+    document.getElementById("bright").addEventListener('touchstart', function(event) {//when right is pressed
+        game.scenes[6].onTouch(1);
+    },false);
+    document.getElementById("bup").addEventListener('touchstart', function(event) {//when up is pressed
+        game.scenes[6].onTouch(2);
+    },false);
+    document.getElementById("bleft").addEventListener('touchend', function(event) {//when left is pressed
+        game.scenes[6].stopTouch(0);
+    },false);
+    document.getElementById("bright").addEventListener('touchend', function(event) {//when right is pressed
+        game.scenes[6].stopTouch(1);
+    },false);
+}

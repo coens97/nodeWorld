@@ -47,10 +47,12 @@ requirejs([
 			'scenes/waitRoom',
 			'scenes/game/gameRoom'
 			],function(){
-                requirejs(['game'],function(){
-                    requirejs(['debug'],function(){
-                        init();
-                    });//add debug
+                requirejs(['scenes/game/processInput'],function(){
+                    requirejs(['game'],function(){
+                        requirejs(['debug'],function(){
+                            init();
+                        });
+                    });
                 });//end loading sprites + scenes + game
         });//end loading sprites + scenes
 });//end loading sprites
@@ -84,7 +86,7 @@ var keyUp = function(event){
 function init(){
     resizeCanvas();
     //add eventlisteners for click or touch
-    if ('ontouchstart' in document.documentElement) {//check if it has touchscreen
+    if (touch) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
         document.getElementById("bleft").style.display = 'block';
         document.getElementById("bright").style.display = 'block';
