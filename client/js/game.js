@@ -62,11 +62,11 @@ var dif = {
         this.lastTime = new Date().getTime();
     }
 };
-
+//////////////////callcacks
 //this should stay at a better place
 if(touch){
     //create eventlisteners for touch
-    document.getElementById("bleft").addEventListener('click', function(event) {//when left is pressed
+    document.getElementById("bleft").addEventListener('touchstart', function(event) {//when left is pressed
         game.scenes[6].onTouch(0);
     },false);
     document.getElementById("bright").addEventListener('touchstart', function(event) {//when right is pressed
@@ -82,3 +82,13 @@ if(touch){
         game.scenes[6].stopTouch(1);
     },false);
 }
+/*
+socket.on("getAllPlayers",game.scenes[6].onGetAllPlayers);
+socket.on("getNewPlayer",game.scenes[6].getNewPlayer);
+socket.on("getDeletePlayer",game.scenes[6].getDeletePlayer);
+socket.on("updatePos",game.scenes[6].updatePos);
+*/
+socket.on("getAllPlayers",function(data){game.scenes[6].onGetAllPlayers(data);});
+socket.on("getNewPlayer",function(data){game.scenes[6].getNewPlayer(data);});
+socket.on("getDeletePlayer",function(data){game.scenes[6].getDeletePlayer(data);});
+socket.on("updatePos",function(data){game.scenes[6].updatePos(data);});

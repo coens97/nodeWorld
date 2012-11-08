@@ -47,41 +47,4 @@ function gameRoom(){
             this.sprites[thisSprite].draw();       
         } 
     };
-    /***updates from sever ***/
-    this.onGetAllPlayers = function(data){//when you just got in room
-        console.log("get all players");
-        gR.players.ar = {};
-        for(var name in data.players){//loop trough players
-            var cp = data.players[name];//current player
-            gR.players.ar[name] = new player(name,cp.color,cp.x,cp.y,gameWorld,gR);
-            gR.players.ar[name].vgX = cp.vgX;
-            gR.players.ar[name].vgY = cp.vY;
-        }
-    };
-    this.updatePos = function(data){
-        gR.time = data.t;
-        for(var name in data.pl){//loop trough players
-            var cp = data.pl[name];//current player
-            var tpl = gR.players.ar[name];
-            tpl.x = cp.x;
-            tpl.y = cp.y;
-            tpl.vgX = cp.vgX;
-            tpl.vY = cp.vY;
-        }
-    };
-    this.getNewPlayer = function(data){//when new player comes in room
-        console.log("new player in the room");
-        console.log(data);
-        gR.players.ar[data.nickname] = new player(data.nickname,data.info.color,data.info.x,data.info.y,gameWorld,gR);
-        gR.log.push(data.nickname+" joined the room");
-    };
-    this.getDeletePlayer = function(data){
-        delete gR.players.ar[data];
-        gR.log.push(data+" disconnected");
-    };
-    socket.on("getAllPlayers",this.onGetAllPlayers);
-    socket.on("getNewPlayer",this.getNewPlayer);
-    socket.on("getDeletePlayer",this.getDeletePlayer);
-    socket.on("updatePos",this.updatePos);
-
 }

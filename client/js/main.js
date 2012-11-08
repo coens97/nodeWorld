@@ -47,7 +47,11 @@ requirejs([
 			'scenes/waitRoom',
 			'scenes/game/gameRoom'
 			],function(){
-                requirejs(['scenes/game/processInput'],function(){
+                requirejs([
+                    //requires of gameRoom
+                    'scenes/game/processInput',
+                    'scenes/game/serverUpdates',
+                    ],function(){
                     requirejs(['game'],function(){
                         requirejs(['debug'],function(){
                             init();
