@@ -36,6 +36,7 @@ var gameRoom = new function(){
 		}
 	};
     this.loop = function(){
+        this.time += dif.t;
 		this.players.loop();//move circle
         this.checkView();
     };

@@ -56,9 +56,11 @@ var frameCounter = {
 //calculates delta time, for smoother animations
 var dif = {
     lastTime: new Date().getTime(),
+    t : 0,
     d : 1,
     loop : function(){
-        this.d = (new Date().getTime() - this.lastTime)/(1000/60);
+        this.t = new Date().getTime() - this.lastTime;
+        this.d = this.t/(1000/60)
         this.lastTime = new Date().getTime();
     }
 };

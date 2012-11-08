@@ -78,7 +78,9 @@ this.gameRoom = function(parent){
 			}else{
 				if(gP.vgX==0&&data.vgX!=0){//when from not moving horizontaly to moving horizontaly
 					gP.x += Math.round((pdt/(1000/60))*gameRoom.speed*data.vgX);
-				}
+				}/*else if(gP.vgX!=0&&data.vgX==0){//if from horizontaly moving to stopping
+					gP.x -= Math.round((pdt/(1000/60))*gameRoom.speed*gP.vgX);
+				}*/
 			}
 			gP.vY = data.vY;
 			gP.vgX = data.vgX;
