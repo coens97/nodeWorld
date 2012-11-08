@@ -41,13 +41,6 @@ body{
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
-.noselect{
-	/* not selectable */
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
-}
 /*********touchbuttons*********/
 .tButton{
 	position: fixed;
