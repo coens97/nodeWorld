@@ -65,13 +65,23 @@ this.gameRoom = function(parent){
 		gameRoom.players[player.nickname] = player;//add player to list
 		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",704,360,gameWorld,gameRoom);//add player
 
+		var gP = gameRoom.pl[player.nickname];
+
 		if(parent.state==1){//if game is started
 			this.sendStart(player);
 			gameRoom.sendNewPlayers(player.nickname);
 		}
-		this.getInput = function(data){
-			gameRoom.pl[player.nickname].vY = data.vY;
-			gameRoom.pl[player.nickname].vgX = data.vgX;
+		this.getInput = function(data){//when geting input from player
+			var pdt = gameRoom.time - data.t;
+			if(pdt>1000){//the lag is to much
+				console.log("Damn "+player.nickname+" has to much lag");
+			}else{
+				if(gP.vgX==0&&data.vgX!=0){//when from not moving horizontaly to moving horizontaly
+					gP.x += Math.round((pdt/(1000/60))*gameRoom.speed*data.vgX);
+				}
+			}
+			gP.vY = data.vY;
+			gP.vgX = data.vgX;
 		};
 		player.socket.on("changedInput",this.getInput);
 		
