@@ -1,9 +1,9 @@
 //mouse input
-gameRoom.prototype.mouseDown = function(x,y) {
+gameRoom.mouseDown = function(x,y) {
 
 };
 //keyboard input
-gameRoom.prototype.proccesInput = function() {
+gameRoom.proccesInput = function() {
     var oldVgx = this.player.vgX;
     this.player.vgX = 0;
     //this.player.vY = 0;
@@ -27,23 +27,23 @@ gameRoom.prototype.proccesInput = function() {
     }
 };
 
-gameRoom.prototype.keyDown = function(key){
+gameRoom.keyDown = function(key){
 	if(!def(this.keys[key])){
 		this.keys[key] = true;
 		this.keyPress(key);
 	}
 };
-gameRoom.prototype.keyPress = function(key){
+gameRoom.keyPress = function(key){
     this.proccesInput();//check keyboard input
 };
-gameRoom.prototype.keyUp = function(key){
+gameRoom.keyUp = function(key){
 	delete this.keys[key];//remove from object
 	console.log("Released key:"+key);
     this.proccesInput();//check keyboard input
 };
 
 if(touch){//for touchscreens
-    gameRoom.prototype.onTouch = function(key){//when button is touched
+    gameRoom.onTouch = function(key){//when button is touched
         if(game.currentScene==6){
             switch(key){
                 case 0: this.player.vgX = -1; break;//left
@@ -55,7 +55,7 @@ if(touch){//for touchscreens
                                     "vY":this.player.vY});
         }
     };
-    gameRoom.prototype.stopTouch = function(key){//when button is release
+    gameRoom.stopTouch = function(key){//when button is release
         if(game.currentScene==6){
             switch(key){
                 case 0://left
@@ -66,4 +66,19 @@ if(touch){//for touchscreens
                                     "vY":this.player.vY});
         }
     };
+    document.getElementById("bleft").addEventListener('touchstart', function(event) {//when left is pressed
+        game.scenes[6].onTouch(0);
+    },false);
+    document.getElementById("bright").addEventListener('touchstart', function(event) {//when right is pressed
+        game.scenes[6].onTouch(1);
+    },false);
+    document.getElementById("bup").addEventListener('touchstart', function(event) {//when up is pressed
+        game.scenes[6].onTouch(2);
+    },false);
+    document.getElementById("bleft").addEventListener('touchend', function(event) {//when left is pressed
+        game.scenes[6].stopTouch(0);
+    },false);
+    document.getElementById("bright").addEventListener('touchend', function(event) {//when right is pressed
+        game.scenes[6].stopTouch(1);
+    },false);
 }//end touch

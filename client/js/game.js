@@ -10,7 +10,7 @@ var game = {
 		new menu(),//3
 		new hostGame(),//4
 		new waitRoom(),//5
-		new gameRoom()//6
+		gameRoom//6
     ],
     loop : function(){//gameLoop function(game.loop)
         dif.loop();//calculate elasped time for smoother animation
@@ -62,33 +62,3 @@ var dif = {
         this.lastTime = new Date().getTime();
     }
 };
-//////////////////callcacks
-//this should stay at a better place
-if(touch){
-    //create eventlisteners for touch
-    document.getElementById("bleft").addEventListener('touchstart', function(event) {//when left is pressed
-        game.scenes[6].onTouch(0);
-    },false);
-    document.getElementById("bright").addEventListener('touchstart', function(event) {//when right is pressed
-        game.scenes[6].onTouch(1);
-    },false);
-    document.getElementById("bup").addEventListener('touchstart', function(event) {//when up is pressed
-        game.scenes[6].onTouch(2);
-    },false);
-    document.getElementById("bleft").addEventListener('touchend', function(event) {//when left is pressed
-        game.scenes[6].stopTouch(0);
-    },false);
-    document.getElementById("bright").addEventListener('touchend', function(event) {//when right is pressed
-        game.scenes[6].stopTouch(1);
-    },false);
-}
-/*
-socket.on("getAllPlayers",game.scenes[6].onGetAllPlayers);
-socket.on("getNewPlayer",game.scenes[6].getNewPlayer);
-socket.on("getDeletePlayer",game.scenes[6].getDeletePlayer);
-socket.on("updatePos",game.scenes[6].updatePos);
-*/
-socket.on("getAllPlayers",function(data){game.scenes[6].onGetAllPlayers(data);});
-socket.on("getNewPlayer",function(data){game.scenes[6].getNewPlayer(data);});
-socket.on("getDeletePlayer",function(data){game.scenes[6].getDeletePlayer(data);});
-socket.on("updatePos",function(data){game.scenes[6].updatePos(data);});
