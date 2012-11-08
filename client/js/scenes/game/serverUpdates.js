@@ -13,6 +13,7 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
 };
 gameRoom.updatePos = function(data){
     this.time = data.t;
+    this.lastTime = new Date().getTime();
     for(var name in data.pl){//loop trough players
         var cp = data.pl[name];//current player
         var tpl = this.players.ar[name];

@@ -72,7 +72,8 @@ this.gameRoom = function(parent){
 			gameRoom.sendNewPlayers(player.nickname);
 		}
 		this.getInput = function(data){//when geting input from player
-			var pdt = gameRoom.time - data.t;
+			var pdt = (gameRoom.time+(new Date().getTime() - gameRoom.lastTime)) - data.t;
+			console.log("pdt:"+pdt);
 			if(pdt>1000){//the lag is to much
 				console.log("Damn "+player.nickname+" has to much lag");
 			}else{
@@ -113,7 +114,7 @@ this.gameRoom = function(parent){
 	this.sendUpdates = function(){
 		//console.log("Sending updates");
 		var message = {
-			t : gameRoom.time,//send server time
+			t : gameRoom.time+(new Date().getTime() - gameRoom.lastTime),//send server time
 			pl :{}//the players info will be filled in below
 		};
 

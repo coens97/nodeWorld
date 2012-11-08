@@ -22,7 +22,7 @@ gameRoom.proccesInput = function() {
     //send changes of input
     if(oldVgx!=this.player.vgX||def(this.keys[32])){//if there are changes in movement
         //send changes
-        socket.emit("changedInput",{"t":this.time,
+        socket.emit("changedInput",{"t":this.time+(new Date().getTime() - this.lastTime),
                                     "vgX":this.player.vgX,  
                                     "vY":this.player.vY});
     }
@@ -52,7 +52,7 @@ if(touch){//for touchscreens
                 case 2: if(this.player.onGround!=2){this.player.vY = -20;this.player.onGround++;}
                 break;//up
             }
-            socket.emit("changedInput",{"t":this.time,
+            socket.emit("changedInput",{"t":this.time+(new Date().getTime() - this.lastTime),
                                     "vgX":this.player.vgX,
                                     "vY":this.player.vY});
         }
@@ -64,7 +64,7 @@ if(touch){//for touchscreens
                 case 1: this.player.vgX = 0; 
                 break;//right
             }
-            socket.emit("changedInput",{"t":this.time,
+            socket.emit("changedInput",{"t":this.time+(new Date().getTime() - this.lastTime),
                                     "vgX":this.player.vgX,
                                     "vY":this.player.vY});
         }

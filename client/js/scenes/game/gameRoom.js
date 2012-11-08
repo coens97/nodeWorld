@@ -13,7 +13,10 @@ var gameRoom = new function(){
     this.log = this.sprites.log;
 
     this.speed = 0;//player speed from server   
-    this.time = 0;
+    /* time stuff */
+    this.dt = 0;//delta time 
+    this.lastTime = new Date().getTime();//last frame
+    this.time = 0;//server time
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
 	};
@@ -36,7 +39,11 @@ var gameRoom = new function(){
 		}
 	};
     this.loop = function(){
-        this.time += dif.t;
+        //update time
+        gameRoom.dt = new Date().getTime() - gameRoom.lastTime;
+        gameRoom.lastTime = new Date().getTime();
+        gameRoom.time += gameRoom.dt;
+        
 		this.players.loop();//move circle
         this.checkView();
     };
