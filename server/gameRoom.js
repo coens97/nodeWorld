@@ -73,18 +73,8 @@ this.gameRoom = function(parent){
 		}
 		this.getInput = function(data){//when geting input from player
 			var pdt = (gameRoom.time+(new Date().getTime() - gameRoom.lastTime)) - data.t;
-			console.log("pdt:"+pdt);
 			if(pdt>1000){//the lag is to much
 				console.log("Damn "+player.nickname+" has to much lag");
-			}else{
-				if(gP.vgX==0&&data.vgX!=0){//when from not moving horizontaly to moving horizontaly
-					gP.vX += Math.round((pdt/(1000/60))*gameRoom.speed*data.vgX);
-					console.log(gP.x+"what it should be"+data.x);
-				}/*else if(gP.vgX!=0&&data.vgX==0){//if from horizontaly moving to stopping
-					var oldX = gP.x; 
-					gP.x -= Math.round((pdt/(1000/60))*gameRoom.speed*gP.vgX);
-					console.log("old"+oldX+" "+gP.x+"what it should be"+data.x);
-				}*/
 			}
 			gP.vY = data.vY;
 			gP.vgX = data.vgX;

@@ -24,7 +24,6 @@ gameRoom.proccesInput = function() {
         //send changes
         socket.emit("changedInput",{"t":this.time+(new Date().getTime() - this.lastTime),
                                     "vgX":this.player.vgX,  
-                                    "x":this.player.x,  
                                     "vY":this.player.vY});
     }
 };
