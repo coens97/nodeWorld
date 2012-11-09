@@ -78,9 +78,12 @@ this.gameRoom = function(parent){
 				console.log("Damn "+player.nickname+" has to much lag");
 			}else{
 				if(gP.vgX==0&&data.vgX!=0){//when from not moving horizontaly to moving horizontaly
-					gP.x += Math.round((pdt/(1000/60))*gameRoom.speed*data.vgX);
+					gP.vX += Math.round((pdt/(1000/60))*gameRoom.speed*data.vgX);
+					console.log(gP.x+"what it should be"+data.x);
 				}/*else if(gP.vgX!=0&&data.vgX==0){//if from horizontaly moving to stopping
+					var oldX = gP.x; 
 					gP.x -= Math.round((pdt/(1000/60))*gameRoom.speed*gP.vgX);
+					console.log("old"+oldX+" "+gP.x+"what it should be"+data.x);
 				}*/
 			}
 			gP.vY = data.vY;

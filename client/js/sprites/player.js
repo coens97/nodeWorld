@@ -138,8 +138,6 @@ function player(nickname,color,x,y,world,scene){
 		}
 	};
 	this.loop = function(){
-		this.vY +=1;//gravity
-		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
 		//collision
 		this.checkCollision();
 		//move player
@@ -150,5 +148,7 @@ function player(nickname,color,x,y,world,scene){
             this.vy = 0;
             this.x = 640;
         }
+        this.vY +=1;//gravity
+		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
 	};
 }
