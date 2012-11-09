@@ -14,6 +14,7 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
 gameRoom.updatePos = function(data){
     if(data.t<this.lastPackage){
         console.log("Some package came to late");
+        debug.toLatePackage++;
         return;
     }
     this.time = data.t;

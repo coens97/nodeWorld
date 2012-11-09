@@ -27,6 +27,7 @@ var debug = new function(){
     };
     //other stuff
     this.stats = false;
+    this.toLatePackage = 0;
 
 };
 /*dat.gui*/
@@ -39,3 +40,4 @@ gui.add(debug, 'stats').onChange(function(value){
 	stats.domElement.style.display = (value)?"block":"none";
 });
 gui.add(game.scenes[6], 'time').listen();//game time
+gui.add(debug, 'toLatePackage').listen();//packages who came to late
