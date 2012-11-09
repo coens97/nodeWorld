@@ -12,7 +12,12 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
     }
 };
 gameRoom.updatePos = function(data){
+    if(data.t<this.lastPackage){
+        console.log("Some package came to late");
+        return;
+    }
     this.time = data.t;
+    this.lastPackage = data.t;
     this.lastTime = new Date().getTime();
     for(var name in data.pl){//loop trough players
         var cp = data.pl[name];//current player

@@ -16,6 +16,8 @@ var gameRoom = new function(){
     /* time stuff */
     this.dt = 0;//delta time 
     this.lastTime = new Date().getTime();//last frame
+    this.lastPackage = 0;
+
     this.time = 0;//server time
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
