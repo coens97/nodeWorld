@@ -11,6 +11,7 @@ function intro(){
 		
 	};
     this.loop = function(){
+        dif.d>6&&(dif.d=1);//when to long do 1 because else will pictures be to big
 		//Start the animation of the title
 		if(this.sprites.title.h <336){//Check if it is not zoomed in yet
 			this.sprites.title.w += Math.round(21.9*dif.d);//make the image bigger
