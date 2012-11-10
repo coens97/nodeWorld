@@ -11,12 +11,12 @@ var gameRoom = new function(){
     this.map = this.sprites.map;
     this.players = this.sprites.players;
     this.log = this.sprites.log;
-
     this.speed = 0;//player speed from server   
     /* time stuff */
     this.dt = 0;//delta time 
     this.lastTime = new Date().getTime();//last frame
     this.lastPackage = 0;
+    this.lastUpdate = false;//contains last update from serverr
 
     this.time = 0;//server time
 	this.startScene = function(){

@@ -12,9 +12,13 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
     }
 };
 gameRoom.updatePos = function(data){
-    if(data.t<this.lastPackage){
+    if(data.t<this.lastPackage){//if package came to late
         console.log("Some package came to late");
         debug.toLatePackage++;
+        return;
+    }
+    if(this.lastUpdate==false){//first update
+        this.lastUpdate = data;
         return;
     }
     this.time = data.t;
@@ -28,6 +32,7 @@ gameRoom.updatePos = function(data){
         tpl.vgX = cp.vgX;
         tpl.vY = cp.vY;
     }
+    this.lastUpdate = data;
 };
 gameRoom.getNewPlayer = function(data){//when new player comes in room
     console.log("new player in the room");
