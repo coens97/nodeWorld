@@ -18,15 +18,18 @@ gameRoom.updatePos = function(data){
         return;
     }
     if(this.lastUpdate==false){//first update
+        console.log("Have first update position");
         this.lastUpdate = data;
         return;
     }
-    this.time = data.t;
+    this.time = this.lastUpdate.t;
     this.lastPackage = data.t;
     this.lastTime = new Date().getTime();
     for(var name in data.pl){//loop trough players
         var cp = data.pl[name];//current player
+        var lp = this.lastUpdate.pl[name];//current player
         var tpl = this.players.ar[name];
+        
         tpl.x = cp.x;
         tpl.y = cp.y;
         tpl.vgX = cp.vgX;

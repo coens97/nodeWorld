@@ -39,7 +39,6 @@ gameRoom.keyPress = function(key){
 };
 gameRoom.keyUp = function(key){
 	delete this.keys[key];//remove from object
-	console.log("Released key:"+key);
     this.proccesInput();//check keyboard input
 };
 
