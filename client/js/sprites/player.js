@@ -22,7 +22,7 @@ tuxImg.onload = function() {
 };
 tuxImg.src = 'images/tux.png';
 
-function player(nickname,color,x,y,world,scene){
+function player(nickname,x,y,world,scene){
 	this.x = x;
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
@@ -40,7 +40,6 @@ function player(nickname,color,x,y,world,scene){
 	this.frame = 1;
 	this.sy = 0;//the row to draw of tux.png
 
-	this.color = color;
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
 		var y = this.y + scene.map.y;

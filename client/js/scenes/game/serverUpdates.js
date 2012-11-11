@@ -3,13 +3,15 @@
 **************/
 gameRoom.onGetAllPlayers = function(data){//when you just got in room
     console.log("get all players");
+    console.log(data);
     this.players.ar = {};
     for(var name in data.players){//loop trough players
         var cp = data.players[name];//current player
-        this.players.ar[name] = new player(name,cp.color,cp.x,cp.y,gameWorld,this);
+        this.players.ar[name] = new player(name,cp.x,cp.y,gameWorld,this);
         this.players.ar[name].vgX = cp.vgX;
         this.players.ar[name].vgY = cp.vY;
     }
+    console.log(this.players.ar);
 };
 gameRoom.updatePos = function(data){
     if(data.t<this.lastPackage){//if package came to late
@@ -46,12 +48,12 @@ gameRoom.updatePos = function(data){
 gameRoom.getNewPlayer = function(data){//when new player comes in room
     console.log("new player in the room");
     console.log(data);
-    this.players.ar[data.nickname] = new player(data.nickname,data.info.color,data.info.x,data.info.y,gameWorld,this);
-    gR.log.push(data.nickname+" joined the room");
+    this.players.ar[data.nickname] = new player(data.nickname,data.info.x,data.info.y,gameWorld,this);
+    this.log.push(data.nickname+" joined the room");
 };
 gameRoom.getDeletePlayer = function(data){
-    delete gR.players.ar[data];
-    gR.log.push(data+" disconnected");
+    delete this.players.ar[data];
+    this.log.push(data+" disconnected");
 };
 //create callback
 socket.on("getAllPlayers",function(data){gameRoom.onGetAllPlayers(data);});

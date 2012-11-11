@@ -34,12 +34,12 @@ this.gameRoom = function(parent){
 	this.playerInfo = function(playerName){
 		var pl = gameRoom.pl[playerName];
 		return {color:pl.color,
-			x:pl.x , 
-			y:pl.y ,
-			w:pl.w ,
-			h:pl.h ,
-			gX:pl.vgX,
-			vY:pl.vY
+			"x":pl.x , 
+			"y":pl.y ,
+			"w":pl.w ,
+			"h":pl.h ,
+			"vgX":pl.vgX,
+			"vY":pl.vY
 			};
 	};
 	this.sendAllPlayers = function(player){//for players who just started the game, get the coordinates of all the players
