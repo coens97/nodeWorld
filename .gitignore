@@ -2,3 +2,5 @@
 Thumbs.db
 #don't upload the node modules to
 node_modules/
+#log file
+log.txt
