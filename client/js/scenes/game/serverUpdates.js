@@ -22,19 +22,20 @@ gameRoom.updatePos = function(data){
         this.lastUpdate = data;
         return;
     }
-    this.time = this.lastUpdate.t;
-    this.lastPackage = data.t;
-    this.lastTime = new Date().getTime();
+    this.time = data.t;
     for(var name in data.pl){//loop trough players
         var cp = data.pl[name];//current player
-        var lp = this.lastUpdate.pl[name];//current player
+        var lp = this.lastUpdate.pl[name];//current player from last update
         var tpl = this.players.ar[name];
-        
-        tpl.x = cp.x;
+
+        tpl.des.x = cp.x;
+        tpl.x = lp.x;
         tpl.y = cp.y;
         tpl.vgX = cp.vgX;
         tpl.vY = cp.vY;
     }
+    this.lastPackage = data.t;
+    this.lastTime = new Date().getTime();
     this.lastUpdate = data;
 };
 gameRoom.getNewPlayer = function(data){//when new player comes in room

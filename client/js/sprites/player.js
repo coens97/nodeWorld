@@ -27,6 +27,12 @@ function player(nickname,color,x,y,world,scene){
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
+	this.des = {//destination
+		"pos" : {
+			"x" : x,
+			"y" : y
+		}
+	};
 	this.vY = 0;
 	this.onGround = 0;
 	this.nickname = nickname;
@@ -140,6 +146,13 @@ function player(nickname,color,x,y,world,scene){
 	this.loop = function(){
 		this.vY +=1;//gravity
 		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
+
+		//when is set to stop at a x pos
+		if(((this.x<this.des.x&&this.x+this.vX>this.des.x)||(this.x>this.des.x&&this.x+this.vX<this.des.x))){
+			this.vX = 0;//stop horizontaly moving
+			this.x = this.des.x;//put it to destination x
+			this.vgX = 0;
+		}
 		//collision
 		this.checkCollision();
 		//move player
