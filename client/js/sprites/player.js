@@ -28,6 +28,7 @@ function player(nickname,color,x,y,world,scene){
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
 	this.des = {//destination
+		"stop":false,//when player stop moving
 		"pos" : {
 			"x" : x,
 			"y" : y
@@ -148,10 +149,12 @@ function player(nickname,color,x,y,world,scene){
 		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
 
 		//when is set to stop at a x pos
-		if(((this.x<this.des.x&&this.x+this.vX>this.des.x)||(this.x>this.des.x&&this.x+this.vX<this.des.x))){
+		if(this.stop&&((this.x<this.des.x&&this.x+this.vX>this.des.x)||(this.x>this.des.x&&this.x+this.vX<this.des.x))){
 			this.vX = 0;//stop horizontaly moving
 			this.x = this.des.x;//put it to destination x
 			this.vgX = 0;
+			this.des.stop = true;
+			alert("stopped player");
 		}
 		//collision
 		this.checkCollision();

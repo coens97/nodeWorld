@@ -25,10 +25,15 @@ gameRoom.updatePos = function(data){
     this.time = data.t;
     for(var name in data.pl){//loop trough players
         var cp = data.pl[name];//current player
-        var lp = this.lastUpdate.pl[name];//current player from last update
+        var lp = this.lastUpdate.pl[name]||cp;//current player from last update
         var tpl = this.players.ar[name];
 
-        tpl.des.x = cp.x;
+        if(lp.vgX!=0&&cp.vgX){//when player stopped horizontaly moving
+            tpl.des.x = cp.x;
+            tpl.des.stop = true;
+        }else{
+            tpl.des.stop = false;
+        }
         tpl.x = lp.x;
         tpl.y = cp.y;
         tpl.vgX = cp.vgX;
