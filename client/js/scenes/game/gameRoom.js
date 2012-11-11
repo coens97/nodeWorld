@@ -19,8 +19,10 @@ var gameRoom = new function(){
     this.lastUpdate = false;//contains last update from serverr
 
     this.time = 0;//server time
+    this.player;
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
+        gui.add(gameRoom.player, 'eX').listen();//playerspeed
 	};
 	this.stopScene = function(){
 

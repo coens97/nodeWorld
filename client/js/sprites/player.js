@@ -27,6 +27,7 @@ function player(nickname,x,y,world,scene){
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
+	this.eX = 1;
 	this.des = {//destination
 		"stop":false,//when player stop moving
 		"pos" : {
@@ -145,7 +146,7 @@ function player(nickname,x,y,world,scene){
 	};
 	this.loop = function(){
 		this.vY +=1;//gravity
-		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
+		this.vX = this.eX ;//if the a or w is pressed in
 
 		//when is set to stop at a x pos
 		if(this.stop&&((this.x<this.des.x&&this.x+this.vX>this.des.x)||(this.x>this.des.x&&this.x+this.vX<this.des.x))){

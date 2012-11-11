@@ -39,5 +39,5 @@ gPing.add(debug, 'latency').listen();
 gui.add(debug, 'stats').onChange(function(value){
 	stats.domElement.style.display = (value)?"block":"none";
 });
-gui.add(game.scenes[6], 'time').listen();//game time
+gui.add(gameRoom, 'time').listen();//game time
 gui.add(debug, 'toLatePackage').listen();//packages who came to late
