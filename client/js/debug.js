@@ -41,4 +41,5 @@ gui.add(debug, 'stats').onChange(function(value){
 });
 gui.add(gameRoom, 'time').listen();//game time
 gui.add(debug, 'toLatePackage').listen();//packages who came to late
-gui.add(gameRoom, 'udt').listen();//game time
+gui.add(gameRoom, 'udt').listen();//delta server time
+gui.add(gameRoom, 'rdt').listen();//delta receive time

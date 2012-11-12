@@ -44,6 +44,7 @@ gameRoom.updatePos = function(data){
     this.time = data.t;
     this.lastPackage = this.lastUpdate.t;
     this.udt = data.t - this.lastUpdate.t;
+    this.rdt = new Date().getTime() - this.lastTime;
     this.lastTime = new Date().getTime();
     this.lastUpdate = data;
 };

@@ -16,7 +16,8 @@ var gameRoom = new function(){
     this.dt = 0;//delta time 
     this.lastTime = new Date().getTime();//last frame
     this.lastPackage = 0;
-    this.udt = 0;//delta update time
+    this.udt = 0;//delta update time from server loop
+    this.rdt = 0;
     this.lastUpdate = false;//contains last update from serverr
 
 
