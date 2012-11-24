@@ -57,9 +57,9 @@ this.player = function(color,x,y,world,scene){
 			ox = [fx-1,fx,fx+1];
 		}
 		if((this.y+this.vY)%world.tileheight==0){//if horizontaly on grid
-			oy = [fy-1,fy];
+			oy = [fy-2,fy-1,fy,fy+1];
 		}else{
-			oy = [fy-1,fy,fy+1];
+			oy = [fy-2,fy-1,fy,fy+1,fy+2];
 		}
 		//console.log("x"+x+" y"+y);//for debuging
 		return {x:ox,y:oy};
@@ -67,15 +67,15 @@ this.player = function(color,x,y,world,scene){
 	this.checkCollision = function(){
 		var b = this.getCor("y");
 		//check for moving down
-		if(this.vY>0&&this.areSolidY(b.x,b.y[2])){//if moving down and something solid under it
+		if(this.vY>0&&this.areSolidY(b.x,b.y[4])){//if moving down and something solid under it
 			this.vY = 0;
-			for(var ty = b.y[1];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
-			this.y = world.tileheight*ty;
+			for(var ty = b.y[3];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
+			this.y = world.tileheight*(ty-1);
 		}
 		//check for moving up
 		if(this.vY<0&&this.areSolidY(b.x,b.y[0])){
 			this.vY = 0;
-			this.y = world.tileheight*b.y[2];
+			this.y = world.tileheight*b.y[3];
 		}
 		
 		b = this.getCor("x");

@@ -15,12 +15,12 @@ function checkCol(inp){//check if solid
 }
 
 /*load tux image*/
-var tuxImg = new Image();
+var trollImg = new Image();
 
-tuxImg.onload = function() {
-	console.log("Tux loaded");
+trollImg.onload = function() {
+	console.log("Troll loaded");
 };
-tuxImg.src = 'images/tux.png';
+trollImg.src = 'images/troll.png';
 
 function player(nickname,x,y,world,scene){
 	this.x = x;
@@ -39,7 +39,7 @@ function player(nickname,x,y,world,scene){
 	this.onGround = 0;
 	this.nickname = nickname;
 	this.frame = 1;
-	this.sy = 0;//the row to draw of tux.png
+	this.dir = true;//the row to draw of tux.png
 
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
@@ -49,28 +49,39 @@ function player(nickname,x,y,world,scene){
 		ctx.fillStyle = "#000000";
 		ctx.textAlign = "center"; 
 		ctx.font = "bold 16px sans-serif";
-    	ctx.fillText(this.nickname, x, y-56);
+    	ctx.fillText(this.nickname, x, y-96);
 		//draw tux
 		if(frameCounter.frame%3==0){//go to the next frame of image
 			this.frame++;
-			if(this.frame>5){
+			if(this.frame>4){
 				this.frame = 0;
 			}
 		}
+		ctx.save();//save draw state because of transform
 		//horizontal moving
 		if(this.vgX<0){//if moving left
-			this.sy = 0;//first row of tux.png
+			this.dir = true;
 		}else if(this.vgX>0){
-			this.sy = 1;//second row of tux.png
+			this.dir = false;
 		}else{
-			this.frame = 1;//when not moving keep animation still
+			this.frame = 0;//when not moving keep animation still
 		}
+
+		if(this.dir){
+			ctx.translate(x+32, y-64);
+			ctx.scale(-1, 1);//flip image
+		}else{
+			ctx.translate(x-32, y-64);
+		}
+
 		//vertical moving
 		if(this.onGround!=0){//if jumping
-			ctx.drawImage(tuxImg, this.sy*48, 128, 48, 64, x-24, y-32, 48, 64);
+			ctx.drawImage(trollImg, 4*64, 0, 64, 128, 0, 0, 64, 128);
 		}else{//when not jumping
-			ctx.drawImage(tuxImg, this.frame*48, this.sy * 64, 48, 64, x-24, y-32, 48, 64);
+			ctx.drawImage(trollImg, this.frame*64, 0, 64, 128, 0, 0, 64, 128);
 		}
+		ctx.restore();//restore canvas setting
+		
 	};
 	//collision stuff
 	this.isSolid = function(x,y){
@@ -107,10 +118,10 @@ function player(nickname,x,y,world,scene){
 		}else{
 			ox = [fx-1,fx,fx+1];
 		}
-		if((this.y+this.vY)%world.tileheight==0){//if horizontaly on grid
-			oy = [fy-1,fy];
+		if((this.y+this.vY)%world.tileheight==0){//if verticly on grid
+			oy = [fy-2,fy-1,fy,fy+1];
 		}else{
-			oy = [fy-1,fy,fy+1];
+			oy = [fy-2,fy-1,fy,fy+1,fy+2];
 		}
 		//console.log("x"+x+" y"+y);//for debuging
 		return {x:ox,y:oy};
@@ -118,10 +129,10 @@ function player(nickname,x,y,world,scene){
 	this.checkCollision = function(){
 		var b = this.getCor("y");
 		//check for moving down
-		if(this.vY>0&&this.areSolidY(b.x,b.y[2])){//if moving down and something solid under it
+		if(this.vY>0&&this.areSolidY(b.x,b.y[4])){//if moving down and something solid under it
 			this.vY = 0;
-			for(var ty = b.y[1];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
-			this.y = world.tileheight*ty;
+			for(var ty = b.y[3];this.areSolidY(b.x,ty);ty--);//this will probably 0 iteration, its just to check
+			this.y = world.tileheight*(ty-1);
 			this.onGround = 0;
 		}else if(this.onGround==0){//if there is nothing under it and not in jump state
 			this.onGround = 1;
@@ -129,7 +140,7 @@ function player(nickname,x,y,world,scene){
 		//check for moving up
 		if(this.vY<0&&this.areSolidY(b.x,b.y[0])){
 			this.vY = 0;
-			this.y = world.tileheight*b.y[2];
+			this.y = world.tileheight*b.y[3];
 		}
 		
 		b = this.getCor("x");
