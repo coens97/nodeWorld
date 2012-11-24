@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="128" height="72" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
+  <image source="grass.png" width="224" height="192"/>
+ </tileset>
+ <layer name="Tilelaag 1" width="128" height="72">
+  <data encoding="base64" compression="zlib">
+   eJztnWuP1SAQhomuRrPeEldN1GTr//+Tnn44SU9TYO7MwLwJX/ZSKE8ZhmFKS0ml/OvdrXwglG/Mer8S633PrDf1qE+38qZR3lZ+/pFZ73On3lrdn5n1ph71/VZ+A8rfosv/D7AdL8x6LUW1rdq2l6KznfiFaO9V+VnGjmvq/IOZn3q2lVq4Y48iqJ2gFutxDZl/KOX4HEP51+ZYT/xnE5b/P+DfUfhHGP+zyXr8Q/0biP+V/Pk68pdkU+PP9W+O10r+fB35S7Kx4A/xvUesEbwI4tsf1x/R+KeP0BZ2bk/+cyn5J//kv66Sf/Kfjf+XAruXrST/O/+twPrsB7M+C/7YZ5q7P2Ox/661P3beW9K2lRL8e32BvSdq6cXCJPdpentK5z1nrdIbK71nXoK/9v6a1324lqL0iYX9T/lV8l9byX9tJf+1lfzXVvJfWxD+3BiTJ0nkzs6Un3CMzdb4Q+JxUd5tkcidixKfhsQoa7kkO39o3mikOQLC/6nz+yj8MftuO2tO/i+UPzZuLm1XPI5/rT7hMMTGL6Gx16s2td4hkLYrHvlr9YkWQ45Gt2nnz8mZ3vd1pPmP7pMZBLWhu7/DsSn7WIXuT0fxiWcQZq7j8p/NJ55BGBvKsZ9W9aRSqVQq5V3cXMiZ4unS4u5XWKxBuLmQUeKpI9SLV1nmvFJVWzO9luTfU49/hDVmb80sme9PsXet+Uv6ethSy52/j50Z+EsWSn+02id9PQ/3a61zf3DPLJGe7+7t24pM/2rm/p99qYj8vbVZevxryntfXsl7m5O/rs7v/3prc2T+lrmZVL929HmpPUXmT107UdY1Un6t9z6N2lZtBlJ+rYeY1FGt8ym85b7PyqAlrbMWejEWjn31FJ+PLst4inXxNr94lPZZCrX9qa3oxqqi2eFZFcn/S8kr+a+t5P8oSX87Qm5PdP6S3wPa1yOS/naE3I7o/CW/B7Lfb/JP/lLXw8ZPRswX3uJ/WHtOPV9zu/gZhz/2W2AW9gJ7BgLl+fX4jrqX8T+av8U5nBrvKCf/dZX811byX1sr88esFyLtnWJialbn5Y/mvwm0NYq4ffrK/H+P/CXaGkWR+jRKW73lZrUE/QbS6LLz9/Ltil6OBjc3C+M/cPfEruZ07dwSD7EMKWnYJMz8Mbr+1aVhkzDP+uj6LfUfb8pm7g==
+  </data>
+ </layer>
+</map>
