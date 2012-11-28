@@ -37,9 +37,9 @@ gameRoom.updatePos = function(data){
         }
         tpl.eX = Math.round((cp.x-tpl.x)/6);
         //tpl.x = lp.x;
-        tpl.y = cp.y;
+        //tpl.y = cp.y;
         tpl.vgX = cp.vgX;
-        tpl.vY = cp.vY;
+        tpl.vY = Math.round((cp.y-tpl.y)/6) + cp.vY;
     }
     this.time = data.t;
     this.lastPackage = this.lastUpdate.t;
