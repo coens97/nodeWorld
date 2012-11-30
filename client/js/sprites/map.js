@@ -14,7 +14,6 @@ function map(world){
 		}
 	};	
 	this.draw = function(){
-		ctx.save();
 		for(var l = 0;l<world.layers.length;l++){//loop trough layers
 			var layer = world.layers[l];
 			var c = 0;
@@ -41,7 +40,6 @@ function map(world){
 				}
 			}
 		}
-		ctx.restore();
 	};
 	this.loadTiles();
 }
