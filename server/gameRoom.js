@@ -63,7 +63,7 @@ this.gameRoom = function(parent){
 		var p = this;
 
 		gameRoom.players[player.nickname] = player;//add player to list
-		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",704,360,gameWorld,gameRoom);//add player
+		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",796,460,gameWorld,gameRoom);//add player
 
 		var gP = gameRoom.pl[player.nickname];
 

@@ -175,7 +175,7 @@ function player(nickname,x,y,world,scene){
         if(world.tileheight*world.height+720<this.y){
             this.y = 0;
             this.vy = 0;
-            this.x = 640;
+            this.x = 700;
         }
 	};
 }
