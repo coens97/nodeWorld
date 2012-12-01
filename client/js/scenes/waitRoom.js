@@ -1,19 +1,21 @@
 function waitRoom(){
     this.sprites = {
-        bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),
-        bg1: new vGrad({0:"#7d7e7d",1:"#2B2B2B"},0,0,1280,100),
-        rightSide : new vGrad({0:"#353535",0.1:"#565656",0.9:"#565656",1:"#353535"},940,100,380,620),
+        bg : new vGrad({0:"#939393",0.1:"#DDDDDD",0.9:"#DDDDDD",1:"#939393"},0,0,1280,720),//background
+        bg1: new vGrad({0:"#7d7e7d",1:"#2B2B2B"},0,0,1280,100),//top side
+        rightSide : new vGrad({0:"#353535",0.1:"#565656",0.9:"#565656",1:"#353535"},940,100,380,620),//rigt side
         title : new text("#FFFFFF","Waiting for other players",80,0),
         back : new button("back",25,620,260,80),
         playerTitle : new text("#FFFFFF","Players",960,102),
         playerCount : new text("#FFFFFF", 1,1148,102),
-        players : new objectAr(),
+        players : new objectAr(),//list of players
         ready : new button(" ready",660,620,260,80),
         nameT : new text("#000000","Name:",40,120),
         name : new text("#000000","Name",200,120),
         checkboxes : new objectAr(),
         pSpeedT : new text("#000000","Player speed:",40,170),
-        pSpeed : new text("#000000","0",370,170)
+        pSpeed : new text("#000000","0",370,170),
+        //trolsBg : new objectAr(),//listof bg for trols
+        trols : new objectAr()//listof characters to choose from
     };
     //change font sizes
     this.sprites.title.font = "66pt Arial";
@@ -23,6 +25,14 @@ function waitRoom(){
     this.sprites.nameT.font = "40pt Arial";
     this.sprites.pSpeedT.font = "40pt Arial";
     this.sprites.pSpeed.font = "40pt Arial";
+
+    //initialise trolls
+    for (var i = 0; i < 2; i++) {
+        //this.sprites.trolsBg.ar[i] = new roundRect("#dddddd",90+i*148, 290, 84, 148, 10);  
+        this.sprites.trols.ar[i] = new pImage(trollImg, 100+i*148,300, 64, 128, 0, i, 64, 128);      
+     }
+
+
 	this.startScene = function(){
 	this.speed = 0;
 	};
