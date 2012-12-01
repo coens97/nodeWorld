@@ -13,14 +13,13 @@ function checkCol(inp){//check if solid
 	}
 }
 
-this.player = function(color,x,y,world,scene){
+this.player = function(x,y,world,scene){
 	this.x = x;
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
 	this.vY = 0;
 
-	this.color = color;
 	//collision stuff
 	this.isSolid = function(x,y){
 		if(x>0&&y>0&&x<world.width&&y<world.height){//if player is in room

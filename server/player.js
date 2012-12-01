@@ -5,4 +5,5 @@ this.player = function(socket){
 	this.state = 0;
 	this.socket = socket;
 	this.room;
+	this.type = 1;
 }

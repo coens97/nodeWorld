@@ -32,8 +32,10 @@ this.gameRoom = function(parent){
 			player.socket.emit('startGame',true);//let it play
 	};
 	this.playerInfo = function(playerName){
-		var pl = gameRoom.pl[playerName];
-		return {color:pl.color,
+		var pl = gameRoom.pl[playerName],
+			player = gameRoom.players[playerName];
+		return {
+			"type": player.type,
 			"x":pl.x , 
 			"y":pl.y ,
 			"w":pl.w ,
@@ -63,7 +65,7 @@ this.gameRoom = function(parent){
 		var p = this;
 
 		gameRoom.players[player.nickname] = player;//add player to list
-		gameRoom.pl[player.nickname] = new sPlayer.player("#59E01B",796,460,gameWorld,gameRoom);//add player
+		gameRoom.pl[player.nickname] = new sPlayer.player(796,460,gameWorld,gameRoom);//add player
 
 		var gP = gameRoom.pl[player.nickname];
 

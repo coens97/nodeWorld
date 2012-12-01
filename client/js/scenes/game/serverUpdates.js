@@ -8,6 +8,7 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
     for(var name in data.players){//loop trough players
         var cp = data.players[name];//current player
         this.players.ar[name] = new player(name,cp.x,cp.y,gameWorld,this);
+        this.players.ar[name].type = cp.type*128;
         this.players.ar[name].vgX = cp.vgX;
         this.players.ar[name].vgY = cp.vY;
     }

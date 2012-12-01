@@ -23,6 +23,7 @@ trollImg.onload = function() {
 trollImg.src = 'images/troll.png';
 
 function player(nickname,x,y,world,scene){
+	this.type = 0;
 	this.x = x;
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
@@ -80,9 +81,9 @@ function player(nickname,x,y,world,scene){
 
 		//vertical moving
 		if(this.onGround!=0){//if jumping
-			ctx.drawImage(trollImg, 4*64, 0, 64, 128, 0, 0, 64, 128);
+			ctx.drawImage(trollImg, 4*64, this.type, 64, 128, 0, 0, 64, 128);
 		}else{//when not jumping
-			ctx.drawImage(trollImg, this.frame*64, 0, 64, 128, 0, 0, 64, 128);
+			ctx.drawImage(trollImg, this.frame*64, this.type, 64, 128, 0, 0, 64, 128);
 		}
 		ctx.restore();//restore canvas setting
 		

@@ -44,7 +44,7 @@ function waitRoom(){
         if(this.sprites.back.checkMouse(x,y)){//when host game button is pressed
         	socket.emit('leaveRoom',true);
         }else if(this.sprites.ready.checkMouse(x,y)){
-        	socket.emit('roomReady',true);
+        	socket.emit('roomReady',{"type":0});
         }
     };
     this.keyDown = function(key){

@@ -5,6 +5,7 @@ this.waitingRoom = function(parent){
 		this.roomReady = function(data){//when player press ready
 			console.log(player.nickname+" is ready to play the game");
 			player.ready = true;
+			player.type = data.type||0;
 			wait.broadcastRooms();
 			if(parent.state==0){//if game hasnt start yeu
 				wait.checkReady();
