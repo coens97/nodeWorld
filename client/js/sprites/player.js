@@ -45,6 +45,10 @@ function player(nickname,x,y,world,scene){
 		var x =  this.x + scene.map.x;
 		var y = this.y + scene.map.y;
 		
+		if(x>1312||x<-32||y<-64||y>784){//if player out of view don't draw it
+			return;
+		}
+
 		//draw players name
 		ctx.fillStyle = "#000000";
 		ctx.textAlign = "center"; 
