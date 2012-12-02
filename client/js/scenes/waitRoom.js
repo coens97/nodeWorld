@@ -8,12 +8,13 @@ function waitRoom(){
         playerTitle : new text("#FFFFFF","Players",960,102),
         playerCount : new text("#FFFFFF", 1,1148,102),
         players : new objectAr(),
-        ready : new button(" ready",660,620,260,80),
         nameT : new text("#000000","Name:",40,120),
         name : new text("#000000","Name",200,120),
         checkboxes : new objectAr(),
         pSpeedT : new text("#000000","Player speed:",40,170),
-        pSpeed : new text("#000000","0",370,170)
+        pSpeed : new text("#000000","0",370,170),
+        trolsBg : new objectArr(),//listof bg for trols
+        trols : new objectArr()//listof characters to choose from
     };
     //change font sizes
     this.sprites.title.font = "66pt Arial";
@@ -23,6 +24,13 @@ function waitRoom(){
     this.sprites.nameT.font = "40pt Arial";
     this.sprites.pSpeedT.font = "40pt Arial";
     this.sprites.pSpeed.font = "40pt Arial";
+
+    //initialise trolls
+    for (var i = 0; i < 2; i++) {
+        this.sprites.trolsBg.ar.push(new roundRect("#B8B8B8",90+i*148, 290, 84, 148, 10));  
+        this.sprites.trols.ar[i] = new pImage(trollImg, 100+i*148,300, 64, 128, 0, i, 64, 128);      
+     }
+
 	this.startScene = function(){
 	this.speed = 0;
 	};
@@ -43,8 +51,12 @@ function waitRoom(){
     this.mouseDown = function(x,y){
         if(this.sprites.back.checkMouse(x,y)){//when host game button is pressed
         	socket.emit('leaveRoom',true);
-        }else if(this.sprites.ready.checkMouse(x,y)){
-        	socket.emit('roomReady',{"type":0});
+        }else{
+            for (var i = this.sprites.trolsBg.ar.length - 1; i >= 0; i--) {//check clicking on trols
+                if(this.sprites.trolsBg.ar[i].checkMouse(x,y)){//if clicked on one
+                    socket.emit('roomReady',{"type":i});
+                }
+            } 
         }
     };
     this.keyDown = function(key){
