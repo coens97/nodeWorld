@@ -18,3 +18,10 @@ We love open source software
 * node.js - for game server(http and websocket)
 * GIMP - for graphics
 * tiled - map editing
+* chrome/firefox - for debuging and gaming of course
+* ubuntu and debian/linux - best os and use raspberry pi for running my server 
+* git - is awesome when I screw up and for sharing my code
+
+## Node.js packages
+* express - for http server
+* socket.io - for websocket server
