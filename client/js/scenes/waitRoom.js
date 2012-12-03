@@ -34,6 +34,7 @@ function waitRoom(){
 
 	this.startScene = function(){
 	this.speed = 0;
+    this.chosen = null;
 	};
 	this.stopScene = function(){
 		
@@ -56,6 +57,11 @@ function waitRoom(){
             for (var i = this.sprites.trolsBg.ar.length - 1; i >= 0; i--) {//check clicking on trols
                 if(this.sprites.trolsBg.ar[i].checkMouse(x,y)){//if clicked on one
                     socket.emit('roomReady',{"type":i});
+                    if(this.chosen!=null){//if already chose one
+                        this.sprites.trolsBg.ar[this.chosen].color = "#B8B8B8";
+                    }
+                    this.chosen = i;
+                    this.sprites.trolsBg.ar[i].color = "#FFFFFF";
                 }
             } 
         }
