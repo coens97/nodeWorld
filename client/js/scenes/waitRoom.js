@@ -13,6 +13,7 @@ function waitRoom(){
         checkboxes : new objectAr(),
         pSpeedT : new text("#000000","Player speed:",40,170),
         pSpeed : new text("#000000","0",370,170),
+        choose : new text("#000000","Choose one",40,260),
         trolsBg : new objectArr(),//listof bg for trols
         trols : new objectArr()//listof characters to choose from
     };
@@ -27,8 +28,8 @@ function waitRoom(){
 
     //initialise trolls
     for (var i = 0; i < 2; i++) {
-        this.sprites.trolsBg.ar.push(new roundRect("#B8B8B8",90+i*148, 290, 84, 148, 10));  
-        this.sprites.trols.ar[i] = new pImage(trollImg, 100+i*148,300, 64, 128, 0, i, 64, 128);      
+        this.sprites.trolsBg.ar.push(new roundRect("#B8B8B8",90+i*148, 320, 84, 148, 10));  
+        this.sprites.trols.ar[i] = new pImage(trollImg, 100+i*148,330, 64, 128, 0, i, 64, 128);      
      }
 
 	this.startScene = function(){
