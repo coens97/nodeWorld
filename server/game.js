@@ -23,6 +23,7 @@ this.newConnection = function(socket){
 			console.log("Nickname already used");
 			socket.emit("go",0);
 		}else{
+			console.log("ip-info, nickname:"+data+" ip:"+socket.handshake.address.address+" port:"+socket.handshake.address.port);
 			players[data] = new player.player(socket);
 			this.player = players[data];
 			this.player.state = 1;
