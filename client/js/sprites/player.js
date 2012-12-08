@@ -88,14 +88,20 @@ function player(nickname,x,y,world,scene){
 		}else{
 			ctx.translate(x-32, y-64);
 		}
-		//vertical moving
+		//draw pivot
 		if(this.onGround!=0){//if jumping
 			ctx.drawImage(pivotImg, 4*64, 0, 64, 128, 0, 0, 64, 128);
 		}else{//when not jumping
 			ctx.drawImage(pivotImg, this.frame*64, 0, 64, 128, 0, 0, 64, 128);
 		}
 		ctx.drawImage(trollImg, 0, this.type, 64, 64, 0, 0, 64, 64);//draw face
-		//ctx.drawImage(gunsImg, 0, this.gun*64, 72, 48, 40, 40, 72, 48);//draw gun
+		//draw arm
+		ctx.lineWidth = 3;
+		ctx.beginPath();
+		ctx.moveTo(44,70);
+		ctx.lineTo(64,76);
+		ctx.stroke();
+		ctx.drawImage(gunsImg, 0, this.gun*64, 72, 48, 60, 45, 62, 48);//draw gun
 		ctx.restore();//restore canvas setting
 		
 	};
