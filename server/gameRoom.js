@@ -22,7 +22,7 @@ this.gameRoom = function(parent){
 		this.sendStartAll();//will send to all players in room the players coordinates
 	};
 	this.sendStartAll = function(){
-		console.log("send to all players");
+		console.log(now()+"send to all players");
 		for(var playerName in gameRoom.players){//loop trough all players in game
 			this.sendStart(gameRoom.players[playerName]);
 		}
@@ -76,7 +76,7 @@ this.gameRoom = function(parent){
 		this.getInput = function(data){//when geting input from player
 			var pdt = (gameRoom.time+(new Date().getTime() - gameRoom.lastTime)) - data.t;
 			if(pdt>1000){//the lag is to much
-				console.log("Damn "+player.nickname+" has to much lag");
+				console.log(now()+"Damn "+player.nickname+" has to much lag");
 			}
 			gP.vY = data.vY;
 			gP.vgX = data.vgX;

@@ -22,14 +22,14 @@ this.room = function(name,speed){
 		room.waitingRoom.broadcastRooms();
 	};
 	this.disconnect = function(nickname){
-		console.log(nickname+" left the room "+ this.name);
+		console.log(now()+nickname+" left the room "+ this.name);
 		delete this.players[nickname].room;
 		delete this.players[nickname];
 		this.gameRoom.disconnect(nickname);
 		this.waitingRoom.broadcastRooms();
 	};
 	this.startGames = function(){//when the game hasnt started yet and want to send evryone its ready
-		console.log("Everyone is ready in "+room.name+" let's start the game");
+		console.log(now()+"Everyone is ready in "+room.name+" let's start the game");
 		for(var cPlayer in room.players){
 			this.startGame(room.players[cPlayer]);
 		}

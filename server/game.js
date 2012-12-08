@@ -13,17 +13,17 @@ this.newConnection = function(socket){
 	this.player;
 	this.nickname = function(data){
 		if(typeof(this.nickname)!='undefined'){//check if he already has a nickname
-			console.log("Ehm something went wrong because he already has a nickname");
+			console.log(now()+"Ehm something went wrong because he already has a nickname");
 			socket.emit("go",1);//just let him trough without changing nickname
 			room.sendRooms(socket);
 			return;
 		}
-		console.log("Nickname:"+data);
+		console.log(now()+"Nickname:"+data);
 		if(typeof(players[data])!='undefined'){
-			console.log("Nickname already used");
+			console.log(now()+"Nickname already used");
 			socket.emit("go",0);
 		}else{
-			console.log("ip-info, nickname:"+data+" ip:"+socket.handshake.address.address+" port:"+socket.handshake.address.port);
+			console.log(now()+"ip-info, nickname:"+data+" ip:"+socket.handshake.address.address+" port:"+socket.handshake.address.port);
 			players[data] = new player.player(socket);
 			this.player = players[data];
 			this.player.state = 1;
@@ -37,7 +37,7 @@ this.newConnection = function(socket){
 	
 	/**debuging**/
 	socket.on('echo', function (data) {
-		console.log("Echo:"+data);
+		console.log(now()+"Echo:"+data);
 		socket.emit('echo','Echo:'+data);
 	});
 	socket.on('ping', function(data){
@@ -50,14 +50,14 @@ this.newConnection = function(socket){
 	};
 	this.disconnected = function(){//when someone disconnected
 		stats.connections--;	
-		console.log("Somebody disconnected "+stats.connections);
+		console.log(now()+"Somebody disconnected "+stats.connections);
 		socket.broadcast.emit("playerCount",stats.connections);
 		//check if in room
 		if(typeof(this.nickname)!='undefined'&&typeof(this.player.room)!='undefined'){
 			var theRoom = this.player.room;
 			this.player.room.disconnect(this.nickname);//remove player from scene
 			if(Object.keys(theRoom.players).length == 0){//if there are no players in scene
-				console.log(theRoom.name + " room is empty, going to remove it now");
+				console.log(now()+theRoom.name + " room is empty, going to remove it now");
 				room.rooms[theRoom.name].stopGame();
 				delete room.rooms[theRoom.name];
 			}
@@ -69,12 +69,12 @@ this.newConnection = function(socket){
 	this.hostGame = function(data){//when somebody host a game
 		if(this.player.state==1){
 			if(typeof(room.rooms[data.name])!='undefined'){//check if room already excist
-				console.log(this.nickname+" tries to create a game with a name("+data.name+") that's already used");
+				console.log(now()+this.nickname+" tries to create a game with a name("+data.name+") that's already used");
 				socket.emit('hostGame',0);
 				return;
 			}
-			console.log(this.nickname+" tries to host a game");
-			console.log("Room:"+data.name);
+			console.log(now()+this.nickname+" tries to host a game");
+			console.log(now()+"Room:"+data.name);
 			
 			room.rooms[data.name] = new room.room(data.name,data.speed);//create the room
 			room.rooms[data.name].addPlayer(this.nickname,players[this.nickname]);//add player to scene
@@ -83,7 +83,7 @@ this.newConnection = function(socket){
 			//send to the other client this room is available
 			emitRooms();
 		}else{//ehm he did something wrong because the state should be one
-			console.log("Ehm"+this.nickname+"with state "+this.player.state+"tries to host a game");
+			console.log(now()+"Ehm"+this.nickname+"with state "+this.player.state+"tries to host a game");
 			socket.emit('hostGame',0);
 		}
 	};
@@ -92,7 +92,7 @@ this.newConnection = function(socket){
 		this.player.room.disconnect(this.nickname);//leave room
 		this.player.state = 1;
 		if(Object.keys(theRoom.players).length == 0){//if there are no players in scene
-			console.log(theRoom.name + " room is empty, going to remove it now");
+			console.log(now()+theRoom.name + " room is empty, going to remove it now");
 			room.rooms[theRoom.name].stopGame();
 			delete room.rooms[theRoom.name];
 		}
@@ -100,7 +100,7 @@ this.newConnection = function(socket){
 		emitRooms();//the count of number of room have changed
 	};	
 	this.toRoom = function(data){
-		console.log(this.nickname+" wants to join "+data);
+		console.log(now()+this.nickname+" wants to join "+data);
 		room.rooms[data].addPlayer(this.nickname,players[this.nickname]);//add player to scene
 		socket.emit('toRoom',1);
 		emitRooms();//because the number of players have changed
@@ -110,7 +110,7 @@ this.newConnection = function(socket){
 	socket.on('hostGame',this.hostGame);
 	socket.on('toRoom',this.toRoom);
 	//on new connection
-	console.log("New connection "+ ++stats.connections);//also add 1 connection to the count 
+	console.log(now()+"New connection "+ ++stats.connections);//also add 1 connection to the count 
 	socket.broadcast.emit("playerCount",stats.connections);
 	this.playerCount();
 }

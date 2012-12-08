@@ -30,3 +30,4 @@ io.sockets.on('connection', function (socket) {
 	game.newConnection(socket);
 });
 
+console.log(now()+"Server started");

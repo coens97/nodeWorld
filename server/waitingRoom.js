@@ -3,7 +3,7 @@ this.waitingRoom = function(parent){
 	/*udates client*/
 	this.addPlayer = function(socket,player){
 		this.roomReady = function(data){//when player press ready
-			console.log(player.nickname+" is ready to play the game");
+			console.log(now()+player.nickname+" is ready to play the game");
 			player.ready = true;
 			player.type = data.type||0;
 			wait.broadcastRooms();
