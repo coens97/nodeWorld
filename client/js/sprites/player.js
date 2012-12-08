@@ -79,7 +79,7 @@ function player(nickname,x,y,world,scene){
 		}else if(this.vgX>0){
 			this.dir = false;
 		}else{
-			this.frame = 0;//when not moving keep animation still
+			this.frame = 5;//when not moving keep animation still
 		}
 
 		if(this.dir){
