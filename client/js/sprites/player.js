@@ -14,13 +14,17 @@ function checkCol(inp){//check if solid
 	}
 }
 
-/*load tux image*/
+/*load troll image*/
 var trollImg = new Image();
-
 trollImg.onload = function() {
 	console.log("Troll loaded");
 };
 trollImg.src = 'images/troll.png';
+var gunsImg = new Image();
+gunsImg.onload = function() {
+	console.log("Guns loaded");
+};
+gunsImg.src = 'images/guns.png';
 
 function player(nickname,x,y,world,scene){
 	this.type = 0;
@@ -41,6 +45,7 @@ function player(nickname,x,y,world,scene){
 	this.nickname = nickname;
 	this.frame = 1;
 	this.dir = true;//the row to draw of tux.png
+	this.gun = 0;
 
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
@@ -85,6 +90,7 @@ function player(nickname,x,y,world,scene){
 		}else{//when not jumping
 			ctx.drawImage(trollImg, this.frame*64, this.type, 64, 128, 0, 0, 64, 128);
 		}
+		//ctx.drawImage(gunsImg, 0, this.gun*64, 72, 48, 40, 40, 72, 48);
 		ctx.restore();//restore canvas setting
 		
 	};
