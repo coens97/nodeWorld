@@ -25,6 +25,11 @@ gunsImg.onload = function() {
 	console.log("Guns loaded");
 };
 gunsImg.src = 'images/guns.png';
+var pivotImg = new Image();
+pivotImg.onload = function() {
+	console.log("Guns loaded");
+};
+pivotImg.src = 'images/pivot.png';
 
 function player(nickname,x,y,world,scene){
 	this.type = 0;
@@ -83,14 +88,14 @@ function player(nickname,x,y,world,scene){
 		}else{
 			ctx.translate(x-32, y-64);
 		}
-
 		//vertical moving
 		if(this.onGround!=0){//if jumping
-			ctx.drawImage(trollImg, 4*64, this.type, 64, 128, 0, 0, 64, 128);
+			ctx.drawImage(pivotImg, 4*64, 0, 64, 128, 0, 0, 64, 128);
 		}else{//when not jumping
-			ctx.drawImage(trollImg, this.frame*64, this.type, 64, 128, 0, 0, 64, 128);
+			ctx.drawImage(pivotImg, this.frame*64, 0, 64, 128, 0, 0, 64, 128);
 		}
-		//ctx.drawImage(gunsImg, 0, this.gun*64, 72, 48, 40, 40, 72, 48);
+		ctx.drawImage(trollImg, 0, this.type, 64, 64, 0, 0, 64, 64);//draw face
+		//ctx.drawImage(gunsImg, 0, this.gun*64, 72, 48, 40, 40, 72, 48);//draw gun
 		ctx.restore();//restore canvas setting
 		
 	};

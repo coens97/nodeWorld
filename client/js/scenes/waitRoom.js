@@ -28,8 +28,8 @@ function waitRoom(){
 
     //initialise trolls
     for (var i = 0; i < 9; i++) {
-        this.sprites.trolsBg.ar.push(new roundRect("#B8B8B8",30+i*100, 320, 84, 148, 10));  
-        this.sprites.trols.ar[i] = new pImage(trollImg, 40+i*100,330, 64, 128, 0, i, 64, 128);      
+        this.sprites.trolsBg.ar.push(new roundRect("#B8B8B8",30+i*100, 320, 84, 84, 10));  
+        this.sprites.trols.ar[i] = new pImage(trollImg, 40+i*100,330, 64, 64, 0, i, 64, 64);      
      }
 
 	this.startScene = function(){
