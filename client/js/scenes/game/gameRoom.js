@@ -51,7 +51,10 @@ var gameRoom = new function(){
         gameRoom.lastTime = new Date().getTime();
         gameRoom.time += gameRoom.dt;
         
-		this.players.loop();//move circle
+        //rotate gun
+        this.player.rot = Math.atan2(mouse.x-(this.player.x + this.map.x),(this.player.y + this.map.y)-mouse.y)-Math.PI/2;
+
+		this.players.loop();//move players
         this.checkView();
     };
     this.draw = function(){

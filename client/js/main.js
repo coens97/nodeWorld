@@ -78,7 +78,12 @@ function onMainClick(e){
     var tmpY = (e.pageY - c.offsetTop)*scale;
     game.mouseDown(tmpX,tmpY);
 }
+var mouse = {"x":1280,"y":360};
+function onMouseMove(e){
+    mouse.x = (e.pageX - c.offsetLeft)*scale;
+    mouse.y = (e.pageY - c.offsetTop)*scale;
 
+}
 var keyDown = function(event){
     var keycode = event.charCode || event.keyCode;
     game.keyDown(keycode);
@@ -97,6 +102,7 @@ function init(){
         document.getElementById("bup").style.display = 'block';
 	}else{
 		c.addEventListener("click", onMainClick, false);
+        document.body.addEventListener("mousemove", onMouseMove, false);
 	}
     //gameInterval = self.setInterval(function(){mainLoop();},1000/60);//call mainGameLoop() every 16 ms
     mainLoop();

@@ -51,6 +51,7 @@ function player(nickname,x,y,world,scene){
 	this.frame = 1;
 	this.dir = true;//the row to draw of tux.png
 	this.gun = 0;
+	this.rot = 0;//rotation of gun
 
 	this.draw = function(){
 		var x =  this.x + scene.map.x;
@@ -96,12 +97,14 @@ function player(nickname,x,y,world,scene){
 		}
 		ctx.drawImage(trollImg, 0, this.type, 64, 64, 0, 0, 64, 64);//draw face
 		//draw arm
+		ctx.translate(44,70);
+		this.dir?ctx.rotate(Math.PI-this.rot):ctx.rotate(this.rot);
 		ctx.lineWidth = 3;
 		ctx.beginPath();
-		ctx.moveTo(44,70);
-		ctx.lineTo(64,76);
+		ctx.moveTo(0,0);
+		ctx.lineTo(20,0);
 		ctx.stroke();
-		ctx.drawImage(gunsImg, 0, this.gun*64, 72, 48, 60, 45, 62, 48);//draw gun
+		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 4, -25, 72, 48);//draw gun
 		ctx.restore();//restore canvas setting
 		
 	};
