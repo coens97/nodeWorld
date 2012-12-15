@@ -37,7 +37,7 @@ function player(nickname,x,y,world,scene){
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
-	this.eX = 1;
+	this.eX = 0;
 	this.des = {//destination
 		"stop":false,//when player stop moving
 		"pos" : {
@@ -189,7 +189,7 @@ function player(nickname,x,y,world,scene){
 			this.vX = 0;//stop horizontaly moving
 			this.x = this.des.x;//put it to destination x
 			this.vgX = 0;
-			this.des.stop = true;
+			this.des.stop = false;
 			alert("stopped player");
 		}
 		//collision

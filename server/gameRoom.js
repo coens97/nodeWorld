@@ -73,15 +73,14 @@ this.gameRoom = function(parent){
 			this.sendStart(player);
 			gameRoom.sendNewPlayers(player.nickname);
 		}
-		this.getInput = function(data){//when geting input from player
-			var pdt = (gameRoom.time+(new Date().getTime() - gameRoom.lastTime)) - data.t;
-			if(pdt>1000){//the lag is to much
-				console.log(now()+"Damn "+player.nickname+" has to much lag");
-			}
-			gP.vY = data.vY;
-			gP.vgX = data.vgX;
+		this.updates = function(data){//when geting input from player
+			//TODO:should totaly check if not cheating
+			gP.x = data.pos.x;
+			gP.y = data.pos.y;
+			gP.vY = data.pos.vY;
+			gP.vgX = data.pos.vgX;
 		};
-		player.socket.on("changedInput",this.getInput);
+		player.socket.on("updates",this.updates);
 		
 	};
 	this.disconnect = function(nickname){

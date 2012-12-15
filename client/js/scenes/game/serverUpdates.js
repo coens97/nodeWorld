@@ -26,6 +26,9 @@ gameRoom.updatePos = function(data){
         return;
     }
     for(var name in data.pl){//loop trough players
+        if(name==theNickname){
+            continue;
+        }
         var cp = data.pl[name];//current player
         var lp = this.lastUpdate.pl[name]||cp;//current player from last update
         var tpl = this.players.ar[name];
@@ -59,6 +62,16 @@ gameRoom.getNewPlayer = function(data){//when new player comes in room
 gameRoom.getDeletePlayer = function(data){
     delete this.players.ar[data];
     this.log.push(data+" disconnected");
+};
+gameRoom.sendUpdates = function(){//verzend updates naar server
+    var upd = {};
+    upd.pos = {
+        "x":this.player.x,
+        "y":this.player.y,
+        "vY":this.player.vY,
+        "vgX":this.player.vgX
+    };
+    socket.emit("updates",upd);
 };
 //create callback
 socket.on("getAllPlayers",function(data){gameRoom.onGetAllPlayers(data);});

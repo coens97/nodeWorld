@@ -25,7 +25,6 @@ var gameRoom = new function(){
     this.player;
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
-        gui.add(gameRoom.player, 'eX').listen();//playerspeed
 	};
 	this.stopScene = function(){
 
@@ -45,14 +44,29 @@ var gameRoom = new function(){
 			this.map.y = 260 - this.player.y;
 		}
 	};
+    this.input = function(){
+        if(def(this.keys[68])&&!def(this.keys[65])){//when d is pressed
+            this.player.vgX =1;
+            this.player.eX = this.speed;
+        }else if(def(this.keys[65])&&!def(this.keys[68])){//when a is pressed
+            this.player.vgX = -1;
+            this.player.eX = -this.speed;
+        }else{
+            this.player.vgX = 0;
+            this.player.eX = 0;
+        }
+    },
     this.loop = function(){
         //update time
         gameRoom.dt = new Date().getTime() - gameRoom.lastTime;
         gameRoom.lastTime = new Date().getTime();
         gameRoom.time += gameRoom.dt;
         
+        this.input()
         //rotate gun
         this.player.rot = Math.atan2(mouse.x-(this.player.x + this.map.x),(this.player.y + this.map.y)-mouse.y)-Math.PI/2;
+
+        (frameCounter.frame%3==0)&&this.sendUpdates();
 
 		this.players.loop();//move players
         this.checkView();
