@@ -44,6 +44,7 @@ gameRoom.updatePos = function(data){
         //tpl.y = cp.y;
         tpl.vgX = cp.vgX;
         tpl.vY = Math.round((cp.y-tpl.y)/6) + cp.vY;
+	tpl.rot = cp.rot;
     }
     this.time = data.t;
     this.lastPackage = this.lastUpdate.t;
@@ -69,7 +70,8 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
         "x":this.player.x,
         "y":this.player.y,
         "vY":this.player.vY,
-        "vgX":this.player.vgX
+        "vgX":this.player.vgX,
+	"rot":this.player.rot
     };
     socket.emit("updates",upd);
 };

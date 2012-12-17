@@ -79,6 +79,7 @@ this.gameRoom = function(parent){
 			gP.y = data.pos.y;
 			gP.vY = data.pos.vY;
 			gP.vgX = data.pos.vgX;
+			gP.rot = data.pos.rot;
 		};
 		player.socket.on("updates",this.updates);
 		
@@ -118,7 +119,8 @@ this.gameRoom = function(parent){
 				"x":tpl.x,
 				"y":tpl.y,
 				"vgX":tpl.vgX,
-				"vY":tpl.vY
+				"vY":tpl.vY,
+				"rot":tpl.rot
 			};
 		}
 		for(var ob in gameRoom.players){//loop trough all players to send it
