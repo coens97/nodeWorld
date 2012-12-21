@@ -37,7 +37,8 @@ requirejs([
     'game/sprites/player',
     'game/sprites/map',
     'game/sprites/log',
-    'game/sprites/score'
+    'game/sprites/score',
+    'game/sprites/cursor'
     ],function(){
         requirejs([
             /* load scenes */
@@ -82,8 +83,8 @@ function onMainClick(e){
 }
 var mouse = {"x":1280,"y":360};
 function onMouseMove(e){
-    mouse.x = (e.pageX - c.offsetLeft)*scale;
-    mouse.y = (e.pageY - c.offsetTop)*scale;
+    mouse.x = Math.round((e.pageX - c.offsetLeft)*scale);
+    mouse.y = Math.round((e.pageY - c.offsetTop)*scale);
 
 }
 var keyDown = function(event){

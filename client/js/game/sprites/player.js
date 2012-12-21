@@ -97,6 +97,7 @@ function player(nickname,x,y,world,scene){
 		}
 		ctx.drawImage(trollImg, 0, this.type, 64, 64, 0, 0, 64, 64);//draw face
 		//draw arm
+		ctx.strokeStyle = '#000000';
 		ctx.translate(44,70);
 		this.dir?ctx.rotate(Math.PI-this.rot):ctx.rotate(this.rot);
 		ctx.lineWidth = 3;

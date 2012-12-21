@@ -4,7 +4,8 @@ var gameRoom = new function(){
          map : new map(gameWorld),
          players : new objectAr(),
          log : new log(),
-         score : new score()
+         score : new score(),
+         cursor : new cursor()
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
@@ -26,9 +27,10 @@ var gameRoom = new function(){
     this.player;
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
+        document.body.style.cursor = "none";//hide cursor
 	};
 	this.stopScene = function(){
-
+        document.body.style.cursor = "default";//show cursor
 	};
 
     //let the view follow the player
