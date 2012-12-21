@@ -32,10 +32,11 @@ requirejs([
     /* put sprites here */
     'sprites/basic',
     'sprites/button',
-    'sprites/player',
     'map',
-    'sprites/map',
-    'sprites/log'
+
+    'game/sprites/player',
+    'game/sprites/map',
+    'game/sprites/log'
     ],function(){
         requirejs([
             /* load scenes */
@@ -45,12 +46,12 @@ requirejs([
 			'scenes/menu',
 			'scenes/hostGame',
 			'scenes/waitRoom',
-			'scenes/game/gameRoom'
+			'game/gameRoom'
 			],function(){
                 requirejs([
                     //requires of gameRoom
-                    'scenes/game/processInput',
-                    'scenes/game/serverUpdates',
+                    'game/processInput',
+                    'game/serverUpdates',
                     ],function(){
                     requirejs(['game'],function(){
                         requirejs(['debug'],function(){
