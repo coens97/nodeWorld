@@ -33,10 +33,11 @@ requirejs([
     'sprites/basic',
     'sprites/button',
     'map',
-
+    //game sprites
     'game/sprites/player',
     'game/sprites/map',
-    'game/sprites/log'
+    'game/sprites/log',
+    'game/sprites/score'
     ],function(){
         requirejs([
             /* load scenes */

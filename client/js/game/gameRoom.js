@@ -3,7 +3,8 @@ var gameRoom = new function(){
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
          players : new objectAr(),
-         log : new log()
+         log : new log(),
+         score : new score()
     };
     this.keys = {};//will save wich keys are down
     var gR = this;
