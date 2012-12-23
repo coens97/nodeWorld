@@ -4,7 +4,6 @@
 function cursor(){
 	this.draw = function(){
 		//draw cursor
-		ctx.strokeStyle = '#FF0000';
 		ctx.beginPath();
 		//line left
     	ctx.moveTo(mouse.x-50, mouse.y);
@@ -18,7 +17,9 @@ function cursor(){
     	//line down
     	ctx.moveTo(mouse.x, mouse.y+25);
     	ctx.lineTo(mouse.x, mouse.y+50);
-    	ctx.lineWidth = 4;
-      	ctx.stroke();
+        //draw it
+        ctx.strokeStyle = '#FF0000';
+        ctx.lineWidth = 4;
+        ctx.stroke();
 	};
 }

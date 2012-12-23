@@ -25,6 +25,12 @@ var gameRoom = new function(){
 
     this.time = 0;//server time
     this.player;
+
+    //playerinfo
+    this.health = 100;
+    this.ammo = 8;
+    this.reloadAmmo = 32;
+
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
         c.style.cursor = "none";//hide cursor
