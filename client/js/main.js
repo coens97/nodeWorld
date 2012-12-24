@@ -79,6 +79,8 @@ function mainLoop(){
 function onMainClick(e){
     var tmpX = (e.pageX - c.offsetLeft)*scale;
     var tmpY = (e.pageY - c.offsetTop)*scale;
+    mouse.x = tmpX;
+    mouse.y = tmpY;
     game.mouseDown(tmpX,tmpY);
 }
 var mouse = {"x":1280,"y":360};
@@ -100,6 +102,7 @@ function init(){
     //add eventlisteners for click or touch
     if (touch) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
+        c.addEventListener("touchmove", onMouseMove, false);
         document.getElementById("bleft").style.display = 'block';
         document.getElementById("bright").style.display = 'block';
         document.getElementById("bup").style.display = 'block';
