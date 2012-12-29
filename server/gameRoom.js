@@ -75,11 +75,12 @@ this.gameRoom = function(parent){
 		}
 		this.updates = function(data){//when geting input from player
 			//TODO:should totaly check if not cheating
-			gP.x = data.pos.x;
-			gP.y = data.pos.y;
-			gP.vY = data.pos.vY;
-			gP.vgX = data.pos.vgX;
-			gP.rot = data.pos.rot;
+			console.log(data.vgX);
+			gP.x = data.x || gP.x;
+			gP.y = data.y || gP.y;
+			gP.vY = data.vY || gP.vY;
+			gP.vgX = data.vgX || (data.vgX==0?0:gP.vgX);
+			gP.rot = data.rot || gP.rot;
 		};
 		player.socket.on("updates",this.updates);
 		

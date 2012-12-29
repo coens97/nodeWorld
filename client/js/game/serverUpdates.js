@@ -64,16 +64,30 @@ gameRoom.getDeletePlayer = function(data){
     delete this.players.ar[data];
     this.log.push(data+" disconnected");
 };
+
+gameRoom.lastSend = {};//saves last update
 gameRoom.sendUpdates = function(){//verzend updates naar server
-    var upd = {};
-    upd.pos = {
-        "x":this.player.x,
-        "y":this.player.y,
-        "vY":this.player.vY,
-        "vgX":this.player.vgX,
-	"rot":this.player.rot
+    //send data
+    var upd = {
+       "x":this.player.x,
+       "y":this.player.y,
+       "vY":this.player.vY,
+       "vgX":this.player.vgX,
+	   "rot":this.player.rot
     };
-    socket.emit("updates",upd);
+
+    //check if not resend all data to reduce bandwith
+    for(var name in upd){
+        if(upd[name]==this.lastSend[name]){
+                delete upd[name];//remove from send package
+        }
+    }
+
+    socket.emit("updates",upd);//send all data to server
+
+    for(var name in upd){//save last package
+        this.lastSend[name] = upd[name] || this.lastSend[name];
+    }
 };
 //create callback
 socket.on("getAllPlayers",function(data){gameRoom.onGetAllPlayers(data);});
