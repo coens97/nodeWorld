@@ -110,7 +110,9 @@ function init(){
 		c.addEventListener("click", onMainClick, false);
         document.body.addEventListener("mousemove", onMouseMove, false);
 	}
-    //gameInterval = self.setInterval(function(){mainLoop();},1000/60);//call mainGameLoop() every 16 ms
+    //disable rightclick contextmenu because keyboard events don't work anymore
+    document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
+    
     mainLoop();
     document.body.addEventListener("keydown",keyDown);
     document.body.addEventListener("keyup",keyUp);
