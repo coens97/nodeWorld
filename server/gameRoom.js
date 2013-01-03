@@ -75,7 +75,6 @@ this.gameRoom = function(parent){
 		}
 		this.updates = function(data){//when geting input from player
 			//TODO:should totaly check if not cheating
-			console.log(data.vgX);
 			gP.x = data.x || gP.x;
 			gP.y = data.y || gP.y;
 			gP.vY = data.vY || gP.vY;
