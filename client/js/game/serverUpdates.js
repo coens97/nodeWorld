@@ -26,25 +26,27 @@ gameRoom.updatePos = function(data){
         return;
     }
     for(var name in data.pl){//loop trough players
+
+        //if its the player who plays, stop
         if(name==theNickname){
             continue;
         }
+
         var cp = data.pl[name];//current player
-        var lp = this.lastUpdate.pl[name]||cp;//current player from last update
         var tpl = this.players.ar[name];
 
         if(cp.vgX==0){//when player stopped horizontaly moving
-            tpl.des.x = cp.x;
+            tpl.des.x = cp.x || tpl.x;
             tpl.des.stop = true;
-        }else{
-            tpl.des.stop = false;
-        }
-        tpl.eX = Math.round((cp.x-tpl.x)/6);
-        //tpl.x = lp.x;
-        //tpl.y = cp.y;
-        tpl.vgX = cp.vgX;
-        tpl.vY = Math.round((cp.y-tpl.y)/6) + cp.vY;
-	tpl.rot = cp.rot;
+        }else if(typeof(cp.vgX)!='undefined'){
+           tpl.des.stop = false;
+       }
+       (typeof(cp.x)!='undefined')&&(tpl.eX = Math.round((cp.x-tpl.x)/6));
+       //tpl.x = cp.x || (cp.x==0?0:tpl.x);
+       //tpl.y = cp.y || (cp.y==0?0:tpl.y);
+       tpl.vgX = cp.vgX || (cp.vgX==0?0:tpl.vgX);
+       (typeof(cp.vY)!='undefined'&&typeof(cp.y)!='undefined')&&(tpl.vY = Math.round((cp.y-tpl.y)/6) + cp.vY);
+	   tpl.rot = cp.rot || (cp.rot==0?0:tpl.rot);
     }
     this.time = data.t;
     this.lastPackage = this.lastUpdate.t;

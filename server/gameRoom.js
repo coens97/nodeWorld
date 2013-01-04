@@ -106,6 +106,8 @@ this.gameRoom = function(parent){
 		}
 
 	};
+
+	this.lastMessage = {};
 	this.sendUpdates = function(){
 		//console.log("Sending updates");
 		var message = {
@@ -123,8 +125,32 @@ this.gameRoom = function(parent){
 				"rot":tpl.rot
 			};
 		}
+
+		merge(gameRoom.lastMessage,message);
+		
 		for(var ob in gameRoom.players){//loop trough all players to send it
 			gameRoom.players[ob].socket.emit("updatePos",message);
 		}
 	};
+};
+
+var merge = function(destination, source) {
+  for (var property in source) {
+    if (source[property] && source[property].constructor &&
+     source[property].constructor === Object) {
+      destination[property] = destination[property] || {};
+    	arguments.callee(destination[property], source[property]);
+    	//check if object is empty
+    	if(Object.keys(source[property]).length === 0){
+    		delete source[property];
+    	}
+    } else {
+    	if(destination[property]==source[property]){
+    		delete source[property];
+    	}else{
+     		destination[property] = source[property];
+     	}
+    }
+  }
+  return destination;
 };

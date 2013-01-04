@@ -39,11 +39,8 @@ function player(nickname,x,y,world,scene){
 	this.vX = 0;
 	this.eX = 0;
 	this.des = {//destination
-		"stop":false,//when player stop moving
-		"pos" : {
-			"x" : x,
-			"y" : y
-		}
+		"stop":false,//when player stop movin
+		"x" : x,
 	};
 	this.vY = 0;
 	this.onGround = 0;
@@ -183,22 +180,22 @@ function player(nickname,x,y,world,scene){
 		}
 	};
 	this.loop = function(){
-		this.vY +=1;//gravity
-		this.vX = this.eX ;//if the a or w is pressed in
+		this.vY += Math.round(dif.d);//gravity
+		this.vX = Math.round(this.eX*dif.d);//if the a or w is pressed in
 
 		//when is set to stop at a x pos
-		if(this.stop&&((this.x<this.des.x&&this.x+this.vX>this.des.x)||(this.x>this.des.x&&this.x+this.vX<this.des.x))){
+		if(this.des.stop&&((this.x<=this.des.x&&this.x+this.vX>=this.des.x)||(this.x>=this.des.x&&this.x+this.vX<=this.des.x))){
 			this.vX = 0;//stop horizontaly moving
+			this.eX = 0;
 			this.x = this.des.x;//put it to destination x
 			this.vgX = 0;
 			this.des.stop = false;
-			alert("stopped player");
 		}
 		//collision
 		this.checkCollision();
 		//move player
-		this.x += Math.round(this.vX*dif.d);//movespeed * deltatime/(1000/60)//so it wil move smoothly on all machines
-		this.y += Math.round(this.vY*dif.d);//Math.round - canvas hates floating points
+		this.x += this.vX;//movespeed * deltatime/(1000/60)//so it wil move smoothly on all machines
+		this.y += this.vY;//Math.round - canvas hates floating points
         if(world.tileheight*world.height+720<this.y){
             this.y = 0;
             this.vy = 0;
