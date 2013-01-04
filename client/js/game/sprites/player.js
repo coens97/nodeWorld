@@ -49,7 +49,7 @@ function player(nickname,x,y,world,scene){
 	this.onGround = 0;
 	this.nickname = nickname;
 	this.frame = 1;
-	this.dir = true;//the row to draw of tux.png
+	this.dir = true;
 	this.gun = 0;
 	this.rot = 0;//rotation of gun
 
@@ -105,7 +105,8 @@ function player(nickname,x,y,world,scene){
 		ctx.moveTo(0,0);
 		ctx.lineTo(20,0);
 		ctx.stroke();
-		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 4, -25, 72, 48);//draw gun
+		//draw gun
+		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 4, -25, 72, 48);
 		ctx.restore();//restore canvas setting
 		
 	};

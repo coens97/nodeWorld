@@ -82,7 +82,12 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
                 delete upd[name];//remove from send package
         }
     }
-
+    //Stuff that can multiple times be the same
+    if(typeof(this.shot)!='undefined'){
+        upd.shot = this.shot;//send shoot information
+        delete this.shot;
+    }
+    //console.log(upd);
     socket.emit("updates",upd);//send all data to server
 
     for(var name in upd){//save last package

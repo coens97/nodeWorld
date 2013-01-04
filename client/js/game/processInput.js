@@ -1,6 +1,39 @@
 //mouse input
 gameRoom.mouseDown = function(x,y) {
+    //Player shoots
 
+    /***************************
+    calculate starting position of the starting point of the bullet
+    Calculate the point  where ther arm rotates around
+    var sX = this.map.x + this.player.x  + (this.player.dir?-12:12),
+        sY = this.map.y + this.player.y + 6;
+    
+    //Draw point where arm rotates
+    ctx.fillStyle = "#FFFF00";
+    ctx.beginPath();
+    ctx.arc(sX, sY, 2, 0, 2 * Math.PI, false);
+    ctx.fill();   
+    
+    //Calculate point where bullet comes out
+    sX += Math.cos(this.player.rot+(this.player.dir?0.1:-0.1)) * 60;
+    sY += Math.sin(this.player.rot+(this.player.dir?0.1:-0.1)) * 60;
+    
+    //Show point where bullets comes out
+    ctx.fillStyle = "#00FF00";
+    ctx.beginPath();
+    ctx.arc(sX, sY, 2, 0, 2 * Math.PI, false);
+    ctx.fill();   
+    ***************************/
+
+    var sX = this.map.x + this.player.x  + (this.player.dir?-12:12) +  Math.cos(this.player.rot+(this.player.dir?0.1:-0.1)) * 60,
+        sY = this.player.y + 70 + Math.sin(this.player.rot) * 48 + Math.sin(this.player.rot+(this.player.dir?0.1:-0.1)) * 60;
+
+    this.shot = {
+        "x": sX,
+        "y": sY,
+        "rot": this.player.rot
+    };  
+       
 };
 
 gameRoom.keyDown = function(key){

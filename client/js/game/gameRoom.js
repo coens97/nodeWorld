@@ -31,6 +31,8 @@ var gameRoom = new function(){
     this.ammo = 8;
     this.reloadAmmo = 32;
 
+    this.shot = null;
+
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
         c.style.cursor = "none";//hide cursor
