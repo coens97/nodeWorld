@@ -87,11 +87,17 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
         upd.shot = this.shot;//send shoot information
         delete this.shot;
     }
+
+    //check if update is empty
+    if(Object.keys(upd).length === 0){
+        return;//stop because it doesn't need to send anything
+    }
+
     //console.log(upd);
     socket.emit("updates",upd);//send all data to server
 
     for(var name in upd){//save last package
-        this.lastSend[name] = upd[name] || this.lastSend[name];
+        this.lastSend[name] = upd[name] || (upd[name]==0?0:this.lastSend[name]);//The trick wont work if the value is zero
     }
 };
 //create callback
