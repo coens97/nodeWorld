@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #This script will restart the server when it crashes
 import subprocess
