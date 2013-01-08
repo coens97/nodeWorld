@@ -51,7 +51,7 @@ function player(nickname,x,y,world,scene){
 	this.rot = 0;//rotation of gun
 
 	this.draw = function(){
-		var x =  this.x + scene.map.x;
+		var x = this.x + scene.map.x;
 		var y = this.y + scene.map.y;
 		
 		if(x>1312||x<-32||y<-64||y>784){//if player out of view don't draw it
@@ -96,7 +96,7 @@ function player(nickname,x,y,world,scene){
 		//draw arm
 		ctx.strokeStyle = '#000000';
 		ctx.translate(44,70);
-		this.dir?ctx.rotate(Math.PI-this.rot):ctx.rotate(this.rot);
+		this.dir?ctx.rotate(Math.PI-this.rot+0.1):ctx.rotate(this.rot+0.1);
 		ctx.lineWidth = 3;
 		ctx.beginPath();
 		ctx.moveTo(0,0);

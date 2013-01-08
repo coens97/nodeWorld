@@ -77,7 +77,7 @@ var gameRoom = new function(){
         
         this.input()
         //rotate gun
-        this.player.rot = Math.atan2(mouse.x-(this.player.x + this.map.x),(this.player.y + this.map.y)-mouse.y)-Math.PI/2;
+        this.player.rot = Math.atan2(mouse.x-(this.player.x + this.map.x + (this.player.dir?-12:12) ),(this.player.y + this.map.y+6)-mouse.y)-Math.PI/2;
 
         this.bullets.loop();//let bullets fly
 

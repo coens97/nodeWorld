@@ -25,8 +25,8 @@ gameRoom.mouseDown = function(x,y) {
     ctx.fill();   
     ***************************/
 
-    var sX = this.map.x + this.player.x  + (this.player.dir?-12:12) +  Math.cos(this.player.rot+(this.player.dir?0.1:-0.1)) * 60,
-        sY = this.player.y + 70 + Math.sin(this.player.rot) * 48 + Math.sin(this.player.rot+(this.player.dir?0.1:-0.1)) * 60;
+    var sX = this.player.x  + (this.player.dir?-12:12) + Math.cos(this.player.rot) * 60,
+        sY = this.player.y + 6 + Math.sin(this.player.rot) * 60;
 
     this.shot = {
         "x": sX,
