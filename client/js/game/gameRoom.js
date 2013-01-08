@@ -3,6 +3,7 @@ var gameRoom = new function(){
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
          players : new objectAr(),
+         bullets : new bullets(), 
          log : new log(),
          score : new score(),
          cursor : new cursor()
@@ -12,6 +13,7 @@ var gameRoom = new function(){
     //sprites
     this.map = this.sprites.map;
     this.players = this.sprites.players;
+    this.bullets = this.sprites.bullets;
     this.log = this.sprites.log;
     this.speed = 0;//player speed from server   
     /* time stuff */
@@ -20,7 +22,7 @@ var gameRoom = new function(){
     this.lastPackage = 0;
     this.udt = 0;//delta update time from server loop
     this.rdt = 0;
-    this.lastUpdate = false;//contains last update from serverr
+    this.lastUpdate = false;//contains last update from server
 
 
     this.time = 0;//server time
@@ -31,8 +33,6 @@ var gameRoom = new function(){
     this.ammo = 8;
     this.reloadAmmo = 32;
 
-	//save all shots
-	this.shots = [];
     this.shot = null;
 
 	this.startScene = function(){
@@ -78,6 +78,9 @@ var gameRoom = new function(){
         this.input()
         //rotate gun
         this.player.rot = Math.atan2(mouse.x-(this.player.x + this.map.x),(this.player.y + this.map.y)-mouse.y)-Math.PI/2;
+
+        this.bullets.loop();//let bullets fly
+
 
         (frameCounter.frame%3==0)&&this.sendUpdates();
 

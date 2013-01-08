@@ -15,7 +15,7 @@ this.gameRoom = function(parent){
 	this.time = 0;//server time
 
 	//shooting variables
-	//this.shots = [];//save shots
+	this.shots = [];//save shots
 
 	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
@@ -85,7 +85,7 @@ this.gameRoom = function(parent){
 			
 			//shooting
 			if(typeof(data.shot)!='undefined'){//when player shot
-				//gameRoom.shots.push(data.shot);		
+				gameRoom.shots.push(data.shot);		
 			}
 		};
 		player.socket.on("updates",this.updates);
@@ -137,7 +137,12 @@ this.gameRoom = function(parent){
 		merge(gameRoom.lastMessage,message);
 		
 		//add shots
-		//message.shots = gameRoom.shots;
+		if(gameRoom.shots.length!=0){
+			message.shots = gameRoom.shots;
+		}
+		//remove the shots
+		gameRoom.shots = [];//empty the array
+
 
 		for(var ob in gameRoom.players){//loop trough all players to send it
 			gameRoom.players[ob].socket.emit("updatePos",message);

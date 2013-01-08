@@ -49,7 +49,9 @@ gameRoom.updatePos = function(data){
 	   tpl.rot = cp.rot || (cp.rot==0?0:tpl.rot);
     }
 	//save shots
-	this.shots = data.shots || this.shots;//save shots when its send	
+	(typeof(data.shots)!='undefined')&&(this.bullets.add(data.shots));//save shots when its send	
+
+    console.log(data);
 
     this.time = data.t;
     this.lastPackage = this.lastUpdate.t;
