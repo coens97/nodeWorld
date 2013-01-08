@@ -31,6 +31,8 @@ var gameRoom = new function(){
     this.ammo = 8;
     this.reloadAmmo = 32;
 
+	//save all shots
+	this.shots = [];
     this.shot = null;
 
 	this.startScene = function(){

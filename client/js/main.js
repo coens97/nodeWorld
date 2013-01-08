@@ -38,7 +38,8 @@ requirejs([
     'game/sprites/map',
     'game/sprites/log',
     'game/sprites/score',
-    'game/sprites/cursor'
+    'game/sprites/cursor',
+	'game/sprites/bullet'
     ],function(){
         requirejs([
             /* load scenes */
