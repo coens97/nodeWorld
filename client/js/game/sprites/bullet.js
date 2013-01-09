@@ -18,10 +18,6 @@ function bullets(){
 		worldHeight = gameWorld.height*gameWorld.tileheight + 360;
 	this.loop = function(){
 		for (var i = this.shots.length - 1; i >= 0; i--) {
-			//move bullet
-			this.shots[i].x += Math.cos(this.shots[i].rot)*35;
-			this.shots[i].y += Math.sin(this.shots[i].rot)*35;
-
 			if(this.shots[i].x>worldWidth||this.shots[i].x<-360||this.shots[i].y<-360||this.shots[i].y>worldHeight){//remove bullet out of window
 				this.shots.splice(i,1);
 			}
@@ -39,6 +35,10 @@ function bullets(){
 
 			ctx.drawImage(bulletImg, 0, -4);//draw bullet
 			ctx.restore();
+
+			//move bullets
+			cg.x += Math.cos(cg.rot)*35;
+			cg.y += Math.sin(cg.rot)*35;
 		}
 	};
 }
