@@ -51,7 +51,7 @@ gameRoom.updatePos = function(data){
 	//save shots
 	(typeof(data.shots)!='undefined')&&(this.bullets.add(data.shots));//save shots when its send	
 
-    console.log(data);
+    //console.log(data);
 
     this.time = data.t;
     this.lastPackage = this.lastUpdate.t;

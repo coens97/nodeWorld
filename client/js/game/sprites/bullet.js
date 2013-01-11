@@ -17,8 +17,14 @@ function bullets(){
 	var worldWidth = gameWorld.width*gameWorld.tilewidth + 360,
 		worldHeight = gameWorld.height*gameWorld.tileheight + 360;
 	this.loop = function(){
-		for (var i = this.shots.length - 1; i >= 0; i--) {
-			if(this.shots[i].x>worldWidth||this.shots[i].x<-360||this.shots[i].y<-360||this.shots[i].y>worldHeight){//remove bullet out of window
+		//check if bullet need to disapear
+		for (var i = this.shots.length - 1; i >= 0; i--) {//loop trough all bullets
+			//remove bullets out of window
+			if(this.shots[i].x>worldWidth||this.shots[i].x<-360||this.shots[i].y<-360||this.shots[i].y>worldHeight){
+				this.shots.splice(i,1);
+			}
+			//Check collision with ground
+			if(gameRoom.player.isSolid(Math.round(this.shots[i].x/gameWorld.tilewidth),Math.round(this.shots[i].y/gameWorld.tileheight))){
 				this.shots.splice(i,1);
 			}
 		}
