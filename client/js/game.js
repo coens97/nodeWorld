@@ -60,6 +60,7 @@ var dif = {
     d : 1,
     loop : function(){
         this.t = new Date().getTime() - this.lastTime;
+	(this.t>30)&&(this.t=30);
         this.d = this.t/(1000/60)
         this.lastTime = new Date().getTime();
     }
