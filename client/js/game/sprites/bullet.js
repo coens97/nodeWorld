@@ -19,13 +19,21 @@ function bullets(){
 	this.loop = function(){
 		//check if bullet need to disapear
 		for (var i = this.shots.length - 1; i >= 0; i--) {//loop trough all bullets
+			var cS = this.shots[i];//current shot
 			//remove bullets out of window
-			if(this.shots[i].x>worldWidth||this.shots[i].x<-360||this.shots[i].y<-360||this.shots[i].y>worldHeight){
+			if(cS.x>worldWidth||cS.x<-360||cS.y<-360||cS.y>worldHeight){
 				this.shots.splice(i,1);
 			}
 			//Check collision with ground
-			if(gameRoom.player.isSolid(Math.round(this.shots[i].x/gameWorld.tilewidth),Math.round(this.shots[i].y/gameWorld.tileheight))){
+			if(gameRoom.player.isSolid(Math.round(cS.x/gameWorld.tilewidth),Math.round(cS.y/gameWorld.tileheight))){
 				this.shots.splice(i,1);
+			}
+			//check if bullet hit player
+			for(var name in gameRoom.players.ar){
+				var cP = gameRoom.players.ar[name];//current player
+				if(cS.x>cP.x-32&&cS.x<cP.x+32&&cS.y>cP.y-62&&cS.y<cP.y+64){
+					this.shots.splice(i,1);
+				}
 			}
 		}
 	};
@@ -43,8 +51,8 @@ function bullets(){
 			ctx.restore();
 
 			//move bullets
-			cg.x += Math.cos(cg.rot)*35;
-			cg.y += Math.sin(cg.rot)*35;
+			cg.x += Math.cos(cg.rot)*32;
+			cg.y += Math.sin(cg.rot)*32;
 		}
 	};
 }

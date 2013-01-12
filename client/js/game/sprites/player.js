@@ -100,10 +100,10 @@ function player(nickname,x,y,world,scene){
 		ctx.lineWidth = 3;
 		ctx.beginPath();
 		ctx.moveTo(0,0);
-		ctx.lineTo(20,0);
+		ctx.lineTo(24,0);
 		ctx.stroke();
 		//draw gun
-		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 4, -25, 72, 48);
+		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 8, -25, 72, 48);
 		ctx.restore();//restore canvas setting
 		
 	};
