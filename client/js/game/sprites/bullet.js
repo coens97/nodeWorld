@@ -51,8 +51,8 @@ function bullets(){
 			ctx.restore();
 
 			//move bullets
-			cg.x += Math.cos(cg.rot)*32;
-			cg.y += Math.sin(cg.rot)*32;
+			cg.x += Math.cos(cg.rot)*32*dif.d;
+			cg.y += Math.sin(cg.rot)*32*dif.d;
 		}
 	};
 }
