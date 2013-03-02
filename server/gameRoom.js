@@ -84,7 +84,8 @@ this.gameRoom = function(parent){
 			gP.rot = data.rot || gP.rot;
 			
 			//shooting
-			if(typeof(data.shot)!='undefined'){//when player shot
+			if(!!data.shot){//when player shot
+				data.shot.nickname = player.nickname;	
 				gameRoom.shots.push(data.shot);		
 			}
 		};
