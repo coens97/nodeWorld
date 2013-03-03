@@ -140,7 +140,6 @@ this.gameRoom = function(parent){
 				}
 			}
 		}
-		console.log(gameRoom.bullets);
 	};
 	this.gameLoop = function(){
 		//update time
