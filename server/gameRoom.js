@@ -2,6 +2,9 @@ var sPlayer = require('./sprites/player');
 var world = require('./map');
 var gameWorld = world.gameWorld;
 
+var worldWidth = gameWorld.width*gameWorld.tilewidth;
+var worldHeight = gameWorld.worldHeight*gameWorld.tileheight;
+
 this.gameRoom = function(parent){
 	var gameRoom = this;
 	this.players = {};//this will have the player with socket
@@ -15,7 +18,8 @@ this.gameRoom = function(parent){
 	this.time = 0;//server time
 
 	//shooting variables
-	this.shots = [];//save shots
+	this.shots = [];//current shots until they are send
+	this.bullets = [];//current bullets until they hit something
 
 	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
@@ -103,6 +107,41 @@ this.gameRoom = function(parent){
 		clearInterval(this.intervalG);
 		clearInterval(this.intervalU);
 	};
+
+	this.isSolid = function(x,y){
+		if(x>0&&y>0&&x<gameWorld.width&&y<gameWorld.height){//if player is in room
+			var cor = gameWorld.layers[0].data[y*gameWorld.layers[0].width+x];
+			return (typeof(cor)!='undefined'&&cor!=0);
+		}else{
+			return false;
+		}
+	};
+
+	this.checkBullets = function(){//check if bullet disapear
+		for (var i = gameRoom.bullets.length - 1; i >= 0; i--) {//loop trough all bullets
+			var cS = gameRoom.bullets[i];//current shot
+			cS.x += Math.cos(cS.rot)*32;
+			cS.y += Math.sin(cS.rot)*32;
+			
+			//remove bullets out of window
+			if(cS.x>worldWidth||cS.x<-360||cS.y<-360||cS.y>worldHeight){
+				gameRoom.bullets.splice(i,1);
+			}
+			//Check collision with ground
+			if(gameRoom.isSolid(Math.round(cS.x/gameWorld.tilewidth),Math.round(cS.y/gameWorld.tileheight))){
+				gameRoom.bullets.splice(i,1);
+			}
+			//check if bullet hit player
+			for(var name in gameRoom.pl){
+				var cP = gameRoom.pl[name];//current player
+				if(cS.x>cP.x-32&&cS.x<cP.x+32&&cS.y>cP.y-62&&cS.y<cP.y+64){
+					gameRoom.bullets.splice(i,1);
+					//Todo:Player hit someone
+				}
+			}
+		}
+		console.log(gameRoom.bullets);
+	};
 	this.gameLoop = function(){
 		//update time
 		gameRoom.dt = new Date().getTime() - gameRoom.lastTime;
@@ -112,6 +151,8 @@ this.gameRoom = function(parent){
 		for(var ob in gameRoom.pl){
 			gameRoom.pl[ob].loop();
 		}
+		gameRoom.checkBullets();
+
 
 	};
 
@@ -140,10 +181,10 @@ this.gameRoom = function(parent){
 		//add shots
 		if(gameRoom.shots.length!=0){
 			message.shots = gameRoom.shots;
+			gameRoom.bullets = gameRoom.bullets.concat(gameRoom.shots);
 		}
 		//remove the shots
 		gameRoom.shots = [];//empty the array
-
 
 		for(var ob in gameRoom.players){//loop trough all players to send it
 			gameRoom.players[ob].socket.emit("updatePos",message);
