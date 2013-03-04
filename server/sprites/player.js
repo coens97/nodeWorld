@@ -19,6 +19,8 @@ this.player = function(x,y,world,scene){
 	this.vgX = 0;//which move x is pressed
 	this.vX = 0;
 	this.vY = 0;
+	this.health = 100;
+	this.healthChanged = false;//if health chanched send to client
 
 	//collision stuff
 	this.isSolid = function(x,y){
@@ -90,6 +92,12 @@ this.player = function(x,y,world,scene){
 		}
 	};
 	this.loop = function(){
+		//regegain health
+		if(this.health!=100){//if health is not full
+			//this.health++;
+			(this.health>100)&&(this.health=100);//when health is more then 100
+		} 
+		//gravity
 		this.vY +=1;//gravity
 		this.vX = this.vgX*scene.speed ;//if the a or w is pressed in
 		//collision

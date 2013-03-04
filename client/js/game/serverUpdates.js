@@ -72,6 +72,10 @@ gameRoom.getDeletePlayer = function(data){
     this.log.push(data+" disconnected");
 };
 
+gameRoom.updateHealth = function(data){
+    gameRoom.health = data;
+};
+
 gameRoom.lastSend = {};//saves last update
 gameRoom.sendUpdates = function(){//verzend updates naar server
     //send data
@@ -107,8 +111,10 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
         this.lastSend[name] = upd[name] || (upd[name]==0?0:this.lastSend[name]);//The trick wont work if the value is zero
     }
 };
+
 //create callback
 socket.on("getAllPlayers",function(data){gameRoom.onGetAllPlayers(data);});
 socket.on("getNewPlayer",function(data){gameRoom.getNewPlayer(data);});
 socket.on("getDeletePlayer",function(data){gameRoom.getDeletePlayer(data);});
 socket.on("updatePos",function(data){gameRoom.updatePos(data);});
+socket.on("healthChanged",function(data){gameRoom.updateHealth(data);});

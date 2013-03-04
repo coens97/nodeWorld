@@ -22,7 +22,6 @@ var game = {
         this.scenes[this.currentScene].draw();
     },
     mouseDown : function(x,y){//resolution 1280 720
-        console.log("Mouse down x:"+x+"y:"+y);
 		this.scenes[this.currentScene].mouseDown(x,y);
     },
     keyDown : function(key){

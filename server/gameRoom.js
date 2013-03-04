@@ -137,6 +137,13 @@ this.gameRoom = function(parent){
 				if(cS.x>cP.x-32&&cS.x<cP.x+32&&cS.y>cP.y-62&&cS.y<cP.y+64){
 					gameRoom.bullets.splice(i,1);
 					//Todo:Player hit someone
+					cP.health -= 10;//set damage here
+					cP.healthChanged = true;
+					if(cP.health<=0){//when die
+						//TODO: Something when die
+						cP.health = 100;
+					}
+
 				}
 			}
 		}
@@ -186,6 +193,10 @@ this.gameRoom = function(parent){
 		gameRoom.shots = [];//empty the array
 
 		for(var ob in gameRoom.players){//loop trough all players to send it
+			if(gameRoom.pl[ob].healthChanged){//if players health chanched
+				gameRoom.players[ob].socket.emit("healthChanged", gameRoom.pl[ob].health);
+				gameRoom.pl[ob].healthChanged = false;
+			}
 			gameRoom.players[ob].socket.emit("updatePos",message);
 		}
 	};
