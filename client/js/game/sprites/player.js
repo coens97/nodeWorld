@@ -180,6 +180,12 @@ function player(nickname,x,y,world,scene){
 		}
 	};
 	this.loop = function(){
+		//regegain health
+		if(gameRoom.health!=100){//if health is not full
+			gameRoom.health+=0.1;
+			(gameRoom.health>100)&&(gameRoom.health=100);//when health is more then 100
+		} 
+
 		this.vY += Math.round(dif.d);//gravity
 		this.vX = Math.round(this.eX*dif.d);//if the a or w is pressed in
 

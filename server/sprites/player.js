@@ -94,7 +94,7 @@ this.player = function(x,y,world,scene){
 	this.loop = function(){
 		//regegain health
 		if(this.health!=100){//if health is not full
-			//this.health++;
+			this.health+=0.1;
 			(this.health>100)&&(this.health=100);//when health is more then 100
 		} 
 		//gravity
