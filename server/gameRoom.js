@@ -142,6 +142,13 @@ this.gameRoom = function(parent){
 					if(cP.health<=0){//when die
 						//TODO: Something when die
 						cP.health = 100;
+						//respawn
+						var respawnX = 700;
+						var respawnY = -32;
+						gameRoom.players[name].socket.emit("respawn",{"x":respawnX,"y":respawnY});
+						cP.x = respawnX;
+						cP.y = respawnY;
+						
 					}
 
 				}

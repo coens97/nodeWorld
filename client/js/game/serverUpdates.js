@@ -76,6 +76,10 @@ gameRoom.updateHealth = function(data){
     gameRoom.health = data;
 };
 
+gameRoom.respawn = function(data){
+	this.player.x = data.x;
+	this.player.y = data.y;
+};
 gameRoom.lastSend = {};//saves last update
 gameRoom.sendUpdates = function(){//verzend updates naar server
     //send data
@@ -118,3 +122,4 @@ socket.on("getNewPlayer",function(data){gameRoom.getNewPlayer(data);});
 socket.on("getDeletePlayer",function(data){gameRoom.getDeletePlayer(data);});
 socket.on("updatePos",function(data){gameRoom.updatePos(data);});
 socket.on("healthChanged",function(data){gameRoom.updateHealth(data);});
+socket.on("respawn",function(data){gameRoom.respawn(data);});
