@@ -41,9 +41,15 @@ gameRoom.updatePos = function(data){
         }else if(typeof(cp.vgX)!='undefined'){
            tpl.des.stop = false;
        }
+
+        if(tpl.x<cp.x-320||tpl.x>cp.x+320){
+            tpl.x = cp.x;
+        }
+        if(tpl.y<cp.y-320||tpl.y>cp.y+320){
+            tpl.y = cp.y;
+        }
+
        (typeof(cp.x)!='undefined')&&(tpl.eX = Math.round((cp.x-tpl.x)/6));
-       //tpl.x = cp.x || (cp.x==0?0:tpl.x);
-       //tpl.y = cp.y || (cp.y==0?0:tpl.y);
        tpl.vgX = cp.vgX || (cp.vgX==0?0:tpl.vgX);
        (typeof(cp.vY)!='undefined'&&typeof(cp.y)!='undefined')&&(tpl.vY = Math.round((cp.y-tpl.y)/6) + cp.vY);
 	   tpl.rot = cp.rot || (cp.rot==0?0:tpl.rot);

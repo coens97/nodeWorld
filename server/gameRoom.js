@@ -5,6 +5,8 @@ var gameWorld = world.gameWorld;
 var worldWidth = gameWorld.width*gameWorld.tilewidth;
 var worldHeight = gameWorld.worldHeight*gameWorld.tileheight;
 
+
+
 this.gameRoom = function(parent){
 	var gameRoom = this;
 	this.players = {};//this will have the player with socket
@@ -20,6 +22,17 @@ this.gameRoom = function(parent){
 	//shooting variables
 	this.shots = [];//current shots until they are send
 	this.bullets = [];//current bullets until they hit something
+
+	//after player died where will it respawn
+	this.respawnPoints = [
+		//X		Y
+		960,	448,
+		4800,	448,
+		5632,	1408,
+		5000,	2272,
+		800,	2272,
+		180,	1408	
+	];
 
 	this.speed = parseInt(parent.pSpeed);
 	this.startGame = function(){//after evryone is ready to play the game
@@ -117,6 +130,17 @@ this.gameRoom = function(parent){
 		}
 	};
 
+	this.respawn = function(name){//respawn player
+		var cP = gameRoom.pl[name];//current player
+		var randomNumber = 2*Math.round(Math.random()*((gameRoom.respawnPoints.length/2)-1));
+		var respawnX = gameRoom.respawnPoints[randomNumber];
+		var respawnY = gameRoom.respawnPoints[randomNumber+1];
+		gameRoom.players[name].socket.emit("respawn",{"x":respawnX,"y":respawnY});
+		cP.x = respawnX;
+		cP.y = respawnY;
+		console.log(randomNumber+" "+respawnX+" "+respawnY);
+	};
+
 	this.checkBullets = function(){//check if bullet disapear
 		for (var i = gameRoom.bullets.length - 1; i >= 0; i--) {//loop trough all bullets
 			var cS = gameRoom.bullets[i];//current shot
@@ -143,12 +167,7 @@ this.gameRoom = function(parent){
 						//TODO: Something when die
 						cP.health = 100;
 						//respawn
-						var respawnX = 700;
-						var respawnY = -32;
-						gameRoom.players[name].socket.emit("respawn",{"x":respawnX,"y":respawnY});
-						cP.x = respawnX;
-						cP.y = respawnY;
-						
+						gameRoom.respawn(name);						
 					}
 
 				}
