@@ -82,10 +82,10 @@ this.gameRoom = function(parent){
 	};
 	this.addPlayer = function(player){
 		var p = this;
-
 		gameRoom.players[player.nickname] = player;//add player to list
 		gameRoom.pl[player.nickname] = new sPlayer.player(796,460,gameWorld,gameRoom);//add player
 
+		gameRoom.respawn(player.nickname);//respawn player when it enter rooms so nor everybody spawn at the same place
 		var gP = gameRoom.pl[player.nickname];
 
 		if(parent.state==1){//if game is started
