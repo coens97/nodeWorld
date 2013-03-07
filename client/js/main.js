@@ -92,6 +92,9 @@ function onMouseMove(e){
 }
 var keyDown = function(event){
     var keycode = event.charCode || event.keyCode;
+    if (keycode == 9) {//disable tab button
+            event.preventDefault();
+    }
     game.keyDown(keycode);
 }
 var keyUp = function(event){
