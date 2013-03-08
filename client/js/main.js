@@ -8,8 +8,8 @@ var c = document.getElementById("myCanvas"),//canvas element
     stats;
 
 //if touchscreen
-if ('ontouchstart' in document.documentElement) {
-   // touch = true;
+if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
+    touch = true;
 }
 //requeestanimationframe
 window.requestAnimFrame = (function(){
