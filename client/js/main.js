@@ -78,17 +78,29 @@ function mainLoop(){
 }
 
 function onMainClick(e){
-    var tmpX = (e.pageX - c.offsetLeft)*scale;
-    var tmpY = (e.pageY - c.offsetTop)*scale;
+    var tmpX,
+        tmpY
+    //for touch screen
+    if(touch){
+        tmpX = (e.touches[0].pageX - c.offsetLeft)*scale;
+        tmpY = (e.touches[0].pageY - c.offsetTop)*scale;
+    }else{
+        tmpX = (e.pageX - c.offsetLeft)*scale;
+        tmpY = (e.pageY - c.offsetTop)*scale;
+    }
     mouse.x = tmpX;
     mouse.y = tmpY;
     game.mouseDown(tmpX,tmpY);
 }
 var mouse = {"x":1280,"y":360};
 function onMouseMove(e){
-    mouse.x = Math.round((e.pageX - c.offsetLeft)*scale);
-    mouse.y = Math.round((e.pageY - c.offsetTop)*scale);
-
+    if(touch){
+        mouse.x = (e.touches[0].pageX - c.offsetLeft)*scale;
+        mouse.y = (e.touches[0].pageY - c.offsetTop)*scale;
+    }else{
+        mouse.x = (e.pageX - c.offsetLeft)*scale;
+        mouse.y = (e.pageY - c.offsetTop)*scale;
+    }
 }
 var keyDown = function(event){
     var keycode = event.charCode || event.keyCode;
