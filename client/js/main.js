@@ -9,7 +9,7 @@ var c = document.getElementById("myCanvas"),//canvas element
 
 //if touchscreen
 if ('ontouchstart' in document.documentElement) {
-    touch = true;
+   // touch = true;
 }
 //requeestanimationframe
 window.requestAnimFrame = (function(){

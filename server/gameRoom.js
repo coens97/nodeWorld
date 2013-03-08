@@ -138,7 +138,6 @@ this.gameRoom = function(parent){
 		gameRoom.players[name].socket.emit("respawn",{"x":respawnX,"y":respawnY});
 		cP.x = respawnX;
 		cP.y = respawnY;
-		console.log(randomNumber+" "+respawnX+" "+respawnY);
 	};
 
 	this.checkBullets = function(){//check if bullet disapear
