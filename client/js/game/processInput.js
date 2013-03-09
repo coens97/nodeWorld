@@ -46,7 +46,10 @@ gameRoom.keyDown = function(key){
             this.player.vY = -20;
             this.player.onGround++;
         }
-    } 
+    }
+    if(key==9){//if TAB is pressed 
+        document.getElementById("scoreboard").style.display = "block";
+    }
 };
 gameRoom.keyPress = function(key){
     if(!def(this.keys[key])){
@@ -56,6 +59,9 @@ gameRoom.keyPress = function(key){
 };
 gameRoom.keyUp = function(key){
 	delete this.keys[key];//remove from object
+    if(key==9){//if TAB is pressed 
+        document.getElementById("scoreboard").style.display = "none";
+    }
 };
 
 if(touch){//for touchscreens

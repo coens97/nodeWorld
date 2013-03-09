@@ -191,6 +191,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
 	position:absolute;
 	overflow-y:auto;/* when the list is to long create scroll bar */
 	font-size:20pt;
+	opacity:0.8;
 
 	margin: 0 auto;
 	width: 400px;
@@ -211,9 +212,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
 #scoreboard table{
 	width:100%;
 }
+#scoreboard tbody td{
+	border-top: 1px solid #C2C2C2;	
+}
 #scoreboard td{
 	text-align:right;
-	border-top: 1px solid #C2C2C2;	
 }
 #scoreboard td:first-child{
 	text-align:left;

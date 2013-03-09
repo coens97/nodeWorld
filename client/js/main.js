@@ -158,8 +158,8 @@ function resizeCanvas(){//resize canvas to aspect ratio
    scoreb.style.top = list.style.top = tmpHeight/5+"px";
     list.style.left = c.offsetLeft + tmpWidth/24 + "px";
    list.style.width = tmpWidth*0.68 +"px";
-   scoreb.style.width = tmpWidth*0.4 +"px";
-   scoreb.style.left = windowWidth/2 - scoreb.offsetWidth/2 + "px";
+   scoreb.style.width =  tmpWidth*0.4 +"px";
+   scoreb.style.left = windowWidth/2 - tmpWidth*0.2 + "px";
    scoreb.style.height = list.style.height = tmpHeight*0.72 +"px";
    
 }
