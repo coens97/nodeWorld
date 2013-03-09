@@ -152,12 +152,15 @@ function resizeCanvas(){//resize canvas to aspect ratio
     }
     c.style.width = tmpWidth + "px";
     c.style.height = tmpHeight + "px";
-    /*resize the roomlist to*/
+    /*resize the roomlist and scoreboard to*/
    var list = document.getElementById("roomList");
-   list.style.top = tmpHeight/5+"px";
-   list.style.left = c.offsetLeft + tmpWidth/24 + "px";
+   var scoreb = document.getElementById("scoreboard");
+   scoreb.style.top = list.style.top = tmpHeight/5+"px";
+    list.style.left = c.offsetLeft + tmpWidth/24 + "px";
    list.style.width = tmpWidth*0.68 +"px";
-   list.style.height = tmpHeight*0.72 +"px";
+   scoreb.style.width = tmpWidth*0.4 +"px";
+   scoreb.style.left = windowWidth/2 - scoreb.offsetWidth/2 + "px";
+   scoreb.style.height = list.style.height = tmpHeight*0.72 +"px";
    
 }
 document.ontouchmove = function(e) {//when on device with touchscreen want to scroll
