@@ -38,6 +38,7 @@ requirejs([
     'game/sprites/map',
     'game/sprites/log',
     'game/sprites/score',
+    'game/sprites/scoreboard',
     'game/sprites/cursor',
 	'game/sprites/bullet'
     ],function(){

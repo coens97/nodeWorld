@@ -11,6 +11,7 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
         this.players.ar[name].type = cp.type*64;
         this.players.ar[name].vgX = cp.vgX;
         this.players.ar[name].vgY = cp.vY;
+        scoreBoard.addPlayer(name);
     }
     console.log(this.players.ar);
 };
@@ -72,6 +73,7 @@ gameRoom.getNewPlayer = function(data){//when new player comes in room
     this.players.ar[data.nickname] = new player(data.nickname,data.info.x,data.info.y,gameWorld,this);
     this.players.ar[data.nickname].type = data.info.type*64;
     this.log.push(data.nickname+" joined the room");
+    scoreBoard.addPlayer(data.nickname);
 };
 gameRoom.getDeletePlayer = function(data){
     delete this.players.ar[data];
