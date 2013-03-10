@@ -78,6 +78,7 @@ gameRoom.getNewPlayer = function(data){//when new player comes in room
 gameRoom.getDeletePlayer = function(data){
     delete this.players.ar[data];
     this.log.push(data+" disconnected");
+    scoreBoard.removePlayer(data);
 };
 
 gameRoom.updateHealth = function(data){
