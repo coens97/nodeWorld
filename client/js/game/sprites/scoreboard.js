@@ -3,7 +3,7 @@ var scoreBoard = {
 	cont:document.getElementById('score'),
 	addPlayer:function(name){
 		var row = this.cont.insertRow(this.cont.rows.length);
-		row.id = name;
+		row.id = "row"+name;
 
 		var cell1 = row.insertCell(0);
 		cell1.innerHTML = name;
@@ -15,7 +15,7 @@ var scoreBoard = {
 		cell2.innerHTML = "0";
 	},
 	removePlayer:function(name){
-		var row = document.getElementById(name);
+		var row = document.getElementById("row"+name);
    		row.parentNode.removeChild(row);
 	}
 };
