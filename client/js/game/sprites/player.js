@@ -50,6 +50,9 @@ function player(nickname,x,y,world,scene){
 	this.gun = 0;
 	this.rot = 0;//rotation of gun
 
+	this.kills = 0;
+	this.deaths = 0;
+	
 	this.draw = function(){
 		var x = this.x + scene.map.x;
 		var y = this.y + scene.map.y;

@@ -22,6 +22,9 @@ this.player = function(x,y,world,scene){
 	this.health = 100;
 	this.healthChanged = false;//if health chanched send to client
 
+	this.kills = 0;
+	this.deaths = 0;
+
 	//collision stuff
 	this.isSolid = function(x,y){
 		if(x>0&&y>0&&x<world.width&&y<world.height){//if player is in room
