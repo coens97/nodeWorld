@@ -166,7 +166,9 @@ this.gameRoom = function(parent){
 						//TODO: Something when die
 						cP.health = 100;
 						//respawn
-						gameRoom.respawn(name);						
+						gameRoom.respawn(name);				
+						cP.deaths++;
+						gameRoom.pl[cS.nickname].kills++;		
 					}
 
 				}
