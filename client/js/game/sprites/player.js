@@ -205,10 +205,5 @@ function player(nickname,x,y,world,scene){
 		//move player
 		this.x += this.vX;//movespeed * deltatime/(1000/60)//so it wil move smoothly on all machines
 		this.y += this.vY;//Math.round - canvas hates floating points
-        if(world.tileheight*world.height+720<this.y){
-            this.y = 0;
-            this.vy = 0;
-            this.x = 700;
-        }
 	};
 }

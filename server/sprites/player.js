@@ -13,7 +13,7 @@ function checkCol(inp){//check if solid
 	}
 }
 
-this.player = function(x,y,world,scene){
+this.player = function(x,y,world,scene,nickname){
 	this.x = x;
 	this.y = y;
 	this.vgX = 0;//which move x is pressed
@@ -109,9 +109,8 @@ this.player = function(x,y,world,scene){
 		this.x += this.vX;
 		this.y += this.vY;
         if(world.tileheight*world.height+720<this.y){
-            this.y = 0;
             this.vy = 0;
-            this.x = 700;
+            scene.respawn(nickname);
         }
 	};
 }

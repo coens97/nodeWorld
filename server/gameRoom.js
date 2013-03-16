@@ -35,6 +35,7 @@ this.gameRoom = function(parent){
 	];
 
 	this.speed = parseInt(parent.pSpeed);
+
 	this.startGame = function(){//after evryone is ready to play the game
 		this.intervalG = setInterval(this.gameLoop,1000/60);//60fps,16ms
 		this.intervalU = setInterval(this.sendUpdates,1000/20);
@@ -83,7 +84,7 @@ this.gameRoom = function(parent){
 	this.addPlayer = function(player){
 		var p = this;
 		gameRoom.players[player.nickname] = player;//add player to list
-		gameRoom.pl[player.nickname] = new sPlayer.player(796,460,gameWorld,gameRoom);//add player
+		gameRoom.pl[player.nickname] = new sPlayer.player(796,460,gameWorld,gameRoom,player.nickname);//add player
 
 		gameRoom.respawn(player.nickname);//respawn player when it enter rooms so nor everybody spawn at the same place
 		var gP = gameRoom.pl[player.nickname];
@@ -91,6 +92,7 @@ this.gameRoom = function(parent){
 		if(parent.state==1){//if game is started
 			this.sendStart(player);
 			gameRoom.sendNewPlayers(player.nickname);
+			player.socket.emit("updatePos",gameRoom.lastMessage);//send all the updates
 		}
 		this.updates = function(data){//when geting input from player
 			//TODO:should totaly check if not cheating
@@ -166,7 +168,8 @@ this.gameRoom = function(parent){
 						//TODO: Something when die
 						cP.health = 100;
 						//respawn
-						gameRoom.respawn(name);				
+						gameRoom.respawn(name);
+						//do leaderboard stuff				
 						cP.deaths++;
 						gameRoom.pl[cS.nickname].kills++;		
 					}
