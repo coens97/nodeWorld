@@ -198,6 +198,7 @@ this.gameRoom = function(parent){
 		var message = {
 			t : gameRoom.time+(new Date().getTime() - gameRoom.lastTime),//send server time
 			pl :{},//the players info will be filled in below
+			lb : {}//leaderboard
 		//	shots :  []//send shots
 		};
 
@@ -210,6 +211,8 @@ this.gameRoom = function(parent){
 				"vY":tpl.vY,
 				"rot":tpl.rot
 			};
+			message.lb[ob] = [tpl.kills,tpl.deaths];
+
 		}
 
 		merge(gameRoom.lastMessage,message);
@@ -243,7 +246,9 @@ var merge = function(destination, source) {
     		delete source[property];
     	}
     } else {
-    	if(destination[property]==source[property]){
+    	if(source[property] instanceof Array && destination[property] instanceof Array &&destination[property].join()==source[property].join()){
+    		delete source[property];
+    	}else if(destination[property]==source[property]){
     		delete source[property];
     	}else{
      		destination[property] = source[property];

@@ -17,5 +17,16 @@ var scoreBoard = {
 	removePlayer:function(name){
 		var row = document.getElementById("row"+name);
    		row.parentNode.removeChild(row);
+	},
+	updates:function(scores){//when get new scores
+		for (var name in scores) {
+			this.update(name,scores[name]);
+		};
+	},
+	update:function(name,score){
+		var row = document.getElementById("row"+name),
+			cells = row.getElementsByTagName('td');
+		cells[1].innerHTML = score[0];
+		cells[2].innerHTML = score[1];
 	}
 };
