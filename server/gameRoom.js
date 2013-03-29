@@ -114,6 +114,8 @@ this.gameRoom = function(parent){
 	this.disconnect = function(nickname){
 		delete this.players[nickname];
 		delete this.pl[nickname];
+		delete this.lastMessage.pl[nickname];
+		delete this.lastMessage.lb[nickname];
 		for(var ob in gameRoom.players){//loop trough all players to send it
 			gameRoom.players[ob].socket.emit("getDeletePlayer",nickname);//send them you disconnected
 		}
@@ -183,7 +185,7 @@ this.gameRoom = function(parent){
 		gameRoom.dt = new Date().getTime() - gameRoom.lastTime;
 		gameRoom.lastTime = new Date().getTime();
 		gameRoom.time += gameRoom.dt;
-		//console.log("Hello from gameLoop!");
+
 		for(var ob in gameRoom.pl){
 			gameRoom.pl[ob].loop();
 		}
@@ -216,7 +218,7 @@ this.gameRoom = function(parent){
 		}
 
 		merge(gameRoom.lastMessage,message);
-		
+		//console.log(gameRoom.lastMessage);
 		//add shots
 		if(gameRoom.shots.length!=0){
 			message.shots = gameRoom.shots;
