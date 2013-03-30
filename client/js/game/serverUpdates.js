@@ -21,11 +21,11 @@ gameRoom.updatePos = function(data){
         debug.toLatePackage++;
         return;
     }
-    if(this.lastUpdate==false){//first update
+    /*if(this.lastUpdate==false){//first update
         console.log("Have first update position");
         this.lastUpdate = data;
         return;
-    }
+    }*/
     for(var name in data.pl){//loop trough players
 
         //if its the player who plays, stop

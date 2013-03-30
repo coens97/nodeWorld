@@ -218,7 +218,6 @@ this.gameRoom = function(parent){
 		}
 
 		merge(gameRoom.lastMessage,message);
-		//console.log(gameRoom.lastMessage);
 		//add shots
 		if(gameRoom.shots.length!=0){
 			message.shots = gameRoom.shots;
