@@ -70,7 +70,7 @@ function waitRoom(){
     
     };
     this.waitInfo = function(data){//when info comes in about the room
-    	console.log(data);
+    	//console.log(data);
     	var parent = game.scenes[5];
         parent.speed = data.speed;
         parent.sprites.pSpeed.string = parent.speed;

@@ -13,7 +13,7 @@ gameRoom.onGetAllPlayers = function(data){//when you just got in room
         this.players.ar[name].vgY = cp.vY;
         scoreBoard.addPlayer(name);
     }
-    console.log(this.players.ar);
+    //console.log(this.players.ar);
 };
 gameRoom.updatePos = function(data){
     if(data.t<this.lastPackage){//if package came to late
