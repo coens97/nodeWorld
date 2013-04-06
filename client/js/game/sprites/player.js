@@ -47,7 +47,6 @@ function player(nickname,x,y,world,scene){
 	this.nickname = nickname;
 	this.frame = 1;
 	this.dir = true;
-	this.gun = 0;
 	this.rot = 0;//rotation of gun
 
 	this.kills = 0;
@@ -106,7 +105,7 @@ function player(nickname,x,y,world,scene){
 		ctx.lineTo(24,0);
 		ctx.stroke();
 		//draw gun
-		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 8, -25, 72, 48);
+		ctx.drawImage(gunsImg, 0, gameRoom.gun*48, 72, 48, 8, -25, 72, 48);
 		ctx.restore();//restore canvas setting
 		
 	};

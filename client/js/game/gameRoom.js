@@ -30,8 +30,9 @@ var gameRoom = new function(){
 
     //playerinfo
     this.health = 100;
-    this.ammo = 8;
-    this.reloadAmmo = 32;
+    this.gun = 0;
+    this.round = guns[this.gun].round;
+    this.ammo = guns[this.gun].ammo;
 
     this.shot = null;
 

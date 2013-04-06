@@ -40,7 +40,8 @@ requirejs([
     'game/sprites/score',
     'game/sprites/scoreboard',
     'game/sprites/cursor',
-	'game/sprites/bullet'
+	'game/sprites/bullet',
+    'game/guns'
     ],function(){
         requirejs([
             /* load scenes */

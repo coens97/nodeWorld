@@ -23,7 +23,7 @@ function score() {
       ctx.fillStyle = '#000000';
       ctx.textAlign = 'right';
       ctx.font="48px Arial";
-      ctx.fillText(gameRoom.ammo,1148,582);
+      ctx.fillText(gameRoom.round,1148,582);
 
       ctx.textAlign = 'center';
       ctx.font="80px Arial";
@@ -31,6 +31,6 @@ function score() {
 
       ctx.textAlign = 'left';
       ctx.font="42px Arial";
-      ctx.fillText(gameRoom.reloadAmmo,1170,608);
+      ctx.fillText(gameRoom.ammo,1170,608);
 	};
 }

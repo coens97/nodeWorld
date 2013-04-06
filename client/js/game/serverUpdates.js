@@ -87,6 +87,8 @@ gameRoom.updateHealth = function(data){
 };
 
 gameRoom.respawn = function(data){
+    this.round = guns[this.gun].round;
+    this.ammo = guns[this.gun].ammo;
 	this.player.x = data.x;
 	this.player.y = data.y;
 };

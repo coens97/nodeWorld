@@ -1,39 +1,35 @@
 //mouse input
 gameRoom.mouseDown = function(x,y) {
     //Player shoots
-
-    /***************************
-    calculate starting position of the starting point of the bullet
-    Calculate the point  where ther arm rotates around
-    var sX = this.map.x + this.player.x  + (this.player.dir?-12:12),
-        sY = this.map.y + this.player.y + 6;
-    
-    //Draw point where arm rotates
-    ctx.fillStyle = "#FFFF00";
-    ctx.beginPath();
-    ctx.arc(sX, sY, 2, 0, 2 * Math.PI, false);
-    ctx.fill();   
-    
-    //Calculate point where bullet comes out
-    sX += Math.cos(this.player.rot+(this.player.dir?0.1:-0.1)) * 60;
-    sY += Math.sin(this.player.rot+(this.player.dir?0.1:-0.1)) * 60;
-    
-    //Show point where bullets comes out
-    ctx.fillStyle = "#00FF00";
-    ctx.beginPath();
-    ctx.arc(sX, sY, 2, 0, 2 * Math.PI, false);
-    ctx.fill();   
-    ***************************/
-
     var sX = this.player.x  + (this.player.dir?-12:12) + Math.cos(this.player.rot) * 80,
         sY = this.player.y + 6 + Math.sin(this.player.rot) * 80;
 
-    this.shot = {
-        "x": sX,
-        "y": sY,
-        "rot": this.player.rot
-    };  
+    if(this.round>0){
+        this.round--;
+        if(this.round<=0){
+            //reload
+            window.setTimeout(this.reload,guns[gameRoom.gun].rt);
+        }
+        this.shot = {
+            "x": sX,
+            "y": sY,
+            "rot": this.player.rot
+        };  
+    }
        
+};
+
+gameRoom.reload = function(){
+    if(gameRoom.ammo!=0){
+        var needed = guns[gameRoom.gun].round - gameRoom.round;
+        if(needed<=gameRoom.ammo){
+            gameRoom.round = guns[gameRoom.gun].round;
+            gameRoom.ammo -= needed;
+        }else{
+            gameRoom.round += gameRoom.ammo;
+            gameRoom.ammo = 0;
+        }
+    }
 };
 
 gameRoom.keyDown = function(key){
