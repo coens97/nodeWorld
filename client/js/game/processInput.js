@@ -8,7 +8,7 @@ gameRoom.mouseDown = function(x,y) {
         this.round--;
         if(this.round<=0){
             //reload
-            window.setTimeout(this.reload,guns[gameRoom.gun].rt);
+            this.reload();
         }
         this.shot = {
             "x": sX,
@@ -20,16 +20,18 @@ gameRoom.mouseDown = function(x,y) {
 };
 
 gameRoom.reload = function(){
-    if(gameRoom.ammo!=0){
-        var needed = guns[gameRoom.gun].round - gameRoom.round;
-        if(needed<=gameRoom.ammo){
-            gameRoom.round = guns[gameRoom.gun].round;
-            gameRoom.ammo -= needed;
-        }else{
-            gameRoom.round += gameRoom.ammo;
-            gameRoom.ammo = 0;
+    window.setTimeout(function(){//setTimeout for reload time
+        if(gameRoom.ammo!=0){
+            var needed = guns[gameRoom.gun].round - gameRoom.round;
+            if(needed<=gameRoom.ammo){
+                gameRoom.round = guns[gameRoom.gun].round;
+                gameRoom.ammo -= needed;
+            }else{
+                gameRoom.round += gameRoom.ammo;
+                gameRoom.ammo = 0;
+            }
         }
-    }
+    },guns[gameRoom.gun].rt);
 };
 
 gameRoom.keyDown = function(key){
@@ -57,6 +59,8 @@ gameRoom.keyUp = function(key){
 	delete this.keys[key];//remove from object
     if(key==9){//if TAB is pressed 
         document.getElementById("scoreboard").style.display = "none";
+    }else if(key==82){
+        gameRoom.reload();
     }
 };
 
