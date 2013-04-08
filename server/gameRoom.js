@@ -162,10 +162,10 @@ this.gameRoom = function(parent){
 			for(var name in gameRoom.pl){
 				var cP = gameRoom.pl[name];//current player
 				if(cS.x>cP.x-32&&cS.x<cP.x+32&&cS.y>cP.y-62&&cS.y<cP.y+64){
-					gameRoom.bullets.splice(i,1);
 					//Todo:Player hit someone
-					cP.health -= 10;//set damage here
+					cP.health -= cS.damage;//set damage here
 					cP.healthChanged = true;
+					gameRoom.bullets.splice(i,1);
 					if(cP.health<=0){//when die
 						//TODO: Something when die
 						cP.health = 100;
