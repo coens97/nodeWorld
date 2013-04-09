@@ -28,13 +28,20 @@ function map(world){
 					var dat = layer.data[c];
 					if(dat!=0){
 						var t = 0;//current tile we only have 1 tile
-						var imgX = (dat % (m.tileW)-1)*world.tilesets[t].tilewidth;
-						var imgY = Math.round((dat/m.tileW)-0.5)*world.tilesets[t].tileheight;
-						if(dat % (m.tileW)==0){//check if it's the most right image
-							imgX = (m.tileW - 1)*world.tilesets[t].tilewidth;
-							imgY -= world.tilesets[t].tileheight;
+						var imgX,
+							imgY;
+						if(l==0){
+							imgX = (dat % (m.tileW)-1)*world.tilesets[t].tilewidth;
+							imgY = Math.round((dat/m.tileW)-0.5)*world.tilesets[t].tileheight;
+							if(dat % (m.tileW)==0){//check if it's the most right image
+								imgX = (m.tileW - 1)*world.tilesets[t].tilewidth;
+								imgY -= world.tilesets[t].tileheight;
+							}
+						}else{
+							imgX = 0;
+							imgY = (dat-world.tilesets[l].firstgid)*world.tilesets[l].tileheight;
 						}
-						ctx.drawImage(m.tiles[t], imgX ,imgY ,world.tilesets[t].tilewidth, world.tilesets[t].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilewidth, world.tileheight);
+						ctx.drawImage(m.tiles[l], imgX ,imgY ,world.tilesets[l].tilewidth, world.tilesets[l].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilesets[l].tilewidth, world.tilesets[l].tileheight);
 					}
 					c++;//C++ rules!
 				}

@@ -3,9 +3,17 @@
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
   <image source="grass.png" width="224" height="192"/>
  </tileset>
+ <tileset firstgid="43" name="guns" tilewidth="72" tileheight="48">
+  <image source="../player/guns.png" width="72" height="192"/>
+ </tileset>
  <layer name="Tilelaag 1" width="182" height="76">
   <data encoding="base64" compression="zlib">
    eJztnVuLGzEMhYfeaOkVum2hLTT9/3+yyYPB9SYzkkeXY/t8oJew7IylE98kO9tGCHnE56u9dbQ3AW14rXynL47vovUnon+05unPXt5f7UVlv67209CeAtrwoWlDbX/ufPbO8V1af9Z2ufPZR8d3KXzdbGP6e4vzZy9tHCL8bI00biUeEbqW9g8R33tr2n6Eus6lxCNC1yv4kbrGgLq2gbrGosTjx+a3hvq+reNH6hqDvfWlta3kR+o6F+raBuoaC+v9rtn2OaSsqmurXE9EzmIUrHIrFjmUTF1L/VDWOcW+GTx7Lzdxz/4++HzmsUPL0RzqkQ9bs9Dgp+Z/StfhFv1U71zSot3a3MSKY7mWs3Moy5yUtt+y7Ke0fvBoN/tbHCz37nv7rYx+yqPd1DUOq8Z31XavwqrxtczFrZBzG41V4+uRsxih3auwanw9chbcz8CB8cXFIt8zyvkUxDMoxAfJvum98zHRY6fFmI+Ym45A0ifMlofuzQdQ1/lI9SqZL802/7npeoQcZs9cdoQzg2dYUa9SbroeYQ3ewwg1csQH6pqMhKb2MELXe+/jtWYpur5suvzJbGuomdCss7LXfV7P711rzjp+zUCJqWRNmH3PjpeOeusvqWtcio5QYtTq+tWG1z+i+Yw8By1GGf21FjSfkeegxYi6xmevpgKlBgEtRtS1nmid7eWeUfZI0WJEXeuJ1tkIui7nm1Fi1J63rs3ivL4FRdco74Ok6729f+v9/r1ch/X5i7N1ou3dE1KfReZRJOdfMmKIoOvI/f7IupfI+8qy/JpRR5R5d8eN+ntVf480tXAj11ZF3leGWE/ohcavdX1iPaacGUMePX9kn5KxoAYJIYQQQgghhBBCxmOG36JGZcXfgEbB4l6PyNznSHjnTlFqhArS7/HZvk7ynL3agB5r72yirv3sqN7FYqzUaFWa0zyb30GotaCux/Z9lFY93gmhpqJnnt/bH/XMe3vmstn+Z947n3ae73m+XaK32e8mIzGg/cYq73AiFqDquqyDqWvSA6qu2V+TM1DXZEZqXb/cqGsyB+yvyQ3JHuxI9QPUtQ+SvABSDY8klzVSLKhrHyT1P9m+rsnUtUedWlunIvF173tI+qfWvxa/dZvRT1LXts9u7aL8e4mve/PUkjxlRG1HhJ5m1LWmj9H0HRF1D9m1Dcht1IxTknpNJF1b+z1bR0QOY08IIYQQ8j/Sef9IeRUyJ9LzHrd9B+ke0qi5ADIP0nPdtz0V6pqMgkbXe/s09fmjDF173yfiZUf77953eURYxry01vXe2byjvcK6L8/Qtfd9Ilm5u+yz4RaWrYcz+Rvqmrqmru2RjjtodjQOZt950GvZ89IZdY1UN7Aqs+ihbodHbeSR1XUy1HU+s+gBaR5IXeczix6Q5oGs88pnJD38A4rCfb8=
+  </data>
+ </layer>
+ <layer name="Tilelaag 2" width="182" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt3bENACAIBEAGUvcfz9qSBjTeTfAh336IAAAAeMvoDgAAAAAAAAAAAADQaHYHgCSdBQCoZX91cg8AAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Db++gAAAABQbXUHgCSdBQAAAAAAAAD40wYxBgFo
   </data>
  </layer>
 </map>
