@@ -110,30 +110,28 @@ function player(nickname,x,y,world,scene){
 		
 	};
 	//collision stuff
-	this.isSolid = function(x,y){
+	this.isSolid = function(l,x,y){
 		if(x>0&&y>0&&x<world.width&&y<world.height){//if player is in room
-			return checkCol(world.layers[0].data[y*world.layers[0].width+x]);
+			return checkCol(world.layers[l].data[y*world.layers[0].width+x]);
 		}else{
 			return false;
 		}
 	};
 	this.areSolidY = function(x,y){
-		var solid = false;
 		for(var i = 0;i<x.length;i++){
-			if(this.isSolid(x[i],y)){
-				solid = true;
+			if(this.isSolid(0,x[i],y)){
+				return true;
 			}
 		}
-		return solid;
+		return false;
 	};
 	this.areSolidX = function(x,y){
-		var solid = false;
 		for(var i = 0;i<y.length;i++){
-			if(this.isSolid(x,y[i])){
-				solid = true;
+			if(this.isSolid(0,x,y[i])){
+				return true;
 			}
 		}
-		return solid;
+		return false;
 	};
 	this.getCor = function(dim){//returns coordinates(world) of player 
 		var fx = dim=="x"?Math.round((this.x-16+this.vX)/ world.tilewidth):Math.round((this.x-16)/ world.tilewidth);
@@ -151,6 +149,17 @@ function player(nickname,x,y,world,scene){
 		}
 		//console.log("x"+x+" y"+y);//for debuging
 		return {x:ox,y:oy};
+	};
+
+	this.checkGun = function(x,y){
+		for(var aY = 0;aY<y.length;aY++){
+			for(var aX = 0;aX<x.length;aX++){
+				if(this.isSolid(1,x[aX],y[aY])){
+					return world.layers[1].data[y[aY]*world.layers[0].width+x[aX]]-world.tilesets[1].firstgid;
+				}
+			}
+		}
+		return 0;
 	};
 	this.checkCollision = function(){
 		var b = this.getCor("y");
@@ -179,6 +188,14 @@ function player(nickname,x,y,world,scene){
 		if(this.vX<0&&this.areSolidX(b.x[0],b.y)){//if moving down and something solid under it
 			this.vX = 0;
 			this.x = world.tilewidth*(b.x[1]+1);
+		}
+		//check gun
+		var gotGun = this.checkGun(b.x,b.y);
+		if(gotGun!=0){
+			//change gun
+			gameRoom.gun = gotGun;
+			gameRoom.round = guns[gameRoom.gun].round;
+		    gameRoom.ammo = guns[gameRoom.gun].ammo;
 		}
 	};
 	this.loop = function(){

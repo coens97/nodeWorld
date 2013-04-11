@@ -10,7 +10,7 @@ var guns = [
 	"rt":800,
 	"damage":15,
 	"round":30,
-	"ammo":90},
+	"ammo":120},
 	{"rps":15,//2
 	"rt":1000,
 	"damage":20,
@@ -18,7 +18,7 @@ var guns = [
 	"ammo":180},
 	{"rps":30,//3
 	"rt":800,
-	"damage":40,
+	"damage":35,
 	"round":30,
 	"ammo":90}
 ];
