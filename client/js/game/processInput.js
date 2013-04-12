@@ -14,7 +14,7 @@ gameRoom.mouseDown = function(x,y) {
             "x": sX,
             "y": sY,
             "rot": this.player.rot,
-            "damage":guns[this.gun].damage
+            "damage":guns[this.player.gun].damage
         };  
     }
        
@@ -23,16 +23,16 @@ gameRoom.mouseDown = function(x,y) {
 gameRoom.reload = function(){
     window.setTimeout(function(){//setTimeout for reload time
         if(gameRoom.ammo!=0){
-            var needed = guns[gameRoom.gun].round - gameRoom.round;
+            var needed = guns[gameRoom.player.gun].round - gameRoom.round;
             if(needed<=gameRoom.ammo){
-                gameRoom.round = guns[gameRoom.gun].round;
+                gameRoom.round = guns[gameRoom.player.gun].round;
                 gameRoom.ammo -= needed;
             }else{
                 gameRoom.round += gameRoom.ammo;
                 gameRoom.ammo = 0;
             }
         }
-    },guns[gameRoom.gun].rt);
+    },guns[gameRoom.player.gun].rt);
 };
 
 gameRoom.keyDown = function(key){

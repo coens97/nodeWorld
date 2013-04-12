@@ -51,6 +51,7 @@ function player(nickname,x,y,world,scene){
 
 	this.kills = 0;
 	this.deaths = 0;
+	this.gun = 0;
 	
 	this.draw = function(){
 		var x = this.x + scene.map.x;
@@ -105,7 +106,7 @@ function player(nickname,x,y,world,scene){
 		ctx.lineTo(24,0);
 		ctx.stroke();
 		//draw gun
-		ctx.drawImage(gunsImg, 0, gameRoom.gun*48, 72, 48, 8, -25, 72, 48);
+		ctx.drawImage(gunsImg, 0, this.gun*48, 72, 48, 8, -25, 72, 48);
 		ctx.restore();//restore canvas setting
 		
 	};
@@ -193,10 +194,13 @@ function player(nickname,x,y,world,scene){
 		var gotGun = this.checkGun(b.x,b.y);
 		if(gotGun!=0){
 			//change gun
-			gameRoom.gun = gotGun;
-			gameRoom.round = guns[gameRoom.gun].round;
-		    gameRoom.ammo = guns[gameRoom.gun].ammo;
+			this.getGun(gotGun);
 		}
+	};
+	this.getGun = function(theGun){
+			this.gun = theGun;
+			gameRoom.round = guns[this.gun].round;
+		    gameRoom.ammo = guns[this.gun].ammo;
 	};
 	this.loop = function(){
 		//regegain health
