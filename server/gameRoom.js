@@ -114,8 +114,8 @@ this.gameRoom = function(parent){
 	this.disconnect = function(nickname){
 		delete this.players[nickname];
 		delete this.pl[nickname];
-		delete this.lastMessage.pl[nickname];
-		delete this.lastMessage.lb[nickname];
+		if(typeof this.lastMessage.pl != "undefined"){delete this.lastMessage.pl[nickname];}
+		if(typeof this.lastMessage.lb != "undefined"){delete this.lastMessage.lb[nickname];}
 		for(var ob in gameRoom.players){//loop trough all players to send it
 			gameRoom.players[ob].socket.emit("getDeletePlayer",nickname);//send them you disconnected
 		}
