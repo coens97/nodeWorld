@@ -24,6 +24,7 @@ this.player = function(x,y,world,scene,nickname){
 
 	this.kills = 0;
 	this.deaths = 0;
+	this.gun = 0;
 
 	//collision stuff
 	this.isSolid = function(x,y){

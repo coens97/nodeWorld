@@ -54,6 +54,7 @@ gameRoom.updatePos = function(data){
        tpl.vgX = cp.vgX || (cp.vgX==0?0:tpl.vgX);
        (typeof(cp.vY)!='undefined'&&typeof(cp.y)!='undefined')&&(tpl.vY = Math.round((cp.y-tpl.y)/6) + cp.vY);
 	   tpl.rot = cp.rot || (cp.rot==0?0:tpl.rot);
+       tpl.gun = cp.gun || (cp.gun==0?0:tpl.gun);
     }
 	//save shots
 	(typeof(data.shots)!='undefined')&&(this.bullets.add(data.shots));//save shots when its send	
@@ -99,7 +100,8 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
        "y":this.player.y,
        "vY":this.player.vY,
        "vgX":this.player.vgX,
-	   "rot":this.player.rot
+	   "rot":this.player.rot,
+       "gun":this.player.gun
     };
 
     //check if not resend all data to reduce bandwith

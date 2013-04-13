@@ -101,7 +101,8 @@ this.gameRoom = function(parent){
 			gP.vY = data.vY || gP.vY;
 			gP.vgX = data.vgX || (data.vgX==0?0:gP.vgX);
 			gP.rot = data.rot || gP.rot;
-			
+			gP.gun = data.gun || (data.gun==0?0:gP.gun);
+
 			//shooting
 			if(!!data.shot){//when player shot
 				data.shot.nickname = player.nickname;	
@@ -211,7 +212,8 @@ this.gameRoom = function(parent){
 				"y":tpl.y,
 				"vgX":tpl.vgX,
 				"vY":tpl.vY,
-				"rot":tpl.rot
+				"rot":tpl.rot,
+				"gun":tpl.gun
 			};
 			message.lb[ob] = [tpl.kills,tpl.deaths];
 
