@@ -25,7 +25,7 @@ function bullets(){
 				this.shots.splice(i,1);
 			}
 			//Check collision with ground
-			if(gameRoom.player.isSolid(Math.round(cS.x/gameWorld.tilewidth),Math.round(cS.y/gameWorld.tileheight))){
+			if(gameRoom.player.isSolid(0,Math.round(cS.x/gameWorld.tilewidth),Math.round(cS.y/gameWorld.tileheight))){
 				this.shots.splice(i,1);
 			}
 			//check if bullet hit player
