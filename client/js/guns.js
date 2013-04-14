@@ -1,6 +1,6 @@
 //rps: rate of fire
 //rt: reload time
-var guns = [
+this.guns = [
 	{"rps":60,//0
 	"rt":700,
 	"damage":10,

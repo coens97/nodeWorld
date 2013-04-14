@@ -1,10 +1,10 @@
 var sPlayer = require('./sprites/player');
 var world = require('./map');
 var gameWorld = world.gameWorld;
+var guns = require('./../client/js/guns').guns;
 
 var worldWidth = gameWorld.width*gameWorld.tilewidth;
 var worldHeight = gameWorld.worldHeight*gameWorld.tileheight;
-
 
 
 this.gameRoom = function(parent){
@@ -105,7 +105,8 @@ this.gameRoom = function(parent){
 
 			//shooting
 			if(!!data.shot){//when player shot
-				data.shot.nickname = player.nickname;	
+				data.shot.nickname = player.nickname;
+				data.shot.damage = guns[gP.gun].damage;	
 				gameRoom.shots.push(data.shot);		
 			}
 		};

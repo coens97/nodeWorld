@@ -13,8 +13,7 @@ gameRoom.mouseDown = function(x,y) {
         this.shot = {
             "x": sX,
             "y": sY,
-            "rot": this.player.rot,
-            "damage":guns[this.player.gun].damage
+            "rot": this.player.rot
         };  
     }
        
