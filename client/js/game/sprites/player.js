@@ -194,7 +194,9 @@ function player(nickname,x,y,world,scene){
 		var gotGun = this.checkGun(b.x,b.y);
 		if(gotGun!=0){
 			//change gun
-			this.getGun(gotGun);
+			if(this==gameRoom.player){
+				this.getGun(gotGun);
+			}
 		}
 	};
 	this.getGun = function(theGun){
