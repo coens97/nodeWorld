@@ -173,7 +173,8 @@ this.gameRoom = function(parent){
 						cP.health = 100;
 						//respawn
 						gameRoom.respawn(name);
-						//do leaderboard stuff				
+						//do leaderboard stuff
+						this.sendKill(cS.nickname,name);			
 						cP.deaths++;
 						gameRoom.pl[cS.nickname].kills++;		
 					}
@@ -196,6 +197,11 @@ this.gameRoom = function(parent){
 
 	};
 
+	this.sendKill = function(killer,deadGuy){
+		for(var ob in gameRoom.players){//loop trough all players to send it
+			gameRoom.players[ob].socket.emit("killed", [killer,deadGuy]);
+		}
+	};
 	this.lastMessage = {};
 	this.sendUpdates = function(){
 		//console.log("Sending updates");
