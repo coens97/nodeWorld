@@ -208,6 +208,9 @@ function player(nickname,x,y,world,scene){
 	};
 	this.getGun = function(theGun){
 			this.gun = theGun;
+			if(guns[this.gun].smg==false){//if player has smg
+				gameRoom.smg = false;
+			}
 			gameRoom.round = guns[this.gun].round;
 		    gameRoom.ammo = guns[this.gun].ammo;
 	};

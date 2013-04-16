@@ -111,6 +111,10 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
         }
     }
     //Stuff that can multiple times be the same
+    //shooting
+    if(this.smg){
+        this.shoot();
+    }
     if(typeof(this.shot)!='undefined'){
         upd.shot = this.shot;//send shoot information
         delete this.shot;

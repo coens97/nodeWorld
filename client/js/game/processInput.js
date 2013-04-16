@@ -1,9 +1,17 @@
 //mouse input
+gameRoom.smg = false;
 gameRoom.mouseDown = function(x,y) {
     //Player shoots
+    if(guns[this.player.gun].smg==true){//if player has smg
+        this.smg = true;
+    }else{
+        this.shoot();
+    }    
+};
+
+gameRoom.shoot = function(x,y){
     var sX = this.player.x  + (this.player.dir?-12:12) + Math.cos(this.player.rot) * 80,
         sY = this.player.y + 6 + Math.sin(this.player.rot) * 80;
-
     if(this.round>0){
         this.round--;
         if(this.round<=0){
@@ -16,7 +24,10 @@ gameRoom.mouseDown = function(x,y) {
             "rot": this.player.rot
         };  
     }
-       
+}
+
+gameRoom.mouseUp = function(x,y){
+    this.smg = false;
 };
 
 gameRoom.reload = function(){

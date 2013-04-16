@@ -24,6 +24,11 @@ var game = {
     mouseDown : function(x,y){//resolution 1280 720
 		this.scenes[this.currentScene].mouseDown(x,y);
     },
+    mouseUp : function(x,y){
+        if(this.currentScene==6){
+            this.scenes[this.currentScene].mouseUp(x,y);
+        }
+    },
     keyDown : function(key){
     	this.scenes[this.currentScene].keyDown(key);
     },

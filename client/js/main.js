@@ -94,6 +94,21 @@ function onMainClick(e){
     mouse.y = tmpY;
     game.mouseDown(tmpX,tmpY);
 }
+
+function onMainClickUp(e){
+    var tmpX,
+        tmpY
+    //for touch screen
+    if(touch){
+        tmpX = (e.touches[0].pageX - c.offsetLeft)*scale;
+        tmpY = (e.touches[0].pageY - c.offsetTop)*scale;
+    }else{
+        tmpX = (e.pageX - c.offsetLeft)*scale;
+        tmpY = (e.pageY - c.offsetTop)*scale;
+    }
+    game.mouseUp(tmpX,tmpY);
+}
+
 var mouse = {"x":1280,"y":360};
 function onMouseMove(e){
     if(touch){
@@ -120,12 +135,14 @@ function init(){
     //add eventlisteners for click or touch
     if (touch) {//check if it has touchscreen
         c.addEventListener("touchstart", onMainClick, false);
+        c.addEventListener("touchend", onMainClickUp, false);
         c.addEventListener("touchmove", onMouseMove, false);
         document.getElementById("bleft").style.display = 'block';
         document.getElementById("bright").style.display = 'block';
         document.getElementById("bup").style.display = 'block';
 	}else{
-		c.addEventListener("click", onMainClick, false);
+		c.addEventListener("mousedown", onMainClick, false);
+        c.addEventListener("mouseup", onMainClickUp, false);
         document.body.addEventListener("mousemove", onMouseMove, false);
 	}
     //disable rightclick contextmenu because keyboard events don't work anymore
