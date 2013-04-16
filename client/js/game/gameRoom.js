@@ -35,6 +35,8 @@ var gameRoom = new function(){
 
     this.shot = null;
 
+    this.inactiveGuns = {};
+    
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
         c.style.cursor = "none";//hide cursor

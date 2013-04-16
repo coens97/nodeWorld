@@ -156,7 +156,14 @@ function player(nickname,x,y,world,scene){
 		for(var aY = 0;aY<y.length;aY++){
 			for(var aX = 0;aX<x.length;aX++){
 				if(this.isSolid(1,x[aX],y[aY])){
-					return world.layers[1].data[y[aY]*world.layers[0].width+x[aX]]-world.tilesets[1].firstgid;
+					var pos = y[aY]*world.layers[0].width+x[aX];
+					if(typeof gameRoom.inactiveGuns[pos] == 'undefined'){
+						gameRoom.inactiveGuns[pos] = true;
+						setTimeout(function(){
+							delete gameRoom.inactiveGuns[pos];
+						},20000);
+						return world.layers[1].data[pos]-world.tilesets[1].firstgid;
+					}
 				}
 			}
 		}

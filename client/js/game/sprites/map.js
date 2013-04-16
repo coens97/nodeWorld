@@ -40,6 +40,10 @@ function map(world){
 						}else{
 							imgX = 0;
 							imgY = (dat-world.tilesets[l].firstgid)*world.tilesets[l].tileheight;
+							if(typeof gameRoom.inactiveGuns[c] != 'undefined'){
+								c++;
+								continue;
+							}
 						}
 						ctx.drawImage(m.tiles[l], imgX ,imgY ,world.tilesets[l].tilewidth, world.tilesets[l].tileheight,this.x+tX*world.tilewidth,this.y+tY*world.tileheight, world.tilesets[l].tilewidth, world.tilesets[l].tileheight);
 					}
