@@ -24,5 +24,5 @@ this.guns = [
 	"damage":35,
 	"round":30,
 	"ammo":90,
-	"smg":false}
+	"smg":true}
 ];
