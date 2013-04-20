@@ -13,6 +13,9 @@ var scoreBoard = {
 
 		var cell2 = row.insertCell(2);
 		cell2.innerHTML = "0";
+
+		var cell3 = row.insertCell(2);
+		cell3.innerHTML = "0";
 	},
 	removePlayer:function(name){
 		var row = document.getElementById("row"+name);
@@ -28,5 +31,13 @@ var scoreBoard = {
 			cells = row.getElementsByTagName('td');
 		cells[1].innerHTML = score[0];
 		cells[2].innerHTML = score[1];
+		//k/d
+		if(score[0]==0){
+			cells[3].innerHTML = "0";
+		}else if(score[1]==0){
+			cells[3].innerHTML = score[0];
+		}else{
+			cells[3].innerHTML = Math.round(score[0]/score[1]*100)/100;
+		}
 	}
 };

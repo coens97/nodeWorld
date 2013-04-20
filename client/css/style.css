@@ -216,8 +216,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
 	border-top: 1px solid #C2C2C2;	
 }
 #scoreboard td{
-	text-align:right;
+	text-align:left;
+	padding-left: 15px;
 }
 #scoreboard td:first-child{
-	text-align:left;
+	width: 100%;
+	padding-left: 0;
 }
