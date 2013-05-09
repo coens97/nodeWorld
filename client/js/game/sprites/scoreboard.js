@@ -26,12 +26,13 @@ var scoreBoard = {
 		};
 		
 		if(!ObIsEmpty(scores)){
-			SortTable(3);
+			SortTable();
 		}
 	},
 	update:function(name,score){
 		var row = document.getElementById("row"+name),
 			cells = row.getElementsByTagName('td');
+
 		cells[1].innerHTML = score[0];
 		cells[2].innerHTML = score[1];
 		//k/d
@@ -46,7 +47,7 @@ var scoreBoard = {
 };
 
 //sorteer tabbel
-function SortTable(sortOn) {
+function SortTable() {
 	var table = document.getElementById('tbsb');
 	var tbody = table.getElementsByTagName('tbody')[0];
 	var rows = tbody.getElementsByTagName('tr');
@@ -64,7 +65,12 @@ function SortTable(sortOn) {
 		newTbody.appendChild(rows[rowArray[i].oldIndex].cloneNode(true));
 	}
 
-	table.replaceChild(newTbody, tbody);
+	if(this.cont.rows.length!=rowArray.length){
+		SortTable();
+	}else
+	{
+		table.replaceChild(newTbody, tbody);
+	}
 }
 // Compare number
 function RowCompareNumbers(b, a) {

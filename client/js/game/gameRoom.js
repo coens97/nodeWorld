@@ -3,7 +3,7 @@ var gameRoom = new function(){
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),
          map : new map(gameWorld),
          players : new objectAr(),
-         bullets : new bullets(), 
+         bullets : new bullets(),
          log : new log(),
          score : new score(),
          cursor : new cursor()
@@ -15,9 +15,9 @@ var gameRoom = new function(){
     this.players = this.sprites.players;
     this.bullets = this.sprites.bullets;
     this.log = this.sprites.log;
-    this.speed = 0;//player speed from server   
+    this.speed = 0;//player speed from server
     /* time stuff */
-    this.dt = 0;//delta time 
+    this.dt = 0;//delta time
     this.lastTime = new Date().getTime();//last frame
     this.lastPackage = 0;
     this.udt = 0;//delta update time from server loop
@@ -36,7 +36,7 @@ var gameRoom = new function(){
     this.shot = null;
 
     this.inactiveGuns = {};
-    
+
 	this.startScene = function(){
         this.player = this.players.ar[theNickname];
         c.style.cursor = "none";//hide cursor
@@ -76,7 +76,7 @@ var gameRoom = new function(){
         gameRoom.dt = new Date().getTime() - gameRoom.lastTime;
         gameRoom.lastTime = new Date().getTime();
         gameRoom.time += gameRoom.dt;
-        
+
         this.input()
         //rotate gun
         this.player.rot = Math.atan2(mouse.x-(this.player.x + this.map.x + (this.player.dir?-12:12) ),(this.player.y + this.map.y+6)-mouse.y)-Math.PI/2;
@@ -92,9 +92,9 @@ var gameRoom = new function(){
     this.draw = function(){
         /***********
          * loop trough all sprite and draw it on canvas
-         ***********/     
+         ***********/
         for(var thisSprite in this.sprites){
-            this.sprites[thisSprite].draw();       
-        } 
+            this.sprites[thisSprite].draw();
+        }
     };
 }
