@@ -110,7 +110,14 @@ this.gameRoom = function(parent){
 				gameRoom.shots.push(data.shot);		
 			}
 		};
+		this.message = function(data){
+			console.log(now()+"message:"+player.nickname+":"+data);
+			for(var ob in gameRoom.players){//loop trough all players to send it
+				gameRoom.players[ob].socket.emit("message", player.nickname + ": " + data);
+			}
+		}
 		player.socket.on("updates",this.updates);
+		player.socket.on("message",this.message);
 		
 	};
 	this.disconnect = function(nickname){

@@ -46,14 +46,23 @@ gameRoom.reload = function(){
 };
 
 gameRoom.keyDown = function(key){
-	if(!def(this.keys[key])){
-        this.keys[key] = true;
-        this.keyPress(key);
-    }
-    if(key==32){//if spacebar is pressed
-        if(this.player.onGround!=2){
-            this.player.vY = -20;
-            this.player.onGround++;
+    if(typing){
+        if(key==27){
+            gameRoom.stopTyping();
+        }else if(key==13){
+            socket.emit("message",textf.value);
+            gameRoom.stopTyping();
+        }
+    }else{
+    	if(!def(this.keys[key])&&!typing){
+            this.keys[key] = true;
+            this.keyPress(key);
+        }
+        if(key==32&&!typing){//if spacebar is pressed
+            if(this.player.onGround!=2){
+                this.player.vY = -20;
+                this.player.onGround++;
+            }
         }
     }
     if(key==9){//if TAB is pressed 
@@ -61,10 +70,22 @@ gameRoom.keyDown = function(key){
     }
 };
 gameRoom.keyPress = function(key){
-    if(!def(this.keys[key])){
+    if(key==84){
+        this.startTyping();
+    }else if(!def(this.keys[key])){
         this.keys[key] = true;
-        this.keyPress(key);
     }
+};
+gameRoom.startTyping = function(){
+    typing = true;
+    textf.style.display = "block";
+    setTimeout(function(){textf.focus();},1);
+
+};
+gameRoom.stopTyping = function(){
+    typing = false;
+    textf.style.display = "none";
+    textf.value = "";
 };
 gameRoom.keyUp = function(key){
 	delete this.keys[key];//remove from object

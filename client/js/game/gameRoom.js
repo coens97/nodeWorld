@@ -1,3 +1,5 @@
+
+var typing = false;
 var gameRoom = new function(){
     this.sprites = {
          bg : new vGrad({0:"#87e0fd",1:"#05abe0"},0,0,1280,720),

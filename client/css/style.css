@@ -223,3 +223,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
 	width: 100%;
 	padding-left: 0;
 }
+#txt{
+	position: fixed;
+	top: 40px;
+	font-size: 18px;
+	background-color: transparent;
+	border: 0;
+	display: none;
+}
+
+#txt:focus{
+	outline: none;
+}

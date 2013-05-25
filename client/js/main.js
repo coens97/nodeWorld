@@ -5,7 +5,8 @@
 var c = document.getElementById("myCanvas"),//canvas element
     ctx = c.getContext("2d"),
     touch = false,
-    stats;
+    stats,
+    textf;
 
 //if touchscreen
 if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
@@ -131,6 +132,7 @@ var keyUp = function(event){
 	game.keyUp(keycode);
 };
 function init(){
+    textf = document.getElementById("txt");
     resizeCanvas();
     //add eventlisteners for click or touch
     if (touch) {//check if it has touchscreen
@@ -180,7 +182,8 @@ function resizeCanvas(){//resize canvas to aspect ratio
    scoreb.style.width =  tmpWidth*0.4 +"px";
    scoreb.style.left = windowWidth/2 - tmpWidth*0.2 + "px";
    scoreb.style.height = list.style.height = tmpHeight*0.72 +"px";
-   
+   textf.style.left =  windowWidth/2 - tmpWidth/2 + 10 +"px";  
+   textf.style.width =  tmpWidth - 20 +"px";   
 }
 document.ontouchmove = function(e) {//when on device with touchscreen want to scroll
     e.preventDefault();

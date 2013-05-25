@@ -136,6 +136,9 @@ gameRoom.sendUpdates = function(){//verzend updates naar server
 gameRoom.killed = function(data){
     this.log.push(data[0]+" killed "+data[1]);
 }
+gameRoom.message = function(data){
+    this.log.push(data);
+}
 //create callback
 socket.on("getAllPlayers",function(data){gameRoom.onGetAllPlayers(data);});
 socket.on("getNewPlayer",function(data){gameRoom.getNewPlayer(data);});
@@ -144,3 +147,4 @@ socket.on("updatePos",function(data){gameRoom.updatePos(data);});
 socket.on("healthChanged",function(data){gameRoom.updateHealth(data);});
 socket.on("respawn",function(data){gameRoom.respawn(data);});
 socket.on("killed",function(data){gameRoom.killed(data);});
+socket.on("message",function(data){gameRoom.message(data);});
